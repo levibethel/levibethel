@@ -1,5 +1,5 @@
 .DS_Store
 *.bak
-*.mp4
+reel.mp4
 node_modules/
 .tmp/
