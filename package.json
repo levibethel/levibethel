@@ -1,0 +1,23 @@
+{
+  "name": "levibethel-portfolio",
+  "version": "1.2.0",
+  "description": "Portfolio and Concepts & Packaging Gallery for Levi Bethel / Fermion Bec Productions",
+  "main": "index.html",
+  "scripts": {
+    "dev": "bash scripts/dev.sh",
+    "start": "python3 -m http.server 3000 --directory .",
+    "build": "bash scripts/build.sh",
+    "serve": "python3 -m http.server 3000 --directory .",
+    "lint:json": "python3 -m json.tool data/concepts.json > /dev/null"
+  },
+  "keywords": [
+    "cinematography",
+    "film-packaging",
+    "lookbooks",
+    "director",
+    "fermion-bec-productions"
+  ],
+  "author": "Levi Bethel",
+  "license": "UNLICENSED",
+  "private": true
+}
