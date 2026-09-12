@@ -24,6 +24,21 @@
       color: #E5E5E5;
       font-family: 'Outfit', sans-serif;
       overflow-x: hidden;
+      min-width: 0;
+    }
+
+    main, header, section, nav, article, div { min-width: 0; }
+
+    @media (orientation: landscape) and (max-height: 600px) {
+      main { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+      header { margin-bottom: 2rem !important; padding-bottom: 1rem !important; gap: 2rem !important; }
+      header h1 { font-size: 3rem !important; line-height: 0.95; }
+      #reel { margin-bottom: 2.5rem !important; }
+      .role-nav { margin-bottom: 2.5rem !important; }
+    }
+
+    @media (max-width: 640px) {
+      .btn-hire { max-width: 100%; padding-left: 1.25rem !important; padding-right: 1.25rem !important; white-space: normal !important; }
     }
 
     .font-hero { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
@@ -31,6 +46,7 @@
     .font-mono-hud { font-family: 'JetBrains Mono', monospace; }
     .font-serif-title { font-family: 'Cinzel', serif; letter-spacing: 0.04em; }
     .font-serif-sub { font-family: 'Cormorant Garamond', serif; }
+    .role-panel { height: clamp(360px, 95vw, 480px); }
 
     /* Film Grain Noise Overlay */
     .noise-overlay {
@@ -235,7 +251,7 @@
             <li class="flex items-center gap-2"><span class="text-amber-500">// 03</span> LOGISTICS On-Time Production Pipeline</li>
           </ul>
         </div>
-        <div class="order-1 md:order-2 h-[480px] bg-[#0A0A0C] border border-[#222225] rounded overflow-hidden relative group">
+        <div class="role-panel order-1 md:order-2 bg-[#0A0A0C] border border-[#222225] rounded overflow-hidden relative group">
           <img src="director.jpg" alt="Director BTS On-Set" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-700">
           <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur px-3 py-1.5 rounded border border-[#333] text-xs font-mono-hud text-amber-500">
             <span>DIRECTOR BTS // ON-SET COMMAND</span>
@@ -262,7 +278,7 @@
             <li class="flex items-center gap-2"><span class="text-amber-500">// CAMERAS</span> Full Cinema & Hybrid Systems Mastery</li>
           </ul>
         </div>
-        <div class="order-1 md:order-2 h-[480px] bg-[#0A0A0C] border border-[#222225] rounded overflow-hidden relative group">
+        <div class="role-panel order-1 md:order-2 bg-[#0A0A0C] border border-[#222225] rounded overflow-hidden relative group">
           <img src="dp.jpg" alt="DP Anamorphic Cinema Rig" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-700">
           <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur px-3 py-1.5 rounded border border-[#333] text-xs font-mono-hud text-amber-500">
             <span>CINEMA RIG // ANAMORPHIC BUILD</span>
@@ -289,7 +305,7 @@
             <li class="flex items-center gap-2"><span class="text-amber-500">// DELIVERABLES</span> ProRes 4444 XQ & Theatrical DCP Masters</li>
           </ul>
         </div>
-        <div class="order-1 md:order-2 h-[480px] bg-[#0A0A0C] border border-[#222225] rounded overflow-hidden relative group">
+        <div class="role-panel order-1 md:order-2 bg-[#0A0A0C] border border-[#222225] rounded overflow-hidden relative group">
           <img src="editor.jpg" alt="Post Suite Color Console" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-700">
           <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur px-3 py-1.5 rounded border border-[#333] text-xs font-mono-hud text-amber-500">
             <span>POST SUITE // RESOLVE COLOR CONSOLE</span>
