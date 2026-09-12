@@ -1,7 +1,7 @@
 {
   "name": "levibethel-portfolio",
   "version": "1.2.0",
-  "description": "Portfolio and Concepts & Packaging Gallery for Levi Bethel / Fermion Bec Productions",
+  "description": "Portfolio and Concepts & Packaging Gallery for Peter Levi Bethel / Fermion Bec Productions",
   "main": "index.html",
   "scripts": {
     "dev": "bash scripts/dev.sh",
@@ -17,7 +17,7 @@
     "director",
     "fermion-bec-productions"
   ],
-  "author": "Levi Bethel",
+  "author": "Peter Levi Bethel",
   "license": "UNLICENSED",
   "private": true
 }

@@ -199,7 +199,7 @@ function renderDeckRequestModal() {
             REF: FBP-DECK-2026-X9
           </p>
           <p class="text-sm text-[#8C8C92] font-light max-w-md mx-auto mb-6 leading-relaxed">
-            Your inquiry for <strong class="text-white font-medium" id="deck-success-project-name">The Project</strong> has been delivered to Levi Bethel. Credentials will be vetted and a secure view link will be dispatched to your email.
+            Your inquiry for <strong class="text-white font-medium" id="deck-success-project-name">The Project</strong> has been delivered to Peter Levi Bethel. Credentials will be vetted and a secure view link will be dispatched to your email.
           </p>
           <button 
             type="button"
