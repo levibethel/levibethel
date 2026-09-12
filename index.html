@@ -70,6 +70,7 @@
       position: relative;
       padding: 0.75rem 0;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     .role-btn.active {
       color: #FFFFFF;
@@ -181,12 +182,16 @@
 
       <div id="monitor" class="monitor-frame aspect-scope bg-black relative">
         <!-- HERO REEL EMBED -->
-              <div id="monitor" class="monitor-frame aspect-scope bg-black relative">
-        <video id="hero-video" controls autoplay loop muted playsinline class="w-full h-full object-cover opacity-90">
-          <source src="REEL-2.mp4" type="video/mp4">
-       
-        </video>
-
+        <iframe 
+          id="hero-video"
+          class="w-full h-full object-cover opacity-90"
+          src="https://www.youtube.com/embed/_jT_TH1Wfrg?si=GQttPY8qu9WYtycE" 
+          title="Levi Bethel | Hero Reel" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          allowfullscreen>
+        </iframe>
 
         <!-- On-Set Viewfinder HUD Overlays -->
         <div class="absolute top-4 left-4 text-xs font-mono-hud text-red-500 flex items-center gap-2 bg-black/60 backdrop-blur px-3 py-1 rounded border border-red-500/30">
@@ -210,7 +215,7 @@
     </section>
 
     <!-- ROLE SWITCHER & STUDIO TAB NAVIGATION -->
-    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex justify-center gap-6 md:gap-12 overflow-x-auto">
+    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex flex-wrap justify-center items-center gap-x-6 gap-y-2 px-2 md:gap-12">
       <button class="role-btn active" onclick="switchRole('director', this)">Director</button>
       <button class="role-btn" onclick="switchRole('dp', this)">Cinematographer</button>
       <button class="role-btn" onclick="switchRole('editor', this)">Editor</button>
