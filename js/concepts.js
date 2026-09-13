@@ -165,6 +165,65 @@ function filterConcepts(category, btnElement) {
   });
 }
 
+
+/**
+ * Auto-rotating Stacked Cards Controller
+ * Cycles through production package materials across all cards with smooth transitions.
+ */
+function initStackedRotatingCards() {
+  const stackContainers = document.querySelectorAll('.card-stack-wrap');
+  
+  stackContainers.forEach(container => {
+    const track = container.querySelector('.rotating-card-track');
+    if (!track) return;
+    
+    const items = track.querySelectorAll('.rotating-card-item');
+    if (items.length <= 1) return;
+    
+    let currentIndex = 0;
+    let isPaused = false;
+    let intervalId = null;
+
+    function showNext() {
+      if (isPaused) return;
+      const prevItem = items[currentIndex];
+      if (prevItem) {
+        prevItem.classList.remove('active');
+        prevItem.classList.add('exiting');
+        setTimeout(() => {
+          prevItem.classList.remove('exiting');
+        }, 450);
+      }
+
+      currentIndex = (currentIndex + 1) % items.length;
+      const nextItem = items[currentIndex];
+      if (nextItem) {
+        nextItem.classList.add('active');
+      }
+    }
+
+    function startRotation() {
+      if (intervalId) clearInterval(intervalId);
+      const intervalMs = 2800 + Math.floor(Math.random() * 500);
+      intervalId = setInterval(showNext, intervalMs);
+    }
+
+    // Hover pauses rotation
+    container.addEventListener('mouseenter', () => { isPaused = true; });
+    container.addEventListener('mouseleave', () => { isPaused = false; });
+
+    // Click cycles immediately
+    container.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isPaused = false;
+      showNext();
+      startRotation();
+    });
+
+    startRotation();
+  });
+}
+
 // Global Event Listeners (Escape key, Outside Click, Hash Routing)
 document.addEventListener('DOMContentLoaded', () => {
   // Escape key closes modal
@@ -197,5 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   handleHashNavigation();
+  initStackedRotatingCards();
   window.addEventListener('hashchange', handleHashNavigation);
 });

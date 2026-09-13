@@ -1,6 +1,6 @@
 /**
  * Fermion Bec Productions - ConceptCard Component
- * Generates an A24-inspired, indie-prestige project card with IP protection.
+ * Generates an A24-inspired, indie-prestige project card with IP protection and stacked rotating cards.
  */
 function createConceptCard(project) {
   const paletteHtml = project.colorPalette
@@ -22,6 +22,63 @@ function createConceptCard(project) {
         .join('')
     : '';
 
+  let stackHtml = '';
+  if (project.packageAssets && project.packageAssets.length > 0) {
+    const itemsHtml = project.packageAssets
+      .map((asset, idx) => {
+        const activeClass = idx === 0 ? 'active' : '';
+        const numStr = String(idx + 1).padStart(2, '0');
+        const totalStr = String(project.packageAssets.length).padStart(2, '0');
+        return `<span class="rotating-card-item ${activeClass} text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider truncate" data-index="${idx}">${numStr}/${totalStr} ${asset}</span>`;
+      })
+      .join('');
+
+    let label = 'PKG:';
+    if (project.id === 'the-binding-seam') label = 'PACKAGE:';
+    else if (project.id === 'crossfire-cousins') label = 'LOOKBOOK:';
+
+    const pulseColor = project.id === 'the-binding-seam' ? 'bg-red-500' : 'bg-amber-400';
+
+    stackHtml = `
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="${project.id}" title="Click to rotate production package assets">
+        <div class="card-stack-layer-back2 absolute inset-0 bg-[#0E0E12]/90 border border-white/10 rounded pointer-events-none transform -rotate-3 -translate-x-1 -translate-y-0.5"></div>
+        <div class="card-stack-layer-back1 absolute inset-0 bg-[#16161D]/90 border border-amber-500/25 rounded pointer-events-none transform rotate-2 translate-x-1 -translate-y-0.5"></div>
+        <div class="card-stack-front relative z-10 flex items-center gap-1.5 bg-black/85 backdrop-blur-md border border-amber-500/40 px-2 py-0.5 rounded shadow-lg text-[9px] font-mono-hud cursor-pointer group-hover:border-amber-400 transition-all">
+          <span class="w-1.5 h-1.5 rounded-full ${pulseColor} animate-pulse flex-shrink-0"></span>
+          <span class="text-amber-400/90 font-bold uppercase tracking-wider flex-shrink-0">${label}</span>
+          <div class="rotating-card-track relative overflow-hidden h-[13px] w-[130px] sm:w-[170px]">
+            ${itemsHtml}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Base badge
+  let baseBadgeHtml = '';
+  if (project.id === 'the-weight-of-light') {
+    baseBadgeHtml = `
+      <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
+        6 SLIDES
+      </span>
+      ${stackHtml}
+    `;
+  } else if (project.id === 'the-binding-seam') {
+    baseBadgeHtml = `
+      <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
+        ONE-PAGER
+      </span>
+      ${stackHtml}
+    `;
+  } else {
+    // Crossfire Cousins: change the LOOKBOOK text to stacked, rotating cards
+    baseBadgeHtml = stackHtml || `
+      <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
+        LOOKBOOK
+      </span>
+    `;
+  }
+
   return `
     <article class="concept-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 transition-all duration-500 hover:shadow-[0_0_35px_rgba(217,119,6,0.15)] relative" data-project-id="${project.id}">
       
@@ -40,24 +97,22 @@ function createConceptCard(project) {
         <!-- Subtle Vignette & Scrim Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
 
-        <!-- Top Left: Scope & Slides HUD -->
-        <div class="absolute top-3 left-3 flex items-center gap-2">
+        <!-- Top Left: Scope & Stacked Rotating Cards HUD -->
+        <div class="absolute top-3 left-3 flex flex-wrap items-center gap-2 z-20">
           <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
             ${project.aspectRatio || '2.39:1'} SCOPE
           </span>
-          <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-            ${project.deckSlides}
-          </span>
+          ${baseBadgeHtml}
         </div>
 
         <!-- Top Right: IP Security Badge -->
-        <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+        <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase z-20">
           <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
           <span>RESTRICTED IP</span>
         </div>
 
         <!-- Bottom Left overlay: Tonal Palette swatch -->
-        <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5">
+        <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
           <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
           ${paletteHtml}
         </div>

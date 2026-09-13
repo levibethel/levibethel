@@ -84,6 +84,95 @@
       filter: contrast(220%) hue-rotate(180deg) saturate(350%) !important;
     }
 
+    
+    /* Stacked Rotating Cards Component */
+    .card-stack-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      perspective: 600px;
+    }
+    .card-stack-layer-back2 {
+      position: absolute;
+      inset: 0;
+      background: rgba(12, 12, 16, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      transform: rotate(-3.5deg) translate(-2px, -2px);
+      pointer-events: none;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .card-stack-layer-back1 {
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 18, 24, 0.95);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 4px;
+      transform: rotate(2.5deg) translate(2px, -1px);
+      pointer-events: none;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .concept-card:hover .card-stack-layer-back2 {
+      transform: rotate(-6deg) translate(-4px, -3px);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .concept-card:hover .card-stack-layer-back1 {
+      transform: rotate(4.5deg) translate(3px, -2px);
+      border-color: rgba(245, 158, 11, 0.6);
+    }
+    .card-stack-front {
+      position: relative;
+      z-index: 10;
+      background: rgba(8, 8, 11, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .card-stack-front:hover {
+      border-color: rgba(245, 158, 11, 0.8);
+      background: rgba(14, 14, 18, 0.98);
+    }
+    .rotating-card-track {
+      position: relative;
+      display: inline-block;
+      min-width: 120px;
+      max-width: 170px;
+      height: 13px;
+      overflow: hidden;
+      vertical-align: middle;
+    }
+    .rotating-card-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0;
+      transform: translateY(8px) rotateX(-20deg);
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .rotating-card-item.active {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+      pointer-events: auto;
+    }
+    .rotating-card-item.exiting {
+      opacity: 0;
+      transform: translateY(-8px) rotateX(20deg);
+    }
+
     /* Navigation Dock Buttons */
     .role-btn {
       font-family: 'Syncopate', sans-serif;
@@ -407,24 +496,40 @@
               loading="lazy"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 flex items-center gap-2">
+            <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
               <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
                 2.39:1 SCOPE
               </span>
               <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
                 6 SLIDES
               </span>
+              <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-weight-of-light" title="Click to cycle production package materials">
+                <div class="card-stack-layer-back2"></div>
+                <div class="card-stack-layer-back1"></div>
+                <div class="card-stack-front">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+                  <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PKG:</span>
+                  <div class="rotating-card-track">
+                    <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/06 6-Slide Visual Proposal</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/06 Anamorphic Optical Strategy</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/06 Desert Dawn Lighting Manifest</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/06 Motivated High-Key Lighting</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/06 Vehicle Dynamic Framing Grids</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/06 DaVinci Wide Gamut CST Color</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
               <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
               <span>RESTRICTED IP</span>
             </div>
-            <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5">
+            <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
               <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4AF37;" title="Tone: #D4AF37"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #1A1A1E;" title="Tone: #1A1A1E"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #3A3A42;" title="Tone: #3A3A42"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #888890;" title="Tone: #888890"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4A373;" title="Tone: Desert Dawn Amber #D4A373"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #111318;" title="Tone: Metallic Obsidian #111318"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #4E4856;" title="Tone: Mountain Slate #4E4856"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #C4BFCA;" title="Tone: Specular Salt Chrome #C4BFCA"></span>
             </div>
           </div>
 
@@ -484,13 +589,35 @@
               loading="lazy"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 flex items-center gap-2">
+            <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
               <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
                 2.39:1 SCOPE
               </span>
               <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
                 ONE-PAGER
               </span>
+              <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-binding-seam" title="Click to cycle production package assets">
+                <div class="card-stack-layer-back2"></div>
+                <div class="card-stack-layer-back1"></div>
+                <div class="card-stack-front">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse flex-shrink-0"></span>
+                  <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PACKAGE:</span>
+                  <div class="rotating-card-track">
+                    <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/12 110-Page Master Screenplay</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/12 12-Slide Visual Lookbook Deck</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/12 Official 10-Slide Pitch Deck</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/12 $850k Budget Top Sheet (SAG-AFTRA)</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/12 35% NJ Tax Credit ($228k Rebate)</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/12 18-Day Master Production Plan</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/12 Brand Sponsorship Stack Dossier</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/12 Camera & Multicam Case Study</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="8">09/12 Cast & Crew Sourcing Dossier</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="9">10/12 Equipment & Office Manifest</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="10">11/12 Director's Thematic Project Bible</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="11">12/12 Executive One-Pager Submission</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
               <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
@@ -509,7 +636,7 @@
             <div>
               <div class="flex items-center justify-between gap-2 mb-3">
                 <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
-                  // Feature Film One-Pager
+                  // COMPLETELY PACKAGED FEATURE LENGTH HORROR
                 </span>
               </div>
               <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
@@ -524,7 +651,7 @@
               </div>
               <div class="flex flex-wrap gap-1.5 mb-8">
                 <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">One-Pager</span>
+                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Completely Packaged</span>
                 <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">A24 Aesthetic</span>
               </div>
             </div>
@@ -538,7 +665,7 @@
               </div>
               <button 
                 type="button"
-                onclick="openDeckRequestModal('the-binding-seam', 'The Binding Seam', 'Feature Film One-Pager')"
+                onclick="openDeckRequestModal('the-binding-seam', 'The Binding Seam', 'Completely Packaged Feature Length Horror')"
                 class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(217,119,6,0.1)]"
               >
                 <span>Request Full Deck</span>
@@ -561,24 +688,39 @@
               loading="lazy"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 flex items-center gap-2">
+            <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
               <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
                 2.39:1 SCOPE
               </span>
-              <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-                LOOKBOOK
-              </span>
+              <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="crossfire-cousins" title="Click to cycle production package assets">
+                <div class="card-stack-layer-back2"></div>
+                <div class="card-stack-layer-back1"></div>
+                <div class="card-stack-front">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+                  <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">LOOKBOOK &amp; ASSETS:</span>
+                  <div class="rotating-card-track">
+                    <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/08 108-Page Action Comedy Script</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/08 13-Slide Production Pitch Deck</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/08 Anamorphic Visual Lookbook</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/08 6-Location 12-Day Clustered Plan</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/08 6-Camera Simultaneous Workflow</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/08 $2.1M Financial & NJEDA Waterfall</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/08 Pre-Lit Spatial Blocking Blueprint</span>
+                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/08 Matriarchal & Antagonist Packaging</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
               <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
               <span>RESTRICTED IP</span>
             </div>
-            <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5">
+            <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
               <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #F59E0B;" title="Tone: #F59E0B"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #1C1917;" title="Tone: #1C1917"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #44403C;" title="Tone: #44403C"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #78716C;" title="Tone: #78716C"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #E65C00;" title="Tone: Anamorphic Streak #E65C00"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4AF37;" title="Tone: California Gold #D4AF37"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #1A1C23;" title="Tone: Deep Indigo Shadow #1A1C23"></span>
+              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #8B92A5;" title="Tone: Stucco Slate #8B92A5"></span>
             </div>
           </div>
 
