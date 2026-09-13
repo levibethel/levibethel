@@ -57,19 +57,9 @@ function createConceptCard(project) {
   // Base badge
   let baseBadgeHtml = '';
   if (project.id === 'the-weight-of-light') {
-    baseBadgeHtml = `
-      <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-        6 SLIDES
-      </span>
-      ${stackHtml}
-    `;
+    baseBadgeHtml = stackHtml;
   } else if (project.id === 'the-binding-seam') {
-    baseBadgeHtml = `
-      <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-        ONE-PAGER
-      </span>
-      ${stackHtml}
-    `;
+    baseBadgeHtml = stackHtml;
   } else {
     // Crossfire Cousins: change the LOOKBOOK text to stacked, rotating cards
     baseBadgeHtml = stackHtml || `
