@@ -191,9 +191,7 @@
       transform: translateY(120%);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    #securityToast.show {
-      transform: translateY(0);
-    }
+    #securityToast.show { transform: translateY(0); }
 
     /* Print Stylesheet */
     @media print {
@@ -280,8 +278,8 @@
       </form>
 
       <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col gap-2 text-[11px] font-mono-hud text-[#666]">
-        <p>Authorized Partner Keys: <span class="text-amber-400/90 font-bold">NETFLIX2026</span> • <span class="text-[#888]">ENTERPRISE</span></p>
-        <a href="mailto:fermionbecproductions@gmail.com?subject=Request%20Executive%20Access%20Key%20-%20Proposal%20Portal" class="text-amber-500 hover:underline">Request New Access Key</a>
+        <p>Authorized Partner Keys: <span class="text-amber-400/90 font-bold">CLIENT2026</span> • <span class="text-amber-400/90 font-bold">PROPOSAL2026</span> • <span class="text-[#888]">ENTERPRISE</span></p>
+        <a href="mailto:fermionbecproductions@gmail.com?subject=Request%20Executive%20Access%20Key%20-%20Proposal%20Portal" class="text-amber-500 hover:underline">Request Access Key</a>
       </div>
     </div>
   </div>
@@ -316,14 +314,14 @@
             <span class="text-xs font-mono-hud text-amber-500 border border-amber-500/30 px-2 py-0.5 rounded bg-amber-500/10 tracking-widest uppercase">Fermion Bec Productions</span>
             <span class="text-xs font-mono-hud text-emerald-400 flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              ACTIVE ACQUISITION SOW // 2026
+              COMMERCIAL SOW // 2026
             </span>
           </div>
           <h1 class="text-4xl md:text-6xl text-white font-hero tracking-wider">
             <a href="index.html" class="hover:text-amber-100 transition">PRODUCTION PROPOSAL &amp; AGREEMENT</a>
           </h1>
           <p class="text-[#888] text-xs md:text-sm font-studio tracking-[0.2em] uppercase mb-1">Commercial Production &amp; Retainer Pipeline</p>
-          <p class="text-xs font-mono-hud text-amber-500/90 tracking-wider">Fermion Bec Productions LLC • Toms River, NJ</p>
+          <p id="headerClientTag" class="text-xs font-mono-hud text-amber-500/90 tracking-wider">Prepared for: <span id="headerClientName">Prospective Client Organization</span></p>
         </div>
       </div>
 
@@ -354,8 +352,8 @@
     <div class="mb-14 bg-[#0A0A0C] border border-amber-500/30 p-6 rounded-xl relative no-print">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-1">// THREE-STEP EXECUTION PROTOCOL</span>
-          <h3 class="text-xl md:text-2xl text-white font-hero tracking-wider">BOOK DISCOVERY, CONFIGURE SOW, THEN EXECUTE SIGNATURE</h3>
+          <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-1">// THREE-STEP ONBOARDING PROTOCOL</span>
+          <h3 class="text-xl md:text-2xl text-white font-hero tracking-wider">CONFIGURE SCOPE, BOOK DISCOVERY, THEN EXECUTE AGREEMENT</h3>
           <p class="text-xs text-[#888] font-mono-hud mt-1">High-ticket commercial productions require technical feasibility and schedule alignment prior to contract execution.</p>
         </div>
         <div class="flex items-center gap-3">
@@ -380,23 +378,23 @@
 
       <div class="bg-[#0A0A0C] border border-[#1F1F24] p-8 rounded-xl mb-8">
         <p class="text-xs text-[#888] font-mono-hud mb-6">
-          Provide your corporate entity and primary contact information below. All legal clauses and live deliverable cards will update in real time.
+          Please enter your corporate entity and primary contact details below. All legal clauses and live deliverable cards will update in real time.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Company / Client Legal Entity *</label>
-            <input type="text" id="clientCompany" class="cinema-input" value="Netflix, Inc." oninput="updateLiveFields()" placeholder="e.g. Netflix, Inc. / Acme Media">
+            <input type="text" id="clientCompany" class="cinema-input" value="" oninput="updateLiveFields()" placeholder="Enter Company / Organization Name">
           </div>
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Authorized Signatory Name *</label>
-            <input type="text" id="clientName" class="cinema-input" placeholder="e.g. Sarah Jenkins" oninput="updateLiveFields()">
+            <input type="text" id="clientName" class="cinema-input" placeholder="e.g. Lead Producer / Executive" oninput="updateLiveFields()">
           </div>
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Signatory Title / Role *</label>
-            <input type="text" id="clientTitle" class="cinema-input" placeholder="e.g. Head of Production / VP Marketing" oninput="updateLiveFields()">
+            <input type="text" id="clientTitle" class="cinema-input" placeholder="e.g. Head of Production / Marketing VP" oninput="updateLiveFields()">
           </div>
 
           <div>
@@ -411,7 +409,7 @@
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Primary Filming Facility / Location</label>
-            <input type="text" id="clientLocation" class="cinema-input" value="Fort Monmouth Production Campus (Oceanport, NJ)" oninput="updateLiveFields()" placeholder="Location, City, State">
+            <input type="text" id="clientLocation" class="cinema-input" value="" oninput="updateLiveFields()" placeholder="e.g. Tri-State / On Location / Studio Lot">
           </div>
         </div>
 
@@ -419,7 +417,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pt-6 border-t border-[#18181D]">
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Target Production Window / Shoot Dates</label>
-            <input type="text" id="clientTimeline" class="cinema-input" value="Q4 2026 (November)" oninput="updateLiveFields()" placeholder="e.g. November 10-14, 2026">
+            <input type="text" id="clientTimeline" class="cinema-input" value="Q4 2026 (Target Window)" oninput="updateLiveFields()" placeholder="e.g. November 2026 / Specific Dates">
           </div>
 
           <div>
@@ -502,8 +500,8 @@
 
         <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
           <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// CLIENT ENTITY</span>
-          <h3 id="displayClientCompany" class="font-serif-title text-base text-white font-semibold mb-1">Netflix, Inc.</h3>
-          <p id="displayClientLocation" class="text-xs text-[#888] font-mono-hud">Fort Monmouth Production Campus</p>
+          <h3 id="displayClientCompany" class="font-serif-title text-base text-white font-semibold mb-1">[Client Organization]</h3>
+          <p id="displayClientLocation" class="text-xs text-[#888] font-mono-hud">Tri-State / On Location</p>
           <span id="displayClientSignatory" class="text-xs text-amber-400 font-mono-hud mt-2 block">Signatory: Pending Input</span>
         </div>
 
@@ -516,7 +514,7 @@
 
         <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
           <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// PRODUCTION DATES</span>
-          <h3 id="displayTimeline" class="font-serif-title text-lg text-white font-bold mb-1">Q4 2026 (November)</h3>
+          <h3 id="displayTimeline" class="font-serif-title text-lg text-white font-bold mb-1">Q4 2026 (Target Window)</h3>
           <p class="text-xs text-[#888] font-mono-hud">5-Week Execution Runway</p>
           <span class="text-[11px] text-amber-400 font-mono-hud mt-1 block">● 13-Person Production Crew</span>
         </div>
@@ -540,9 +538,9 @@
               <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
               <span class="text-xs font-mono-hud text-amber-400 uppercase tracking-wider font-semibold">Pre-Execution Requirement</span>
             </div>
-            <h3 class="text-2xl md:text-3xl text-white font-hero tracking-wider mb-2">LOCK YOUR DISCOVERY SESSION PRIOR TO EXECUTION</h3>
+            <h3 class="text-2xl md:text-3xl text-white font-hero tracking-wider mb-2">LOCK YOUR DISCOVERY SESSION PRIOR TO FINAL EXECUTION</h3>
             <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-4">
-              To guarantee that filming dates, location permits, and cinema camera packages are reserved for <span class="text-white font-semibold live-company">Netflix, Inc.</span>, please reserve your 25-minute technical kickoff consultation with Director Peter Bethel. This session aligns your creative brief with our crew schedule before physical contract execution is finalized.
+              To guarantee that filming dates, location permits, and cinema camera packages are reserved for <span class="text-white font-semibold live-company">your organization</span>, please reserve your 25-minute technical kickoff consultation with Director Peter Bethel. This session aligns your creative brief with our crew schedule before physical contract execution is finalized.
             </p>
             <div class="flex flex-wrap items-center gap-4 text-xs font-mono-hud text-[#AAA]">
               <span>✓ Direct calendar sync with Director Peter Bethel</span>
@@ -634,7 +632,7 @@
       <!-- Legal Agreement Body -->
       <div class="bg-[#0A0A0C] border border-[#1F1F24] p-8 rounded-xl text-xs font-mono-hud text-[#9C9CA4] space-y-6 leading-relaxed mb-8">
         <p class="text-sm text-white font-sans">
-          This Creative Services Agreement (“Agreement”) is entered into by and between <strong>Fermion Bec Productions LLC</strong>, a New Jersey limited liability company (“Producer”), and <strong id="csaClientCompany" class="text-amber-400">Netflix, Inc.</strong> (“Client”).
+          This Creative Services Agreement (“Agreement”) is entered into by and between <strong>Fermion Bec Productions LLC</strong>, a New Jersey limited liability company (“Producer”), and <strong id="csaClientCompany" class="text-amber-400">[Client Organization Name]</strong> (“Client”).
         </p>
 
         <div>
@@ -723,7 +721,7 @@
             <div class="text-xs font-mono-hud text-[#888] space-y-1">
               <p><strong class="text-white">Signatory:</strong> <span id="sigDisplayClientName" class="text-amber-400">[Name Required]</span></p>
               <p><strong class="text-white">Title:</strong> <span id="sigDisplayClientTitle">[Title Required]</span></p>
-              <p><strong class="text-white">Company:</strong> <span id="sigDisplayClientCompany" class="text-white">Netflix, Inc.</span></p>
+              <p><strong class="text-white">Company:</strong> <span id="sigDisplayClientCompany" class="text-white">[Company Name]</span></p>
               <p><strong class="text-white">Execution Date:</strong> <span id="clientExecutionDate" class="text-white"></span></p>
             </div>
           </div>
@@ -734,7 +732,7 @@
           <label class="flex items-start gap-3 cursor-pointer">
             <input type="checkbox" id="authCheckbox" class="w-4 h-4 accent-amber-500 rounded mt-0.5">
             <span class="text-xs font-mono-hud text-[#CCC] leading-relaxed">
-              I certify that I am an authorized corporate officer or designated representative empowered to execute binding agreements on behalf of <strong id="confirmCompanyText" class="text-amber-400">Netflix, Inc.</strong> I have reviewed and agree to the Scope of Work, Cancellation Terms, and Creative Services Agreement above.
+              I certify that I am an authorized corporate officer or designated representative empowered to execute binding agreements on behalf of <strong id="confirmCompanyText" class="text-amber-400">[Client Organization]</strong>. I have reviewed and agree to the Scope of Work, Cancellation Terms, and Creative Services Agreement above.
             </span>
           </label>
         </div>
@@ -780,13 +778,24 @@
 
   <!-- JAVASCRIPT: SECURITY GATE, DIGITAL SIGNATURE & DATA LOGIC -->
   <script>
-    // Security Passcode Gate Validation
-    const AUTHORIZED_KEYS = ['NETFLIX2026', 'FBP2026', 'ENTERPRISE', 'DEMO'];
+    // Universal Security Passcode Gate Keys
+    const AUTHORIZED_KEYS = ['PROPOSAL2026', 'CLIENT2026', 'FBP2026', 'ENTERPRISE', 'NETFLIX2026', 'DEMO'];
 
     function checkURLAccess() {
       const urlParams = new URLSearchParams(window.location.search);
       const accessKey = (urlParams.get('access') || urlParams.get('key') || urlParams.get('auth') || '').toUpperCase();
       const sessionKey = (sessionStorage.getItem('fbp_authorized_key') || '').toUpperCase();
+
+      // Dynamic Client Pre-population if passed in URL (e.g., ?client=Verizon or ?client=Netflix)
+      const clientParam = urlParams.get('client') || urlParams.get('company');
+      if (clientParam) {
+        document.getElementById('clientCompany').value = decodeURIComponent(clientParam);
+      }
+      const locationParam = urlParams.get('location') || urlParams.get('facility');
+      if (locationParam) {
+        document.getElementById('clientLocation').value = decodeURIComponent(locationParam);
+      }
+      updateLiveFields();
 
       if (AUTHORIZED_KEYS.includes(accessKey) || AUTHORIZED_KEYS.includes(sessionKey)) {
         unlockContent(accessKey || sessionKey);
@@ -812,6 +821,7 @@
       const gate = document.getElementById('accessGateModal');
       const main = document.getElementById('mainContent');
       const statusBadge = document.getElementById('authStatusBadge');
+      const companyVal = document.getElementById('clientCompany').value.trim();
 
       gate.style.opacity = '0';
       setTimeout(() => {
@@ -820,9 +830,8 @@
         main.classList.add('opacity-100');
       }, 450);
 
-      if (key === 'NETFLIX2026') {
-        statusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>STATUS: ACCESS VERIFIED (NETFLIX PRODUCTION)</span>';
-      }
+      const targetLabel = (companyVal && companyVal !== 'Client Organization') ? companyVal.toUpperCase() : key;
+      statusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>STATUS: ACCESS VERIFIED (' + targetLabel + ')</span>';
     }
 
     // Anti-Scraping / Right-Click Deterrent
@@ -855,16 +864,18 @@
     let selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
 
     function updateLiveFields() {
-      const company = document.getElementById('clientCompany').value.trim() || 'Your Organization';
+      const companyInput = document.getElementById('clientCompany').value.trim();
+      const company = companyInput || 'Client Organization';
       const name = document.getElementById('clientName').value.trim() || '[Name Required]';
       const title = document.getElementById('clientTitle').value.trim() || '[Title Required]';
-      const location = document.getElementById('clientLocation').value.trim() || 'Primary Production Campus';
-      const timeline = document.getElementById('clientTimeline').value.trim() || 'Target Production Window';
+      const location = document.getElementById('clientLocation').value.trim() || 'Tri-State / On Location';
+      const timeline = document.getElementById('clientTimeline').value.trim() || 'Q4 2026 (Target Window)';
 
       document.getElementById('displayClientCompany').innerText = company;
       document.getElementById('csaClientCompany').innerText = company;
       document.getElementById('confirmCompanyText').innerText = company;
       document.getElementById('sigDisplayClientCompany').innerText = company;
+      document.getElementById('headerClientName').innerText = company;
       
       document.querySelectorAll('.live-company').forEach(el => el.innerText = company);
 
@@ -956,9 +967,7 @@
       if (e.cancelable) e.preventDefault();
     }
 
-    function stopDraw() {
-      isDrawing = false;
-    }
+    function stopDraw() { isDrawing = false; }
 
     canvas.addEventListener('mousedown', startDraw);
     canvas.addEventListener('mousemove', draw);
@@ -981,7 +990,7 @@
 
     function lockAndFinalizeAgreement() {
       const name = document.getElementById('clientName').value.trim();
-      const company = document.getElementById('clientCompany').value.trim();
+      const company = document.getElementById('clientCompany').value.trim() || 'Client Organization';
       const auth = document.getElementById('authCheckbox').checked;
 
       if (!name) {
