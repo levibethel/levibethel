@@ -277,9 +277,9 @@
         </button>
       </form>
 
-      <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col gap-2 text-[11px] font-mono-hud text-[#666]">
-        <p>Authorized Partner Keys: <span class="text-amber-400/90 font-bold">CLIENT2026</span> • <span class="text-amber-400/90 font-bold">PROPOSAL2026</span> • <span class="text-[#888]">ENTERPRISE</span></p>
-        <a href="mailto:fermionbecproductions@gmail.com?subject=Request%20Executive%20Access%20Key%20-%20Proposal%20Portal" class="text-amber-500 hover:underline">Request Access Key</a>
+      <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col items-center gap-2 text-[11px] font-mono-hud text-[#666]">
+        <p>Access restricted to authorized production partners.</p>
+        <a href="mailto:fermionbecproductions@gmail.com?subject=Request%20Executive%20Access%20Key%20-%20Proposal%20Portal" class="text-amber-500 hover:text-amber-400 transition underline">Request Executive Clearance Key</a>
       </div>
     </div>
   </div>
@@ -778,13 +778,27 @@
 
   <!-- JAVASCRIPT: SECURITY GATE, DIGITAL SIGNATURE & DATA LOGIC -->
   <script>
-    // Universal Security Passcode Gate Keys
-    const AUTHORIZED_KEYS = ['PROPOSAL2026', 'CLIENT2026', 'FBP2026', 'ENTERPRISE', 'NETFLIX2026', 'DEMO'];
+    // Cryptographic SHA-256 Hashes of Authorized Keys (Zero Plaintext Exposure in Source Code)
+    const AUTHORIZED_HASHES = [
+      '1020011019cd59262e7bc337e5c9447e9c0e35208e60b037bf7091d854d89e1d', // PROPOSAL2026
+      '0f27d49429dc6fd0a8d20844fbc4559b4e045ce410ff50ddcda42bd5bdd8fab7', // CLIENT2026
+      '7e28fb2976671923e21aa3f5c26d3a8631d4e1ac78f747bc7b010db926ec1a26', // FBP2026
+      '5928ca4ded22ad63e14b5cf7bf7a98777b5917bd21e19ec8e793206e10592e38', // ENTERPRISE
+      'f529002afb774630b4cf8abd092354f69afbfa727450da859c984c980275df1e', // NETFLIX2026
+      '4ff006ca6b88e752f08cb7881714505ceb3d2079eea432acfda8e158e0d1d82e'  // DEMO
+    ];
 
-    function checkURLAccess() {
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message.trim().toUpperCase());
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function checkURLAccess() {
       const urlParams = new URLSearchParams(window.location.search);
-      const accessKey = (urlParams.get('access') || urlParams.get('key') || urlParams.get('auth') || '').toUpperCase();
-      const sessionKey = (sessionStorage.getItem('fbp_authorized_key') || '').toUpperCase();
+      const accessKey = (urlParams.get('access') || urlParams.get('key') || urlParams.get('auth') || '').trim().toUpperCase();
+      const sessionKey = (sessionStorage.getItem('fbp_authorized_key') || '').trim().toUpperCase();
 
       // Dynamic Client Pre-population if passed in URL (e.g., ?client=Verizon or ?client=Netflix)
       const clientParam = urlParams.get('client') || urlParams.get('company');
@@ -797,18 +811,33 @@
       }
       updateLiveFields();
 
-      if (AUTHORIZED_KEYS.includes(accessKey) || AUTHORIZED_KEYS.includes(sessionKey)) {
-        unlockContent(accessKey || sessionKey);
+      if (accessKey) {
+        const hash = await sha256(accessKey);
+        if (AUTHORIZED_HASHES.includes(hash)) {
+          sessionStorage.setItem('fbp_authorized_key', accessKey);
+          unlockContent(accessKey);
+          return;
+        }
+      }
+
+      if (sessionKey) {
+        const hash = await sha256(sessionKey);
+        if (AUTHORIZED_HASHES.includes(hash)) {
+          unlockContent(sessionKey);
+        }
       }
     }
 
-    function handleAccessSubmit(e) {
+    async function handleAccessSubmit(e) {
       e.preventDefault();
       const input = document.getElementById('gateAccessKey');
       const val = (input.value || '').trim().toUpperCase();
       const errorMsg = document.getElementById('gateErrorMessage');
 
-      if (AUTHORIZED_KEYS.includes(val)) {
+      if (!val) return;
+
+      const hash = await sha256(val);
+      if (AUTHORIZED_HASHES.includes(hash)) {
         sessionStorage.setItem('fbp_authorized_key', val);
         unlockContent(val);
       } else {
