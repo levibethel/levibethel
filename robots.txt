@@ -1,0 +1,21 @@
+# robots.txt for Peter Levi Bethel & Fermion Bec Productions
+# https://levibethel.github.io/levibethel/
+
+User-agent: *
+# Allow public portfolio and gallery pages
+Allow: /
+Allow: /index.html
+Allow: /concepts.html
+Allow: /assets/
+
+# Disallow private client proposals, contracts, and internal data
+Disallow: /proposal.html
+Disallow: /proposal/
+Disallow: /*proposal*
+Disallow: /data/
+Disallow: /scripts/
+Disallow: /*.json$
+Disallow: /*.bak$
+
+# Crawl-delay for polite crawling
+Crawl-delay: 10
