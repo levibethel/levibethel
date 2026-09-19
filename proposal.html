@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Production Proposal & Agreement | Fermion Bec Productions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --card-bg: #0A0A0C;
+      --accent-gold: #D97706;
+      --accent-amber: #F59E0B;
+      --text-muted: #888888;
+      --border-color: #222225;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #E5E5E5;
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      min-width: 0;
+    }
+
+    .font-hero { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+    .font-studio { font-family: 'Syncopate', sans-serif; }
+    .font-mono-hud { font-family: 'JetBrains Mono', monospace; }
+    .font-serif-title { font-family: 'Cinzel', serif; letter-spacing: 0.04em; }
+    .font-serif-sub { font-family: 'Cormorant Garamond', serif; }
+
+    /* Film Grain Noise Overlay */
+    .noise-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 90;
+      opacity: 0.035;
+      background: url('https://grainy-gradients.vercel.app/noise.svg');
+      filter: contrast(180%) brightness(100%);
+    }
+
+    /* Navigation Dock Buttons */
+    .role-btn {
+      font-family: 'Syncopate', sans-serif;
+      font-size: 0.75rem;
+      color: #666666;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      position: relative;
+      padding: 0.75rem 0;
+      white-space: nowrap;
+    }
+    .role-btn:hover { color: #D1D5DB; }
+    .role-btn.active {
+      color: #FFFFFF;
+      text-shadow: 0 0 12px rgba(217, 119, 6, 0.6);
+    }
+    .role-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0%; height: 2px;
+      background: var(--accent-gold);
+      transition: width 0.3s ease;
+    }
+    .role-btn.active::after { width: 100%; }
+
+    /* CTA Buttons */
+    .btn-gold {
+      background: var(--accent-gold);
+      color: #000000;
+      font-family: 'Syncopate', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 0.85rem 2rem;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-gold:hover {
+      background: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(217,119,6,0.5);
+    }
+
+    .btn-outline-gold {
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      background: rgba(14, 14, 18, 0.8);
+      color: #F59E0B;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-outline-gold:hover {
+      background: #F59E0B;
+      color: #000000;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Form Input Controls */
+    .cinema-input {
+      width: 100%;
+      background-color: #0C0C10;
+      border: 1px solid #26262E;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cinema-input:focus {
+      outline: none;
+      border-color: #F59E0B;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+    }
+    .cinema-input::placeholder {
+      color: #555560;
+    }
+
+    /* Interactive Radio & Cards */
+    .option-card {
+      cursor: pointer;
+      border: 1px solid #222226;
+      background-color: #0C0C10;
+      border-radius: 8px;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+    }
+    .option-card:hover {
+      border-color: rgba(245, 158, 11, 0.5);
+      background-color: #121218;
+    }
+    .option-card.selected {
+      border-color: #F59E0B;
+      background-color: rgba(217, 119, 6, 0.08);
+      box-shadow: 0 0 20px rgba(217, 119, 6, 0.15);
+    }
+
+    /* Table Styling */
+    .cinema-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .cinema-table th {
+      background-color: #0F0F14;
+      color: #F59E0B;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #222225;
+    }
+    .cinema-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #16161A;
+      color: #C5C5CB;
+    }
+    .cinema-table tr:hover td {
+      background-color: rgba(217, 119, 6, 0.03);
+    }
+
+    /* Signature Canvas Pad */
+    #sigCanvas {
+      background-color: #070709;
+      border: 1px dashed #33333C;
+      border-radius: 6px;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      body {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .noise-overlay, .role-nav, header .no-print, .no-print {
+        display: none !important;
+      }
+      .cinema-table th {
+        background-color: #F3F4F6 !important;
+        color: #000000 !important;
+        border-color: #CCCCCC !important;
+      }
+      .cinema-table td {
+        color: #111111 !important;
+        border-color: #E5E7EB !important;
+      }
+      .bg-\[\#0A0A0C\], .bg-\[\#0E0E12\], .bg-black, .bg-\[\#070709\], .bg-\[\#0C0C10\] {
+        background-color: #FFFFFF !important;
+        border-color: #CCCCCC !important;
+        box-shadow: none !important;
+      }
+      .text-white { color: #000000 !important; }
+      .text-\[\#888\], .text-\[\#8C8C92\], .text-\[\#AAA\], .text-\[\#9C9CA4\] { color: #333333 !important; }
+      .cinema-input {
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid #666 !important;
+        color: #000 !important;
+        padding-left: 0 !important;
+      }
+      .print-border { border: 1px solid #CCC !important; }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-600 selection:text-white">
+
+  <!-- Grain Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-6 py-10 md:py-16 relative z-10">
+
+    <!-- HEADER / BRANDING -->
+    <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 border-b border-[#222225] pb-8 gap-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8">
+        
+        <!-- Attached Cinematic Portrait at the Top -->
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-amber-500/40 shadow-[0_0_25px_rgba(217,119,6,0.25)] flex-shrink-0 bg-[#0A0A0C] relative group">
+          <img src="levibethelheaderimg.jpg" alt="Peter Levi Bethel" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-500">
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs font-mono-hud text-amber-500 border border-amber-500/30 px-2 py-0.5 rounded bg-amber-500/10 tracking-widest uppercase">Fermion Bec Productions</span>
+            <span class="text-xs font-mono-hud text-emerald-400 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              CLIENT ONBOARDING &amp; SOW PORTAL
+            </span>
+          </div>
+          <h1 class="text-4xl md:text-6xl text-white font-hero tracking-wider">
+            <a href="index.html" class="hover:text-amber-100 transition">PRODUCTION PROPOSAL &amp; AGREEMENT</a>
+          </h1>
+          <p class="text-[#888] text-xs md:text-sm font-studio tracking-[0.2em] uppercase mb-1">Interactive Scope, Schedule &amp; Execution Form</p>
+          <p class="text-xs font-mono-hud text-amber-500/90 tracking-wider">Fermion Bec Productions LLC • Toms River, NJ</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex flex-wrap items-center gap-3 no-print">
+        <button onclick="window.print()" class="text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-[#0E0E12] text-amber-400 hover:bg-amber-500 hover:text-black transition flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <span>Print / Save PDF</span>
+        </button>
+        <a href="#step-booking" class="btn-gold">
+          <span>Book Kickoff First</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- NAVIGATION DOCK -->
+    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex justify-center items-center gap-6 md:gap-10 overflow-x-auto no-print">
+      <a href="index.html#director" class="role-btn">Director</a>
+      <a href="index.html#dp" class="role-btn">Cinematographer</a>
+      <a href="index.html#editor" class="role-btn">Editor</a>
+      <a href="concepts.html" class="role-btn text-amber-400 font-medium">Concepts &amp; Packaging</a>
+      <a href="index.html#fermion-bec" class="role-btn">Fermion Bec Productions</a>
+      <span class="role-btn active text-amber-500 font-bold border-l border-[#333] pl-6 md:pl-10">Client Proposal</span>
+    </nav>
+
+    <!-- WORKFLOW OVERVIEW HUD: BOOK THEN SIGN -->
+    <div class="mb-14 bg-[#0A0A0C] border border-amber-500/30 p-6 rounded-xl relative no-print">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+          <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-1">// THREE-STEP EXECUTION PROCESS</span>
+          <h3 class="text-xl md:text-2xl text-white font-hero tracking-wider">HOW WE FINALIZE YOUR PRODUCTION CONTRACT</h3>
+          <p class="text-xs text-[#888] font-mono-hud mt-1">High-ticket commercial productions require mutual schedule and creative alignment before physical set execution.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-xs font-mono-hud text-amber-400">1. Input Details</span>
+          <span class="text-[#444] font-mono-hud">➔</span>
+          <span class="px-3 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-xs font-mono-hud text-amber-400">2. Book Call</span>
+          <span class="text-[#444] font-mono-hud">➔</span>
+          <span class="px-3 py-1.5 rounded bg-emerald-500/10 border border-emerald-500/40 text-xs font-mono-hud text-emerald-400">3. Sign &amp; Lock</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: INTERACTIVE CLIENT INPUTS & CUSTOMIZATION -->
+    <section id="step-client-info" class="mb-20">
+      <div class="mb-6 flex justify-between items-end">
+        <div>
+          <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest">// STEP 01: CLIENT SPECIFICATIONS</span>
+          <h2 class="text-3xl md:text-4xl text-white font-hero tracking-wider">YOUR ORGANIZATION &amp; PROJECT SCOPE</h2>
+        </div>
+        <span class="text-xs font-mono-hud text-[#777] hidden sm:block">UPDATES AGREEMENT DYNAMICALLY</span>
+      </div>
+
+      <div class="bg-[#0A0A0C] border border-[#1F1F24] p-8 rounded-xl mb-8">
+        <p class="text-xs text-[#888] font-mono-hud mb-6">
+          Please provide your company and project contact information. These details will automatically synchronize with your live Statement of Work and the Creative Services Agreement below.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Company / Client Legal Entity *</label>
+            <input type="text" id="clientCompany" class="cinema-input" value="Netflix, Inc." oninput="updateLiveFields()" placeholder="e.g. Netflix, Inc. / Acme Corp">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Authorized Signatory Name *</label>
+            <input type="text" id="clientName" class="cinema-input" placeholder="e.g. Sarah Jenkins" oninput="updateLiveFields()">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Signatory Title / Role *</label>
+            <input type="text" id="clientTitle" class="cinema-input" placeholder="e.g. Head of Production / Marketing VP" oninput="updateLiveFields()">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Contact &amp; Invoicing Email *</label>
+            <input type="email" id="clientEmail" class="cinema-input" placeholder="production-billing@company.com" oninput="updateLiveFields()">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Phone Number</label>
+            <input type="tel" id="clientPhone" class="cinema-input" placeholder="+1 (555) 000-0000" oninput="updateLiveFields()">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Primary Filming Facility / Location</label>
+            <input type="text" id="clientLocation" class="cinema-input" value="Fort Monmouth Production Campus (Oceanport, NJ)" oninput="updateLiveFields()" placeholder="Location, City, State">
+          </div>
+        </div>
+
+        <!-- Target Production Window -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pt-6 border-t border-[#18181D]">
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Target Production Window / Shoot Dates</label>
+            <input type="text" id="clientTimeline" class="cinema-input" value="Q4 2026 (November)" oninput="updateLiveFields()" placeholder="e.g. November 10-14, 2026">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Creative &amp; Technical Requirements / Special Directives</label>
+            <textarea id="clientNotes" rows="2" class="cinema-input" placeholder="Specific talent considerations, aerial drone requirements, non-disclosure provisions, etc."></textarea>
+          </div>
+        </div>
+
+        <!-- Payment Milestone Selection -->
+        <div class="pt-6 border-t border-[#18181D]">
+          <label class="block text-xs font-mono-hud text-amber-400 uppercase tracking-widest mb-3">
+            Select Your Preferred Milestone Payment Structure:
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div id="cardOptionA" class="option-card selected" onclick="selectPaymentOption('Option A')">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono-hud font-bold text-white">OPTION A: 3-PART MILESTONES</span>
+                <span class="text-[10px] font-mono-hud text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">STANDARD</span>
+              </div>
+              <p class="text-xs text-[#888] font-mono-hud leading-relaxed">
+                • 30% ($15,000) Upon signing to lock production dates &amp; tech scout<br>
+                • 40% ($20,000) Upon completion of principal photography<br>
+                • 30% ($15,000) Upon final master delivery and archival transfer
+              </p>
+            </div>
+
+            <div id="cardOptionB" class="option-card" onclick="selectPaymentOption('Option B')">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono-hud font-bold text-white">OPTION B: 50/50 SPLIT</span>
+                <span class="text-[10px] font-mono-hud text-[#777] font-semibold px-2 py-0.5 rounded bg-[#16161C] border border-[#26262E]">ENTERPRISE</span>
+              </div>
+              <p class="text-xs text-[#888] font-mono-hud leading-relaxed">
+                • 50% ($25,000) Upfront upon signing and pre-production initiation<br>
+                • 50% ($25,000) Final balance upon delivery of approved master video suite
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional Retainer Attachment Selection -->
+        <div class="pt-6 mt-6 border-t border-[#18181D]">
+          <label class="block text-xs font-mono-hud text-amber-400 uppercase tracking-widest mb-3">
+            Optional: Attach an Ongoing Monthly Content Retainer
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
+              <input type="radio" name="retainerChoice" value="None" checked class="hidden">
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">One-Off Production</span>
+              <span class="text-[11px] font-mono-hud text-[#777] block">$50,000 Campaign Only</span>
+            </label>
+            <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
+              <input type="radio" name="retainerChoice" value="Tier 1: Content Engine ($3,000/mo)" class="hidden">
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 1: Content Engine</span>
+              <span class="text-[11px] font-mono-hud text-amber-400 block">$3,000 / month</span>
+            </label>
+            <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
+              <input type="radio" name="retainerChoice" value="Tier 2: Community Showcase ($4,500/mo)" class="hidden">
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 2: Showcase</span>
+              <span class="text-[11px] font-mono-hud text-amber-400 block">$4,500 / month</span>
+            </label>
+            <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
+              <input type="radio" name="retainerChoice" value="Tier 4: Enterprise Comms ($7,500/mo)" class="hidden">
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 4: Enterprise</span>
+              <span class="text-[11px] font-mono-hud text-amber-400 block">$7,500 / month</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE SYNCHRONIZED SUMMARY CARDS -->
+    <section class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
+          <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// PRODUCER ENTITY</span>
+          <h3 class="font-serif-title text-base text-white font-semibold mb-1">Fermion Bec Productions LLC</h3>
+          <p class="text-xs text-[#888] font-mono-hud">Toms River, NJ 08753</p>
+          <a href="https://fermionbecproductions.com" target="_blank" class="text-xs text-amber-400 underline font-mono-hud mt-2 block">fermionbecproductions.com</a>
+        </div>
+
+        <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
+          <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// CLIENT ENTITY</span>
+          <h3 id="displayClientCompany" class="font-serif-title text-base text-white font-semibold mb-1">Netflix, Inc.</h3>
+          <p id="displayClientLocation" class="text-xs text-[#888] font-mono-hud">Fort Monmouth Production Campus</p>
+          <span id="displayClientSignatory" class="text-xs text-amber-400 font-mono-hud mt-2 block">Signatory: Pending Input</span>
+        </div>
+
+        <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
+          <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// INVESTMENT &amp; TERMS</span>
+          <h3 class="font-serif-title text-2xl text-white font-bold mb-1">$50,000 USD</h3>
+          <p id="displayPaymentTerms" class="text-xs text-emerald-400 font-mono-hud">Terms: Option A (30/40/30)</p>
+          <span id="displayRetainerAttached" class="text-[11px] text-[#888] font-mono-hud block mt-1">Retainer: None</span>
+        </div>
+
+        <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
+          <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// PRODUCTION DATES</span>
+          <h3 id="displayTimeline" class="font-serif-title text-lg text-white font-bold mb-1">Q4 2026 (November)</h3>
+          <p class="text-xs text-[#888] font-mono-hud">5-Week Execution Runway</p>
+          <span class="text-[11px] text-amber-400 font-mono-hud mt-1 block">● 13-Person Production Crew</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: BOOK PRODUCTION DISCOVERY & KICKOFF -->
+    <section id="step-booking" class="mb-20">
+      <div class="mb-6 flex justify-between items-end">
+        <div>
+          <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest">// STEP 02: SCHEDULE ALIGNMENT</span>
+          <h2 class="text-3xl md:text-4xl text-white font-hero tracking-wider">BOOK TECHNICAL DISCOVERY &amp; KICKOFF</h2>
+        </div>
+        <span class="text-xs font-mono-hud text-emerald-400">CALENDAR RESERVATION PROTOCOL</span>
+      </div>
+
+      <div class="bg-[#0A0A0C] border border-amber-500/50 p-8 rounded-xl relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 bg-[#121218] border border-amber-500/30 px-3 py-1 rounded mb-3">
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+              <span class="text-xs font-mono-hud text-amber-400 uppercase tracking-wider font-semibold">Pre-Execution Requirement</span>
+            </div>
+            <h3 class="text-2xl md:text-3xl text-white font-hero tracking-wider mb-2">LOCK YOUR CALL BEFORE EXECUTING SIGNATURE</h3>
+            <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-4">
+              To guarantee that filming dates, location permits, and camera packages are fully reserved for <span class="text-white font-semibold live-company">Netflix, Inc.</span>, please reserve your 25-minute technical kickoff consultation with Director Peter Bethel. This session aligns your creative brief with our crew schedule before legal execution is finalized.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 text-xs font-mono-hud text-[#AAA]">
+              <span>✓ Direct calendar sync with Director Peter Bethel</span>
+              <span>✓ Location feasibility &amp; permit pre-check</span>
+              <span>✓ Custom camera &amp; lighting manifest review</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center gap-4 w-full lg:w-auto flex-shrink-0">
+            <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" onclick="markBookingClicked()" class="btn-gold justify-center text-center">
+              <span>Open Calendar Picker</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+
+            <label class="flex items-center gap-3 cursor-pointer p-3 rounded bg-[#101015] border border-[#222228] hover:border-amber-500/40 transition">
+              <input type="checkbox" id="bookingConfirmedCheck" onchange="toggleSignSection()" class="w-4 h-4 accent-amber-500 rounded">
+              <span class="text-xs font-mono-hud text-[#DDD]">I have scheduled our kickoff call</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES SPECIFICATION TABLE -->
+    <section class="mb-20">
+      <div class="mb-6 flex justify-between items-end">
+        <div>
+          <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest">// SCOPE OF DELIVERABLES</span>
+          <h2 class="text-3xl md:text-4xl text-white font-hero tracking-wider">CONTRACTED MASTER ASSETS</h2>
+        </div>
+        <span class="text-xs font-mono-hud text-[#777] hidden sm:block">DAVINCI WIDE GAMUT // PRORES 422 HQ</span>
+      </div>
+
+      <div class="bg-[#0A0A0C] border border-[#1F1F24] rounded-xl overflow-x-auto">
+        <table class="cinema-table">
+          <thead>
+            <tr>
+              <th>Deliverable Asset</th>
+              <th>Technical Codec &amp; Resolution</th>
+              <th>Aspect Ratio</th>
+              <th>Target Runtime</th>
+              <th>Intended Distribution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold text-white">Hero Brand Film / Showcase</td>
+              <td>4K DCI / UHD ProRes 422 HQ</td>
+              <td>16:9 Broadcast</td>
+              <td>90–120 Seconds</td>
+              <td>Main corporate portal, PR release, trade demos, and keynotes</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-white">Broadcast Commercial Cutdown</td>
+              <td>4K UHD ProRes 422 HQ</td>
+              <td>16:9 Broadcast</td>
+              <td>30 Seconds</td>
+              <td>Paid digital ad campaigns, streaming slots, and partner reels</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-white">Social Narrative Hooks (x3)</td>
+              <td>4K UHD ProRes / H.265</td>
+              <td>9:16 Vertical</td>
+              <td>15–30 Seconds</td>
+              <td>Instagram Reels, TikTok, YouTube Shorts, and LinkedIn video</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-white">Broadcast Audio Master Suite</td>
+              <td>-24 LKFS / 24-bit 48kHz WAV</td>
+              <td>Audio Master Stems</td>
+              <td>Matched Runtimes</td>
+              <td>Full mix, split dialogue stem, music stem, and SFX/foley stem</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- STEP 3: CREATIVE SERVICES AGREEMENT & DIGITAL SIGNATURE -->
+    <section id="step-signing" class="mb-24">
+      <div class="mb-6 flex justify-between items-end">
+        <div>
+          <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest">// STEP 03: LEGAL EXECUTION</span>
+          <h2 class="text-3xl md:text-4xl text-white font-hero tracking-wider">CREATIVE SERVICES AGREEMENT (CSA)</h2>
+        </div>
+        <span class="text-xs font-mono-hud text-amber-500">GOVERNING LAW: NEW JERSEY</span>
+      </div>
+
+      <!-- Legal Agreement Body -->
+      <div class="bg-[#0A0A0C] border border-[#1F1F24] p-8 rounded-xl text-xs font-mono-hud text-[#9C9CA4] space-y-6 leading-relaxed mb-8">
+        <p class="text-sm text-white font-sans">
+          This Creative Services Agreement (“Agreement”) is entered into by and between <strong>Fermion Bec Productions LLC</strong>, a New Jersey limited liability company (“Producer”), and <strong id="csaClientCompany" class="text-amber-400">Netflix, Inc.</strong> (“Client”).
+        </p>
+
+        <div>
+          <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">1. Scope of Work &amp; Deliverables</h4>
+          <p>Producer agrees to perform the creative production services and produce the final deliverables specified in the accompanying SOW. Any addition, modification, or expansion beyond the agreed Deliverables will be governed by a written Change Order signed by authorized representatives of both parties.</p>
+        </div>
+
+        <div>
+          <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">2. Invoicing, Payment Terms &amp; Collections</h4>
+          <p>Client agrees to pay Producer all Fees and approved Costs in accordance with <span id="csaPaymentTermsText" class="text-white font-semibold">Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)</span>. Invoices are issued via QuickBooks Online and are Due Upon Receipt. Unpaid balances past thirty (30) days accrue interest at the rate of 1.5% per month (18% per annum) or the maximum permitted by law. In the event legal action is required to collect overdue payments, Client shall pay all reasonable attorney’s fees, court costs, and collection expenses incurred by Producer.</p>
+        </div>
+
+        <div>
+          <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">3. Revision Boundaries &amp; Change Orders</h4>
+          <p>The agreed Fees include up to two (2) rounds of creative revisions at the rough-cut stage and one (1) minor conforming polish pass at the fine-cut stage. Client feedback must be consolidated and delivered within five (5) business days of cut delivery via Frame.io. Creative changes departing from approved scripts, concepts, or storyboards after physical production wrap constitute a Change Order and will be billed at Producer’s standard editorial rate ($150/hour) or applicable crew day rates if re-shoots are necessitated.</p>
+        </div>
+
+        <div>
+          <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">4. Production Cancellation, Postponement &amp; Weather Days</h4>
+          <p>Because physical production requires reserving specialized personnel, equipment packages, and locations: (a) Notice provided 8+ business days prior to call time: Client is responsible for 100% of non-refundable hard costs incurred; deposit balance applied to rescheduled date. (b) Notice provided 3 to 7 business days prior: Client is responsible for 50% of scheduled production labor fees plus 100% of non-recoverable costs. (c) Notice provided less than 72 hours prior: Client is responsible for 100% of scheduled crew day rates and committed rental/location expenses. (d) Weather Day Policy: If adverse weather prevents safe outdoor filming, the shoot day may be rescheduled upon mutual agreement; Client agrees to pay a Weather Day Fee equal to 50% of the daily crew rate plus direct equipment extension costs.</p>
+        </div>
+
+        <div>
+          <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">5. Intellectual Property, Rights Transfer &amp; Raw Footage</h4>
+          <p>Contingent upon Producer’s receipt of full and final payment of all Fees and Costs, Producer assigns to Client all worldwide copyright, title, and interest in and to the final, rendered Deliverables. All preliminary concepts, outtakes, raw camera footage (BRAW, ProRes, or RAW rushes), audio stems, DaVinci Resolve project files (.drp), and proprietary color grading node trees remain the exclusive intellectual property and preliminary works of Producer. Raw camera footage and working project files are excluded from final Deliverables and require a separate archival buyout agreement. Producer reserves the perpetual, royalty-free right to display finished work, behind-the-scenes assets, and Client’s name/logo across Producer’s website, reels, and promotional platforms.</p>
+        </div>
+
+        <div>
+          <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">6. Limitation of Liability</h4>
+          <p>Except concerning each party’s indemnification obligations, neither party will be liable for incidental, consequential, indirect, or special damages (including lost profits or business interruption). Fermion Bec Productions LLC’s total aggregate liability under this Agreement shall not exceed the total cash Fees actually paid by Client to Fermion Bec Productions LLC under the applicable SOW.</p>
+        </div>
+
+        <div>
+          <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">7. Governing Law &amp; Dispute Jurisdiction</h4>
+          <p>This Agreement shall be governed by and construed in accordance with the laws of the State of New Jersey. Exclusive venue for any dispute arising out of or related to this Agreement shall be in the state or federal courts located in Monmouth County or Ocean County, New Jersey.</p>
+        </div>
+      </div>
+
+      <!-- SIGNATURE EXECUTION PAD -->
+      <div class="bg-[#0A0A0C] border border-amber-500/50 p-8 rounded-xl print-border">
+        <h3 class="font-serif-title text-xl text-white font-semibold mb-2">DIGITAL EXECUTION &amp; ACCEPTANCE</h3>
+        <p class="text-xs text-[#888] font-mono-hud mb-6">
+          By signing below, the authorized signatories agree to all terms, deliverables, and conditions of this Agreement.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-8">
+          
+          <!-- Producer Signatory (Locked) -->
+          <div class="space-y-4">
+            <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block">// PRODUCER SIGNATORY</span>
+            <div class="border-b border-white/20 pb-2 pt-6">
+              <span class="font-serif-sub italic text-2xl text-amber-400">Peter Bethel</span>
+            </div>
+            <div class="text-xs font-mono-hud text-[#888] space-y-1">
+              <p><strong class="text-white">Signatory:</strong> Peter Bethel</p>
+              <p><strong class="text-white">Title:</strong> Founder, Director &amp; Producer</p>
+              <p><strong class="text-white">Company:</strong> Fermion Bec Productions LLC</p>
+              <p><strong class="text-white">Execution Date:</strong> <span id="producerDate">September 18, 2026</span></p>
+            </div>
+          </div>
+
+          <!-- Client Signatory (Interactive Input & Pad) -->
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block">// CLIENT SIGNATORY</span>
+              <button type="button" onclick="clearSignature()" class="text-[10px] font-mono-hud text-red-400 hover:underline no-print">Clear Signature</button>
+            </div>
+
+            <!-- Canvas for Drawing Signature -->
+            <div class="relative no-print">
+              <canvas id="sigCanvas" width="450" height="110" class="w-full"></canvas>
+              <span class="absolute bottom-2 right-2 text-[10px] font-mono-hud text-[#555] pointer-events-none">DRAW SIGNATURE HERE</span>
+            </div>
+
+            <!-- Stamped Output in Print View -->
+            <div id="printSigBlock" class="border-b border-white/20 pb-2 pt-4 hidden print:block">
+              <img id="printSigImg" alt="Client Digital Signature" class="max-h-16 inline-block">
+              <span id="typedFallbackSig" class="font-serif-sub italic text-2xl text-white"></span>
+            </div>
+
+            <div class="text-xs font-mono-hud text-[#888] space-y-1">
+              <p><strong class="text-white">Signatory:</strong> <span id="sigDisplayClientName" class="text-amber-400">[Name Required]</span></p>
+              <p><strong class="text-white">Title:</strong> <span id="sigDisplayClientTitle">[Title Required]</span></p>
+              <p><strong class="text-white">Company:</strong> <span id="sigDisplayClientCompany" class="text-white">Netflix, Inc.</span></p>
+              <p><strong class="text-white">Execution Date:</strong> <span id="clientExecutionDate" class="text-white"></span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Authorization Confirmation Checkbox -->
+        <div class="pt-6 border-t border-[#1C1C22] mb-6 no-print">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" id="authCheckbox" class="w-4 h-4 accent-amber-500 rounded mt-0.5">
+            <span class="text-xs font-mono-hud text-[#CCC] leading-relaxed">
+              I certify that I am an authorized corporate officer or designated representative empowered to execute binding agreements on behalf of <strong id="confirmCompanyText" class="text-amber-400">Netflix, Inc.</strong> I have reviewed and agree to the Scope of Work, Cancellation Terms, and Creative Services Agreement above.
+            </span>
+          </label>
+        </div>
+
+        <!-- Submission Controls -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#1C1C22] no-print">
+          <div class="flex items-center gap-2 text-xs font-mono-hud text-[#888]">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>SECURE DIGITAL AGREEMENT // READY TO EXECUTE</span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <button type="button" onclick="lockAndFinalizeAgreement()" id="btnExecuteAgreement" class="btn-gold">
+              <span>Execute &amp; Lock Agreement</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </button>
+            <button type="button" onclick="window.print()" class="text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-[#0E0E12] text-amber-400 hover:bg-amber-500 hover:text-black transition">
+              Download Signed PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Post-Execution Confirmation Banner -->
+        <div id="executionSuccessBanner" class="hidden mt-6 p-4 rounded bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-xs font-mono-hud text-center">
+          ✓ AGREEMENT SUCCESSFULLY EXECUTED &amp; SEALED. Click "Download Signed PDF" to save an archival copy for your records. A notification has been generated for Producer review.
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#1C1C22] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono-hud text-[#666] no-print">
+      <div>
+        <span>FERMION BEC PRODUCTIONS LLC // ALL RIGHTS RESERVED</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="index.html" class="hover:text-amber-500 transition">Main Portfolio</a>
+        <a href="concepts.html" class="hover:text-amber-500 transition">Packaging Slate</a>
+        <a href="mailto:fermionbecproductions@gmail.com" class="hover:text-amber-500 transition">fermionbecproductions@gmail.com</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- JAVASCRIPT LOGIC FOR DYNAMIC FIELDS & SIGNATURE -->
+  <script>
+    // Set auto execution date
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('clientExecutionDate').innerText = formattedDate;
+
+    let selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
+
+    function updateLiveFields() {
+      const company = document.getElementById('clientCompany').value.trim() || 'Your Organization';
+      const name = document.getElementById('clientName').value.trim() || '[Name Required]';
+      const title = document.getElementById('clientTitle').value.trim() || '[Title Required]';
+      const location = document.getElementById('clientLocation').value.trim() || 'Primary Production Campus';
+      const timeline = document.getElementById('clientTimeline').value.trim() || 'Target Production Window';
+
+      document.getElementById('displayClientCompany').innerText = company;
+      document.getElementById('csaClientCompany').innerText = company;
+      document.getElementById('confirmCompanyText').innerText = company;
+      document.getElementById('sigDisplayClientCompany').innerText = company;
+      
+      document.querySelectorAll('.live-company').forEach(el => el.innerText = company);
+
+      document.getElementById('displayClientLocation').innerText = location;
+      document.getElementById('displayClientSignatory').innerText = 'Signatory: ' + (name !== '[Name Required]' ? name + ' (' + title + ')' : 'Pending Input');
+      document.getElementById('sigDisplayClientName').innerText = name;
+      document.getElementById('sigDisplayClientTitle').innerText = title;
+      document.getElementById('displayTimeline').innerText = timeline;
+    }
+
+    function selectPaymentOption(option) {
+      const cardA = document.getElementById('cardOptionA');
+      const cardB = document.getElementById('cardOptionB');
+      const csaText = document.getElementById('csaPaymentTermsText');
+      const summaryText = document.getElementById('displayPaymentTerms');
+
+      if (option === 'Option A') {
+        cardA.classList.add('selected');
+        cardB.classList.remove('selected');
+        selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
+        summaryText.innerText = 'Terms: Option A (30/40/30)';
+      } else {
+        cardB.classList.add('selected');
+        cardA.classList.remove('selected');
+        selectedPayment = 'Option B: 50/50 Split (50% upfront deposit, 50% upon final master delivery)';
+        summaryText.innerText = 'Terms: Option B (50/50 Split)';
+      }
+      csaText.innerText = selectedPayment;
+    }
+
+    function updateRetainerSelection(label) {
+      document.querySelectorAll('input[name="retainerChoice"]').forEach(r => {
+        r.parentElement.classList.remove('selected');
+      });
+      label.classList.add('selected');
+      const radio = label.querySelector('input');
+      radio.checked = true;
+      document.getElementById('displayRetainerAttached').innerText = 'Retainer: ' + radio.value;
+    }
+
+    function markBookingClicked() {
+      document.getElementById('bookingConfirmedCheck').checked = true;
+      toggleSignSection();
+    }
+
+    function toggleSignSection() {
+      const isBooked = document.getElementById('bookingConfirmedCheck').checked;
+      const executeBtn = document.getElementById('btnExecuteAgreement');
+      if (isBooked) {
+        executeBtn.classList.remove('opacity-50', 'pointer-events-none');
+      }
+    }
+
+    // Signature Canvas Logic
+    const canvas = document.getElementById('sigCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let hasDrawn = false;
+
+    ctx.strokeStyle = '#F59E0B';
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+      const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+      return {
+        x: (clientX - rect.left) * (canvas.width / rect.width),
+        y: (clientY - rect.top) * (canvas.height / rect.height)
+      };
+    }
+
+    function startDraw(e) {
+      isDrawing = true;
+      hasDrawn = true;
+      const pos = getMousePos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      if (e.cancelable) e.preventDefault();
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const pos = getMousePos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      if (e.cancelable) e.preventDefault();
+    }
+
+    function stopDraw() {
+      isDrawing = false;
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    window.addEventListener('mouseup', stopDraw);
+
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
+    window.addEventListener('touchend', stopDraw);
+
+    function clearSignature() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hasDrawn = false;
+      document.getElementById('printSigImg').classList.add('hidden');
+      document.getElementById('typedFallbackSig').innerText = '';
+    }
+
+    function lockAndFinalizeAgreement() {
+      const name = document.getElementById('clientName').value.trim();
+      const company = document.getElementById('clientCompany').value.trim();
+      const auth = document.getElementById('authCheckbox').checked;
+
+      if (!name) {
+        alert('Please enter the Authorized Signatory Name before executing.');
+        document.getElementById('clientName').focus();
+        return;
+      }
+      if (!auth) {
+        alert('Please check the authorization box certifying authority to bind ' + company + '.');
+        document.getElementById('authCheckbox').focus();
+        return;
+      }
+
+      // Convert Canvas to Print Image
+      if (hasDrawn) {
+        const dataUrl = canvas.toDataURL('image/png');
+        const img = document.getElementById('printSigImg');
+        img.src = dataUrl;
+        img.classList.remove('hidden');
+      } else {
+        // Fallback to typed cursive signature
+        document.getElementById('typedFallbackSig').innerText = name;
+      }
+
+      document.getElementById('printSigBlock').classList.remove('hidden');
+      document.getElementById('executionSuccessBanner').classList.remove('hidden');
+      document.getElementById('btnExecuteAgreement').innerHTML = '<span>Agreement Locked &amp; Signed</span>';
+      document.getElementById('btnExecuteAgreement').classList.add('bg-emerald-500', 'text-black', 'pointer-events-none');
+    }
+  </script>
+
+</body>
+</html>
