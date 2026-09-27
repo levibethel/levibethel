@@ -150,18 +150,36 @@
       transform: translateY(-8px) rotateX(20deg);
     }
 
+    /* Navigation Dock */
+    .role-nav {
+      justify-content: flex-start;
+      justify-content: safe center;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .role-nav::-webkit-scrollbar {
+      display: none;
+    }
+
     /* Navigation Dock Buttons */
     .role-btn {
       font-family: 'Syncopate', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.68rem;
       color: #666666;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       position: relative;
       padding: 0.75rem 0;
       white-space: nowrap;
+      flex-shrink: 0;
+    }
+    @media (min-width: 1400px) {
+      .role-btn {
+        font-size: 0.74rem;
+        letter-spacing: 0.1em;
+      }
     }
     .role-btn:hover {
       color: #D1D5DB;
@@ -242,12 +260,12 @@
     </header>
 
     <!-- NAVIGATION DOCK -->
-    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex justify-center items-center gap-6 md:gap-10 overflow-x-auto">
+    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 overflow-x-auto px-2 sm:px-4">
       <a href="index.html#director" class="role-btn">Commercial Direction</a>
       <a href="index.html#dp" class="role-btn">Cinema Optics &amp; DP</a>
       <a href="index.html#editor" class="role-btn">DaVinci Color Suite</a>
       <a href="concepts.html" class="role-btn active text-amber-400 font-medium">Concepts &amp; Packaging</a>
-      <a href="index.html#fermion-bec" class="role-btn text-amber-500 font-bold border-l border-[#333] pl-6 md:pl-10">Fermion Bec Retainer OS</a>
+      <a href="index.html#fermion-bec" class="role-btn text-amber-500 font-bold border-l border-[#333] pl-3 md:pl-4 lg:pl-6 xl:pl-8">Fermion Bec Retainer OS</a>
     </nav>
 
     <!-- CONCEPTS & PACKAGING SECTION -->

@@ -173,18 +173,36 @@
       transform: translateY(-8px) rotateX(20deg);
     }
 
+    /* Navigation Dock */
+    .role-nav {
+      justify-content: flex-start;
+      justify-content: safe center;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .role-nav::-webkit-scrollbar {
+      display: none;
+    }
+
     /* Navigation Dock Buttons */
     .role-btn {
       font-family: 'Syncopate', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.68rem;
       color: #666666;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       position: relative;
       padding: 0.75rem 0;
       white-space: nowrap;
+      flex-shrink: 0;
+    }
+    @media (min-width: 1400px) {
+      .role-btn {
+        font-size: 0.74rem;
+        letter-spacing: 0.1em;
+      }
     }
     .role-btn.active {
       color: #FFFFFF;
@@ -321,12 +339,12 @@
     </section>
 
     <!-- ROLE SWITCHER & STUDIO TAB NAVIGATION -->
-    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex justify-center items-center gap-6 md:gap-10 overflow-x-auto">
+    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 overflow-x-auto px-2 sm:px-4">
       <button class="role-btn active" onclick="switchRole('director', this)">Commercial Direction</button>
       <button class="role-btn" onclick="switchRole('dp', this)">Cinema Optics &amp; DP</button>
       <button class="role-btn" onclick="switchRole('editor', this)">DaVinci Color Suite</button>
       <button id="btn-nav-packaging" class="role-btn text-amber-400 font-medium" onclick="switchRole('packaging', this)">Concepts &amp; Packaging</button>
-      <button class="role-btn text-amber-500 font-bold border-l border-[#333] pl-6 md:pl-10" onclick="switchRole('fermion-bec', this)">Fermion Bec Retainer OS</button>
+      <button class="role-btn text-amber-500 font-bold border-l border-[#333] pl-3 md:pl-4 lg:pl-6 xl:pl-8" onclick="switchRole('fermion-bec', this)">Fermion Bec Retainer OS</button>
     </nav>
 
     <!-- VIEW: DIRECTOR (Original BTS Image Preserved) -->
