@@ -242,9 +242,9 @@
     <span id="securityToastMessage">Fermion Bec Productions // Proprietary Document Protected</span>
   </div>
 
-  <!-- EXECUTIVE ACCESS GATE OVERLAY -->
+  <!-- EXECUTIVE ACCESS GATE OVERLAY (DUAL-STATE CLEARANCE) -->
   <div id="accessGateModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl transition-opacity duration-500">
-    <div class="max-w-md w-full bg-[#0A0A0E] border border-amber-500/50 rounded-2xl p-8 shadow-[0_0_60px_rgba(217,119,6,0.2)] text-center relative overflow-hidden">
+    <div class="max-w-lg w-full bg-[#0A0A0E] border border-amber-500/50 rounded-2xl p-8 shadow-[0_0_60px_rgba(217,119,6,0.2)] text-center relative overflow-hidden">
       <div class="w-20 h-20 mx-auto mb-6 rounded-xl overflow-hidden border border-amber-500/40 bg-[#070709]">
         <img src="levibethelheaderimg.jpg" alt="Peter Levi Bethel" class="w-full h-full object-cover filter grayscale contrast-125">
       </div>
@@ -256,10 +256,21 @@
 
       <h2 class="text-2xl font-hero text-white tracking-wider mb-2">EXECUTIVE ACCESS REQUIRED</h2>
       <p class="text-xs font-mono-hud text-[#888] leading-relaxed mb-6">
-        This commercial proposal and agreement contains proprietary production methodologies and commercial terms. Please enter your designated access key to proceed.
+        This commercial proposal and agreement contains proprietary production methodologies and commercial terms. Enter your authorization key or request instant discovery clearance.
       </p>
 
-      <form onsubmit="handleAccessSubmit(event)" class="space-y-4">
+      <!-- Gate Mode Tabs -->
+      <div class="flex items-center justify-center gap-2 mb-6 border-b border-[#1F1F24] pb-3">
+        <button type="button" id="tabKeyAuth" onclick="switchGateMode('key')" class="text-xs font-mono-hud uppercase tracking-wider px-3 py-1 text-amber-400 border-b-2 border-amber-400 font-bold transition">
+          Enter Passkey
+        </button>
+        <button type="button" id="tabGuestAuth" onclick="switchGateMode('guest')" class="text-xs font-mono-hud uppercase tracking-wider px-3 py-1 text-[#777] border-b-2 border-transparent hover:text-white transition">
+          Request Discovery Access
+        </button>
+      </div>
+
+      <!-- Mode 1: Passkey Form -->
+      <form id="formPasskey" onsubmit="handleAccessSubmit(event)" class="space-y-4">
         <div>
           <input 
             type="password" 
@@ -275,6 +286,31 @@
         <button type="submit" class="btn-gold w-full justify-center">
           <span>Verify &amp; Unlock Proposal</span>
         </button>
+      </form>
+
+      <!-- Mode 2: Guest Discovery Access Request -->
+      <form id="formGuest" onsubmit="handleGuestClearanceSubmit(event)" class="space-y-3 hidden">
+        <div>
+          <input 
+            type="text" 
+            id="guestCompanyInput" 
+            placeholder="ORGANIZATION / COMPANY NAME *" 
+            class="cinema-input text-xs uppercase tracking-wider font-mono-hud mb-2"
+            required
+          >
+          <input 
+            type="email" 
+            id="guestEmailInput" 
+            placeholder="CORPORATE / EXECUTIVE EMAIL *" 
+            class="cinema-input text-xs font-mono-hud"
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn-gold w-full justify-center">
+          <span>Grant Discovery Clearance</span>
+        </button>
+        <p class="text-[10px] font-mono-hud text-[#666]">Instant temporary clearance for prospective production clients.</p>
       </form>
 
       <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col items-center gap-2 text-[11px] font-mono-hud text-[#666]">
@@ -340,43 +376,145 @@
 
     <!-- NAVIGATION DOCK -->
     <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex justify-center items-center gap-6 md:gap-10 overflow-x-auto no-print">
-      <a href="index.html#director" class="role-btn">Director</a>
-      <a href="index.html#dp" class="role-btn">Cinematographer</a>
-      <a href="index.html#editor" class="role-btn">Editor</a>
+      <a href="index.html#director" class="role-btn">Commercial Direction</a>
+      <a href="index.html#dp" class="role-btn">Cinema Optics &amp; DP</a>
+      <a href="index.html#editor" class="role-btn">DaVinci Color Suite</a>
       <a href="concepts.html" class="role-btn text-amber-400 font-medium">Concepts &amp; Packaging</a>
-      <a href="index.html#fermion-bec" class="role-btn">Fermion Bec Productions</a>
+      <a href="index.html#fermion-bec" class="role-btn">Fermion Bec Retainer OS</a>
       <span class="role-btn active text-amber-500 font-bold border-l border-[#333] pl-6 md:pl-10">Client Proposal</span>
     </nav>
 
-    <!-- THREE-STEP EXECUTION ROADMAP BANNER -->
-    <div class="mb-14 bg-[#0A0A0C] border border-amber-500/30 p-6 rounded-xl relative no-print">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <!-- THREE-STEP EXECUTION & 2-7-21 ONBOARDING PROTOCOL BANNER -->
+    <div class="mb-14 bg-[#0A0A0C] border border-amber-500/40 p-6 md:p-8 rounded-xl relative no-print shadow-[0_0_30px_rgba(217,119,6,0.1)]">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 pb-6 border-b border-[#1C1C22]">
         <div>
-          <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-1">// THREE-STEP ONBOARDING PROTOCOL</span>
-          <h3 class="text-xl md:text-2xl text-white font-hero tracking-wider">CONFIGURE SCOPE, BOOK DISCOVERY, THEN EXECUTE AGREEMENT</h3>
+          <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-1">// THREE-STEP EXECUTION PROTOCOL</span>
+          <h3 class="text-xl md:text-2xl text-white font-hero tracking-wider">CONFIGURE SCOPE, LOCK DISCOVERY, THEN DIGITALLY SEAL</h3>
           <p class="text-xs text-[#888] font-mono-hud mt-1">High-ticket commercial productions require technical feasibility and schedule alignment prior to contract execution.</p>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="px-3 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-xs font-mono-hud text-amber-400">1. Input Details</span>
+        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <span class="px-3 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-xs font-mono-hud text-amber-400 font-semibold">1. Select Package</span>
           <span class="text-[#444] font-mono-hud">➔</span>
-          <span class="px-3 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-xs font-mono-hud text-amber-400">2. Book Call</span>
+          <span class="px-3 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-xs font-mono-hud text-amber-400 font-semibold">2. Book Kickoff</span>
           <span class="text-[#444] font-mono-hud">➔</span>
-          <span class="px-3 py-1.5 rounded bg-emerald-500/10 border border-emerald-500/40 text-xs font-mono-hud text-emerald-400">3. Sign Agreement</span>
+          <span class="px-3 py-1.5 rounded bg-emerald-500/10 border border-emerald-500/40 text-xs font-mono-hud text-emerald-400 font-semibold">3. Seal Agreement</span>
+        </div>
+      </div>
+
+      <!-- 2-7-21 ONBOARDING GUARANTEE & SLA (VIDEO AGENCY OS STANDARD) -->
+      <div class="pt-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-xs font-mono-hud text-emerald-400 font-bold uppercase tracking-wider">// 2-7-21 ONBOARDING GUARANTEE &amp; DELIVERY STANDARD</span>
+          <span class="text-[10px] font-mono-hud text-[#666] hidden md:inline">• COMMITTED EXECUTION VELOCITY</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-[#070709] border border-[#222228] p-4 rounded-lg">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-mono-hud font-bold text-amber-400">DAY 02: SCOPE LOCK</span>
+              <span class="text-[9px] font-mono-hud text-[#777] uppercase">KICKOFF</span>
+            </div>
+            <p class="text-[11px] text-[#888] font-mono-hud leading-relaxed">Discovery session conducted, creative brief approved, and director vision synchronized with corporate marketing milestones.</p>
+          </div>
+          <div class="bg-[#070709] border border-[#222228] p-4 rounded-lg">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-mono-hud font-bold text-amber-400">DAY 07: PRODUCTION LOCK</span>
+              <span class="text-[9px] font-mono-hud text-[#777] uppercase">LOGISTICS</span>
+            </div>
+            <p class="text-[11px] text-[#888] font-mono-hud leading-relaxed">Location permits secured, filming facilities scouted, and specialized cinema optics &amp; lighting manifest reserved.</p>
+          </div>
+          <div class="bg-[#070709] border border-[#222228] p-4 rounded-lg">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-mono-hud font-bold text-emerald-400">DAY 21: REVIEW SUITE</span>
+              <span class="text-[9px] font-mono-hud text-emerald-500/80 uppercase">PICTURE LOCK</span>
+            </div>
+            <p class="text-[11px] text-[#888] font-mono-hud leading-relaxed">First assembly and picture lock delivered into client Frame.io review suite, maintaining rapid post-production momentum.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- STEP 1: INTERACTIVE CLIENT INPUTS -->
+    <!-- STEP 1: INTERACTIVE CLIENT INPUTS & ENGAGEMENT ARCHITECTURE -->
     <section id="step-client-info" class="mb-20">
       <div class="mb-6 flex justify-between items-end">
         <div>
-          <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest">// STEP 01: CLIENT CUSTOMIZATION</span>
-          <h2 class="text-3xl md:text-4xl text-white font-hero tracking-wider">YOUR ORGANIZATION &amp; PROJECT SCOPE</h2>
+          <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest">// STEP 01: SCOPE CONFIGURATION</span>
+          <h2 class="text-3xl md:text-4xl text-white font-hero tracking-wider">SELECT ENGAGEMENT &amp; CLIENT CUSTOMIZATION</h2>
         </div>
         <span class="text-xs font-mono-hud text-[#777] hidden sm:block">LIVE CONTRACT SYNCHRONIZATION</span>
       </div>
 
       <div class="bg-[#0A0A0C] border border-[#1F1F24] p-8 rounded-xl mb-8">
+        
+        <!-- PRIMARY ENGAGEMENT ARCHITECTURE SELECTOR (HYBRID MODEL) -->
+        <div class="mb-10 pb-8 border-b border-[#18181D]">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-0.5">// HYBRID OFFER SELECTION</span>
+              <h3 class="text-lg md:text-xl text-white font-hero tracking-wider">CHOOSE PRODUCTION ENGAGEMENT ARCHITECTURE</h3>
+            </div>
+            <span class="text-[10px] font-mono-hud text-emerald-400 uppercase">TIERED VALUE ENGINE</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            
+            <!-- MODEL A: LAUNCHPAD SPRINTS ($6,500) -->
+            <div id="engCardLaunchpad" class="option-card" onclick="selectEngagementModel('launchpad')">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono-hud font-bold text-amber-400">01. LAUNCHPAD SPRINT</span>
+                <span class="text-[9px] font-mono-hud text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">FRONT-END</span>
+              </div>
+              <div class="text-2xl text-white font-hero mb-2">$6,500 <span class="text-xs font-mono-hud text-[#777] font-normal">/ 30-Day Sprint</span></div>
+              <p class="text-xs text-[#888] font-mono-hud leading-relaxed mb-4">
+                Fast, productised commercial asset engine engineered to reach the Trust Point in 30 days:
+              </p>
+              <ul class="text-[11px] text-[#AAA] font-mono-hud space-y-1.5 border-t border-[#1C1C22] pt-3">
+                <li>• 1 Hero Brand Story (60–90s)</li>
+                <li>• 3 Social Narrative Hooks (9:16)</li>
+                <li>• DaVinci Wide Gamut Color Suite</li>
+                <li>• 50% upfront / 50% upon delivery</li>
+              </ul>
+            </div>
+
+            <!-- MODEL B: FLAGSHIP COMMERCIAL CAMPAIGN ($50,000) -->
+            <div id="engCardFlagship" class="option-card selected" onclick="selectEngagementModel('flagship')">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono-hud font-bold text-white">02. FLAGSHIP CAMPAIGN</span>
+                <span class="text-[9px] font-mono-hud text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">ENTERPRISE</span>
+              </div>
+              <div class="text-2xl text-white font-hero mb-2">$50,000 <span class="text-xs font-mono-hud text-[#777] font-normal">/ Full Campaign</span></div>
+              <p class="text-xs text-[#888] font-mono-hud leading-relaxed mb-4">
+                Comprehensive broadcast commercial production designed for luxury &amp; national corporate brands:
+              </p>
+              <ul class="text-[11px] text-[#AAA] font-mono-hud space-y-1.5 border-t border-[#1C1C22] pt-3">
+                <li>• 90–120s Hero Brand Showcase</li>
+                <li>• 30s Broadcast Commercial Cutdown</li>
+                <li>• 13-Person Crew &amp; Cinema Optics</li>
+                <li>• Option A (30/40/30) or Option B (50/50)</li>
+              </ul>
+            </div>
+
+            <!-- MODEL C: LEAN PARTNERSHIP RETAILER LADDER -->
+            <div id="engCardRetainer" class="option-card" onclick="selectEngagementModel('retainer')">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono-hud font-bold text-amber-400">03. PARTNERSHIP LADDER</span>
+                <span class="text-[9px] font-mono-hud text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30">RECURRING</span>
+              </div>
+              <div class="text-2xl text-white font-hero mb-2">$3.5K–$8.5K <span class="text-xs font-mono-hud text-[#777] font-normal">/ month</span></div>
+              <p class="text-xs text-[#888] font-mono-hud leading-relaxed mb-4">
+                Ongoing commercial retainer engine providing compounding brand equity &amp; dedicated studio pipeline:
+              </p>
+              <ul class="text-[11px] text-[#AAA] font-mono-hud space-y-1.5 border-t border-[#1C1C22] pt-3">
+                <li>• Tier 1: Content Foundation ($3.5k/mo)</li>
+                <li>• Tier 2: Commercial Partner ($5.5k/mo)</li>
+                <li>• Tier 3: Enterprise Slate ($8.5k/mo)</li>
+                <li>• 6 or 12 Month Recurring Commitment</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
         <p class="text-xs text-[#888] font-mono-hud mb-6">
           Please enter your corporate entity and primary contact details below. All legal clauses and live deliverable cards will update in real time.
         </p>
@@ -426,18 +564,18 @@
           </div>
         </div>
 
-        <!-- Payment Milestone Selection -->
-        <div class="pt-6 border-t border-[#18181D]">
+        <!-- Payment Milestone Selection (Visible for Launchpad & Flagship) -->
+        <div id="paymentMilestoneContainer" class="pt-6 border-t border-[#18181D]">
           <label class="block text-xs font-mono-hud text-amber-400 uppercase tracking-widest mb-3">
             Select Your Preferred Milestone Payment Structure:
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div id="cardOptionA" class="option-card selected" onclick="selectPaymentOption('Option A')">
               <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-mono-hud font-bold text-white">OPTION A: 3-PART MILESTONES</span>
+                <span id="labelOptionA" class="text-xs font-mono-hud font-bold text-white">OPTION A: 3-PART MILESTONES</span>
                 <span class="text-[10px] font-mono-hud text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">STANDARD</span>
               </div>
-              <p class="text-xs text-[#888] font-mono-hud leading-relaxed">
+              <p id="descOptionA" class="text-xs text-[#888] font-mono-hud leading-relaxed">
                 • 30% ($15,000) Upon signing to lock production dates &amp; tech scout<br>
                 • 40% ($20,000) Upon completion of principal photography<br>
                 • 30% ($15,000) Upon final master delivery and archival transfer
@@ -446,10 +584,10 @@
 
             <div id="cardOptionB" class="option-card" onclick="selectPaymentOption('Option B')">
               <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-mono-hud font-bold text-white">OPTION B: 50/50 SPLIT</span>
+                <span id="labelOptionB" class="text-xs font-mono-hud font-bold text-white">OPTION B: 50/50 SPLIT</span>
                 <span class="text-[10px] font-mono-hud text-[#777] font-semibold px-2 py-0.5 rounded bg-[#16161C] border border-[#26262E]">ENTERPRISE</span>
               </div>
-              <p class="text-xs text-[#888] font-mono-hud leading-relaxed">
+              <p id="descOptionB" class="text-xs text-[#888] font-mono-hud leading-relaxed">
                 • 50% ($25,000) Upfront upon signing and pre-production initiation<br>
                 • 50% ($25,000) Final balance upon delivery of approved master video suite
               </p>
@@ -457,31 +595,31 @@
           </div>
         </div>
 
-        <!-- Optional Retainer Attachment Selection -->
-        <div class="pt-6 mt-6 border-t border-[#18181D]">
-          <label class="block text-xs font-mono-hud text-amber-400 uppercase tracking-widest mb-3">
-            Optional: Attach an Ongoing Monthly Content Retainer
+        <!-- Retainer Attachment / Tier Selection -->
+        <div id="retainerSelectionContainer" class="pt-6 mt-6 border-t border-[#18181D]">
+          <label id="retainerHeadingLabel" class="block text-xs font-mono-hud text-amber-400 uppercase tracking-widest mb-3">
+            Monthly Retainer Tier (Lean Partnership Ladder)
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
               <input type="radio" name="retainerChoice" value="None" checked class="hidden">
-              <span class="text-xs font-mono-hud font-bold text-white block mb-1">One-Off Production</span>
-              <span class="text-[11px] font-mono-hud text-[#777] block">$50,000 Campaign Only</span>
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">One-Off Project</span>
+              <span class="text-[11px] font-mono-hud text-[#777] block">Fixed Sprint / Campaign Only</span>
             </label>
             <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
-              <input type="radio" name="retainerChoice" value="Tier 1: Content Engine ($3,000/mo)" class="hidden">
-              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 1: Content Engine</span>
-              <span class="text-[11px] font-mono-hud text-amber-400 block">$3,000 / month</span>
+              <input type="radio" name="retainerChoice" value="Tier 1: Content Foundation ($3,500/mo)" class="hidden">
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 1: Foundation</span>
+              <span class="text-[11px] font-mono-hud text-amber-400 block">$3,500 / month</span>
             </label>
             <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
-              <input type="radio" name="retainerChoice" value="Tier 2: Community Showcase ($4,500/mo)" class="hidden">
-              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 2: Showcase</span>
-              <span class="text-[11px] font-mono-hud text-amber-400 block">$4,500 / month</span>
+              <input type="radio" name="retainerChoice" value="Tier 2: Commercial Growth ($5,500/mo)" class="hidden">
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 2: Growth Partner</span>
+              <span class="text-[11px] font-mono-hud text-amber-400 block">$5,500 / month</span>
             </label>
             <label class="option-card block cursor-pointer" onclick="updateRetainerSelection(this)">
-              <input type="radio" name="retainerChoice" value="Tier 4: Enterprise Comms ($7,500/mo)" class="hidden">
-              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 4: Enterprise</span>
-              <span class="text-[11px] font-mono-hud text-amber-400 block">$7,500 / month</span>
+              <input type="radio" name="retainerChoice" value="Tier 3: Enterprise Studio ($8,500/mo)" class="hidden">
+              <span class="text-xs font-mono-hud font-bold text-white block mb-1">Tier 3: Enterprise</span>
+              <span class="text-[11px] font-mono-hud text-amber-400 block">$8,500 / month</span>
             </label>
           </div>
         </div>
@@ -507,7 +645,7 @@
 
         <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
           <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// INVESTMENT &amp; TERMS</span>
-          <h3 class="font-serif-title text-2xl text-white font-bold mb-1">$50,000 USD</h3>
+          <h3 id="displayInvestmentTotal" class="font-serif-title text-2xl text-white font-bold mb-1">$50,000 USD</h3>
           <p id="displayPaymentTerms" class="text-xs text-emerald-400 font-mono-hud">Terms: Option A (30/40/30)</p>
           <span id="displayRetainerAttached" class="text-[11px] text-[#888] font-mono-hud block mt-1">Retainer: None</span>
         </div>
@@ -515,8 +653,8 @@
         <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
           <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// PRODUCTION DATES</span>
           <h3 id="displayTimeline" class="font-serif-title text-lg text-white font-bold mb-1">Q4 2026 (Target Window)</h3>
-          <p class="text-xs text-[#888] font-mono-hud">5-Week Execution Runway</p>
-          <span class="text-[11px] text-amber-400 font-mono-hud mt-1 block">● 13-Person Production Crew</span>
+          <p id="displayExecutionPacing" class="text-xs text-[#888] font-mono-hud">5-Week Execution Runway</p>
+          <span id="displayCrewSpec" class="text-[11px] text-amber-400 font-mono-hud mt-1 block">● 13-Person Production Crew</span>
         </div>
       </div>
     </section>
@@ -585,7 +723,7 @@
               <th>Intended Distribution</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="deliverablesTableBody">
             <tr>
               <td class="font-semibold text-white">Hero Brand Film / Showcase</td>
               <td>4K DCI / UHD ProRes 422 HQ</td>
@@ -642,7 +780,7 @@
 
         <div>
           <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">2. Invoicing, Payment Terms &amp; Collections</h4>
-          <p>Client agrees to pay Producer all Fees and approved Costs in accordance with <span id="csaPaymentTermsText" class="text-white font-semibold">Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)</span>. Invoices are issued via QuickBooks Online and are Due Upon Receipt. Unpaid balances past thirty (30) days accrue interest at the rate of 1.5% per month (18% per annum) or the maximum permitted by law. In the event legal action is required to collect overdue payments, Client shall pay all reasonable attorney’s fees, court costs, and collection expenses incurred by Producer.</p>
+          <p id="csaPaymentTermsFull">Client agrees to pay Producer all Fees and approved Costs in accordance with <span id="csaPaymentTermsText" class="text-white font-semibold">Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)</span>. Invoices are issued via QuickBooks Online and are Due Upon Receipt. Unpaid balances past thirty (30) days accrue interest at the rate of 1.5% per month (18% per annum) or the maximum permitted by law. In the event legal action is required to collect overdue payments, Client shall pay all reasonable attorney’s fees, court costs, and collection expenses incurred by Producer.</p>
         </div>
 
         <div>
@@ -695,7 +833,7 @@
               <p><strong class="text-white">Signatory:</strong> Peter Bethel</p>
               <p><strong class="text-white">Title:</strong> Founder, Director &amp; Producer</p>
               <p><strong class="text-white">Company:</strong> Fermion Bec Productions LLC</p>
-              <p><strong class="text-white">Execution Date:</strong> <span id="producerDate">September 19, 2026</span></p>
+              <p><strong class="text-white">Execution Date:</strong> <span id="producerDate">September 27, 2026</span></p>
             </div>
           </div>
 
@@ -721,62 +859,35 @@
             <div class="text-xs font-mono-hud text-[#888] space-y-1">
               <p><strong class="text-white">Signatory:</strong> <span id="sigDisplayClientName" class="text-amber-400">[Name Required]</span></p>
               <p><strong class="text-white">Title:</strong> <span id="sigDisplayClientTitle">[Title Required]</span></p>
-              <p><strong class="text-white">Company:</strong> <span id="sigDisplayClientCompany" class="text-white">[Company Name]</span></p>
+              <p><strong class="text-white">Company:</strong> <span id="sigDisplayClientCompany">[Company Required]</span></p>
               <p><strong class="text-white">Execution Date:</strong> <span id="clientExecutionDate" class="text-white"></span></p>
             </div>
           </div>
+
         </div>
 
-        <!-- Authorization Confirmation Checkbox -->
-        <div class="pt-6 border-t border-[#1C1C22] mb-6 no-print">
-          <label class="flex items-start gap-3 cursor-pointer">
-            <input type="checkbox" id="authCheckbox" class="w-4 h-4 accent-amber-500 rounded mt-0.5">
-            <span class="text-xs font-mono-hud text-[#CCC] leading-relaxed">
-              I certify that I am an authorized corporate officer or designated representative empowered to execute binding agreements on behalf of <strong id="confirmCompanyText" class="text-amber-400">[Client Organization]</strong>. I have reviewed and agree to the Scope of Work, Cancellation Terms, and Creative Services Agreement above.
-            </span>
+        <div class="pt-6 border-t border-[#1C1C22] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" id="authCheckbox" class="w-4 h-4 accent-amber-500 rounded">
+            <span class="text-xs font-mono-hud text-[#AAA]">I certify that I am legally authorized to execute binding agreements on behalf of <span id="confirmCompanyText" class="text-amber-400 font-semibold">[Client Organization]</span>.</span>
           </label>
+
+          <button id="btnExecuteAgreement" onclick="lockAndFinalizeAgreement()" class="btn-gold opacity-50 pointer-events-none transition flex items-center gap-2">
+            <span>Digitally Seal Agreement</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </button>
         </div>
 
-        <!-- Submission Controls -->
-        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#1C1C22] no-print">
-          <div class="flex items-center gap-2 text-xs font-mono-hud text-[#888]">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>SECURE DIGITAL AGREEMENT // READY TO EXECUTE</span>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-3">
-            <button type="button" onclick="lockAndFinalizeAgreement()" id="btnExecuteAgreement" class="btn-gold">
-              <span>Execute &amp; Seal Agreement</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            </button>
-            <button type="button" onclick="window.print()" class="text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-[#0E0E12] text-amber-400 hover:bg-amber-500 hover:text-black transition">
-              Download Signed PDF
-            </button>
-          </div>
+        <!-- Audit & Success Banner -->
+        <div id="executionSuccessBanner" class="mt-6 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-xs font-mono-hud hidden">
+          ✓ AGREEMENT DIGITALLY EXECUTED &amp; TIMESTAMPED. Click "Print / Save PDF" above to generate a sealed archival PDF copy for your corporate legal records.
         </div>
 
-        <!-- Post-Execution Confirmation Banner -->
-        <div id="executionSuccessBanner" class="hidden mt-6 p-4 rounded bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-xs font-mono-hud text-center">
-          ✓ AGREEMENT SUCCESSFULLY EXECUTED &amp; SEALED. Click "Download Signed PDF" to save an archival copy. A notification payload has been generated for Producer record.
-        </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-[#1C1C22] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono-hud text-[#666] no-print">
-      <div>
-        <span>FERMION BEC PRODUCTIONS LLC // ALL RIGHTS RESERVED</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="index.html" class="hover:text-amber-500 transition">Main Portfolio</a>
-        <a href="concepts.html" class="hover:text-amber-500 transition">Packaging Slate</a>
-        <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="hover:text-amber-500 transition">Schedule Consultation</a>
-      </div>
-    </footer>
-
   </main>
 
-  <!-- JAVASCRIPT: SECURITY GATE, DIGITAL SIGNATURE & DATA LOGIC -->
   <script>
     // Cryptographic SHA-256 Hashes of Authorized Keys (Zero Plaintext Exposure in Source Code)
     const AUTHORIZED_HASHES = [
@@ -788,6 +899,9 @@
       '4ff006ca6b88e752f08cb7881714505ceb3d2079eea432acfda8e158e0d1d82e'  // DEMO
     ];
 
+    let currentEngagement = 'flagship'; // 'launchpad' | 'flagship' | 'retainer'
+    let selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
+
     async function sha256(message) {
       const msgBuffer = new TextEncoder().encode(message.trim().toUpperCase());
       const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -795,12 +909,51 @@
       return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
+    function switchGateMode(mode) {
+      const formPasskey = document.getElementById('formPasskey');
+      const formGuest = document.getElementById('formGuest');
+      const tabKey = document.getElementById('tabKeyAuth');
+      const tabGuest = document.getElementById('tabGuestAuth');
+
+      if (mode === 'key') {
+        formPasskey.classList.remove('hidden');
+        formGuest.classList.add('hidden');
+        tabKey.classList.add('text-amber-400', 'border-amber-400', 'font-bold');
+        tabKey.classList.remove('text-[#777]', 'border-transparent');
+        tabGuest.classList.remove('text-amber-400', 'border-amber-400', 'font-bold');
+        tabGuest.classList.add('text-[#777]', 'border-transparent');
+      } else {
+        formPasskey.classList.add('hidden');
+        formGuest.classList.remove('hidden');
+        tabGuest.classList.add('text-amber-400', 'border-amber-400', 'font-bold');
+        tabGuest.classList.remove('text-[#777]', 'border-transparent');
+        tabKey.classList.remove('text-amber-400', 'border-amber-400', 'font-bold');
+        tabKey.classList.add('text-[#777]', 'border-transparent');
+      }
+    }
+
+    function handleGuestClearanceSubmit(e) {
+      e.preventDefault();
+      const comp = document.getElementById('guestCompanyInput').value.trim();
+      const email = document.getElementById('guestEmailInput').value.trim();
+
+      if (!comp || !email) return;
+
+      document.getElementById('clientCompany').value = comp;
+      document.getElementById('clientEmail').value = email;
+      updateLiveFields();
+
+      sessionStorage.setItem('fbp_authorized_key', 'GUEST-' + comp.toUpperCase().replace(/\s+/g, '-'));
+      unlockContent('DISCOVERY GUEST // ' + comp.toUpperCase());
+      showToast('Discovery Clearance Granted for ' + comp);
+    }
+
     async function checkURLAccess() {
       const urlParams = new URLSearchParams(window.location.search);
       const accessKey = (urlParams.get('access') || urlParams.get('key') || urlParams.get('auth') || '').trim().toUpperCase();
       const sessionKey = (sessionStorage.getItem('fbp_authorized_key') || '').trim().toUpperCase();
 
-      // Dynamic Client Pre-population if passed in URL (e.g., ?client=Verizon or ?client=Netflix)
+      // Dynamic Client Pre-population if passed in URL
       const clientParam = urlParams.get('client') || urlParams.get('company');
       if (clientParam) {
         document.getElementById('clientCompany').value = decodeURIComponent(clientParam);
@@ -813,7 +966,7 @@
 
       if (accessKey) {
         const hash = await sha256(accessKey);
-        if (AUTHORIZED_HASHES.includes(hash)) {
+        if (AUTHORIZED_HASHES.includes(hash) || accessKey.startsWith('GUEST-')) {
           sessionStorage.setItem('fbp_authorized_key', accessKey);
           unlockContent(accessKey);
           return;
@@ -822,7 +975,7 @@
 
       if (sessionKey) {
         const hash = await sha256(sessionKey);
-        if (AUTHORIZED_HASHES.includes(hash)) {
+        if (AUTHORIZED_HASHES.includes(hash) || sessionKey.startsWith('GUEST-')) {
           unlockContent(sessionKey);
         }
       }
@@ -890,7 +1043,166 @@
     const formattedDate = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById('clientExecutionDate').innerText = formattedDate;
 
-    let selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
+    function selectEngagementModel(model) {
+      currentEngagement = model;
+      const cardL = document.getElementById('engCardLaunchpad');
+      const cardF = document.getElementById('engCardFlagship');
+      const cardR = document.getElementById('engCardRetainer');
+      const pContainer = document.getElementById('paymentMilestoneContainer');
+      const rContainer = document.getElementById('retainerSelectionContainer');
+
+      cardL.classList.remove('selected');
+      cardF.classList.remove('selected');
+      cardR.classList.remove('selected');
+
+      const tbl = document.getElementById('deliverablesTableBody');
+      const investTotal = document.getElementById('displayInvestmentTotal');
+      const termsSummary = document.getElementById('displayPaymentTerms');
+      const executionPacing = document.getElementById('displayExecutionPacing');
+      const crewSpec = document.getElementById('displayCrewSpec');
+      const csaText = document.getElementById('csaPaymentTermsText');
+
+      if (model === 'launchpad') {
+        cardL.classList.add('selected');
+        pContainer.classList.remove('hidden');
+        rContainer.classList.remove('hidden');
+
+        investTotal.innerText = '$6,500 USD';
+        termsSummary.innerText = 'Terms: 50% Upfront / 50% Final';
+        executionPacing.innerText = '30-Day Sprint Runway';
+        crewSpec.innerText = '● Mobile Cinema Unit & Director';
+
+        document.getElementById('labelOptionA').innerText = 'OPTION A: 50/50 SPRINT BILLING';
+        document.getElementById('descOptionA').innerHTML = '• 50% ($3,250) Upfront deposit to lock 30-day production window<br>• 50% ($3,250) Final balance upon approved Frame.io master delivery';
+        document.getElementById('labelOptionB').innerText = 'OPTION B: 100% ADVANCE PRE-PAY';
+        document.getElementById('descOptionB').innerHTML = '• 100% ($6,500) Paid upon signing with prioritized 14-day turnaround';
+
+        selectedPayment = 'Launchpad Sprint Billing: $6,500 USD (50% upfront deposit upon signing, 50% final balance upon delivery of approved master suite)';
+        csaText.innerText = selectedPayment;
+
+        tbl.innerHTML = `
+          <tr>
+            <td class="font-semibold text-white">Hero Brand Story Video</td>
+            <td>4K UHD ProRes 422 HQ</td>
+            <td>16:9 Broadcast</td>
+            <td>60–90 Seconds</td>
+            <td>Core corporate website, landing page, and keynote introduction</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Social Narrative Hooks (x3)</td>
+            <td>4K UHD ProRes / H.265</td>
+            <td>9:16 Vertical</td>
+            <td>15–30 Seconds</td>
+            <td>Organic and paid Meta, TikTok, and YouTube Shorts</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">DaVinci Wide Gamut Color Suite</td>
+            <td>Node-Based Master Grade</td>
+            <td>Rec.709 &amp; Social Web</td>
+            <td>Matched Runtimes</td>
+            <td>Organic film print simulation and brand-calibrated contrast</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Broadcast Audio Master</td>
+            <td>-24 LKFS / 24-bit 48kHz WAV</td>
+            <td>Full Mix &amp; Dialogue Stem</td>
+            <td>Matched Runtimes</td>
+            <td>Master audio mix with clean dialogue stem and licensed score</td>
+          </tr>
+        `;
+      } else if (model === 'flagship') {
+        cardF.classList.add('selected');
+        pContainer.classList.remove('hidden');
+        rContainer.classList.remove('hidden');
+
+        investTotal.innerText = '$50,000 USD';
+        termsSummary.innerText = 'Terms: Option A (30/40/30)';
+        executionPacing.innerText = '5-Week Execution Runway';
+        crewSpec.innerText = '● 13-Person Production Crew';
+
+        document.getElementById('labelOptionA').innerText = 'OPTION A: 3-PART MILESTONES';
+        document.getElementById('descOptionA').innerHTML = '• 30% ($15,000) Upon signing to lock production dates &amp; tech scout<br>• 40% ($20,000) Upon completion of principal photography<br>• 30% ($15,000) Upon final master delivery and archival transfer';
+        document.getElementById('labelOptionB').innerText = 'OPTION B: 50/50 SPLIT';
+        document.getElementById('descOptionB').innerHTML = '• 50% ($25,000) Upfront upon signing and pre-production initiation<br>• 50% ($25,000) Final balance upon delivery of approved master video suite';
+
+        selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
+        csaText.innerText = selectedPayment;
+
+        tbl.innerHTML = `
+          <tr>
+            <td class="font-semibold text-white">Hero Brand Film / Showcase</td>
+            <td>4K DCI / UHD ProRes 422 HQ</td>
+            <td>16:9 Broadcast</td>
+            <td>90–120 Seconds</td>
+            <td>Main corporate portal, PR release, trade demos, and keynotes</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Broadcast Commercial Cutdown</td>
+            <td>4K UHD ProRes 422 HQ</td>
+            <td>16:9 Broadcast</td>
+            <td>30 Seconds</td>
+            <td>Paid digital ad campaigns, streaming slots, and partner reels</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Social Narrative Hooks (x3)</td>
+            <td>4K UHD ProRes / H.265</td>
+            <td>9:16 Vertical</td>
+            <td>15–30 Seconds</td>
+            <td>Instagram Reels, TikTok, YouTube Shorts, and LinkedIn video</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Broadcast Audio Master Suite</td>
+            <td>-24 LKFS / 24-bit 48kHz WAV</td>
+            <td>Audio Master Stems</td>
+            <td>Matched Runtimes</td>
+            <td>Full mix, split dialogue stem, music stem, and SFX/foley stem</td>
+          </tr>
+        `;
+      } else if (model === 'retainer') {
+        cardR.classList.add('selected');
+        pContainer.classList.add('hidden');
+        rContainer.classList.remove('hidden');
+
+        investTotal.innerText = '$5,500 / mo';
+        termsSummary.innerText = 'Terms: Monthly Recurring (6-Mo Commitment)';
+        executionPacing.innerText = 'Monthly Compounding Cadence';
+        crewSpec.innerText = '● Dedicated Studio Crew & Pipeline';
+
+        selectedPayment = 'Commercial Retainer Agreement: $5,500 USD / month billed in advance on the 1st of each calendar month on a 6-month minimum commitment';
+        csaText.innerText = selectedPayment;
+
+        tbl.innerHTML = `
+          <tr>
+            <td class="font-semibold text-white">Monthly Dedicated Production Day</td>
+            <td>4K Cinema Multi-Cam Rig</td>
+            <td>16:9 &amp; 9:16</td>
+            <td>Full Day Capture</td>
+            <td>Executive interviews, customer stories, facility operations, B-roll</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Monthly Master Video Suite</td>
+            <td>4K UHD ProRes 422 HQ</td>
+            <td>16:9 &amp; 9:16</td>
+            <td>4–6 Assets / mo</td>
+            <td>Quarterly hero refresh, monthly customer spotlights, paid ad cutdowns</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Continuous Social Engine</td>
+            <td>Vertical 4K / H.265</td>
+            <td>9:16 Vertical</td>
+            <td>8–12 Hooks / mo</td>
+            <td>Multi-platform distribution across Reels, TikTok, and YouTube Shorts</td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-white">Archival B-Roll &amp; Color Stems</td>
+            <td>DaVinci Resolve Wide Gamut</td>
+            <td>Color Mastered</td>
+            <td>Ongoing Bank</td>
+            <td>Perpetually expanding brand footage archive and raw asset repository</td>
+          </tr>
+        `;
+      }
+    }
 
     function updateLiveFields() {
       const companyInput = document.getElementById('clientCompany').value.trim();
@@ -924,13 +1236,23 @@
       if (option === 'Option A') {
         cardA.classList.add('selected');
         cardB.classList.remove('selected');
-        selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
-        summaryText.innerText = 'Terms: Option A (30/40/30)';
+        if (currentEngagement === 'launchpad') {
+          selectedPayment = 'Launchpad Sprint Billing: $6,500 USD (50% upfront deposit upon signing, 50% final balance upon delivery of approved master suite)';
+          summaryText.innerText = 'Terms: 50% Upfront / 50% Final';
+        } else {
+          selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
+          summaryText.innerText = 'Terms: Option A (30/40/30)';
+        }
       } else {
         cardB.classList.add('selected');
         cardA.classList.remove('selected');
-        selectedPayment = 'Option B: 50/50 Split (50% upfront deposit, 50% upon final master delivery)';
-        summaryText.innerText = 'Terms: Option B (50/50 Split)';
+        if (currentEngagement === 'launchpad') {
+          selectedPayment = 'Launchpad Advance Pre-Pay: $6,500 USD (100% upfront upon signing with prioritized 14-day delivery)';
+          summaryText.innerText = 'Terms: 100% Advance Pre-Pay';
+        } else {
+          selectedPayment = 'Option B: 50/50 Split (50% upfront deposit, 50% upon final master delivery)';
+          summaryText.innerText = 'Terms: Option B (50/50 Split)';
+        }
       }
       csaText.innerText = selectedPayment;
     }
@@ -943,6 +1265,20 @@
       const radio = label.querySelector('input');
       radio.checked = true;
       document.getElementById('displayRetainerAttached').innerText = 'Retainer: ' + radio.value;
+
+      if (currentEngagement === 'retainer') {
+        if (radio.value.includes('3,500')) {
+          document.getElementById('displayInvestmentTotal').innerText = '$3,500 / mo';
+          selectedPayment = 'Tier 1 Content Foundation Retainer: $3,500 USD / month on a 6-month commitment';
+        } else if (radio.value.includes('8,500')) {
+          document.getElementById('displayInvestmentTotal').innerText = '$8,500 / mo';
+          selectedPayment = 'Tier 3 Enterprise Studio Retainer: $8,500 USD / month on a 6-month commitment';
+        } else {
+          document.getElementById('displayInvestmentTotal').innerText = '$5,500 / mo';
+          selectedPayment = 'Tier 2 Commercial Growth Retainer: $5,500 USD / month on a 6-month commitment';
+        }
+        document.getElementById('csaPaymentTermsText').innerText = selectedPayment;
+      }
     }
 
     function markBookingClicked() {
