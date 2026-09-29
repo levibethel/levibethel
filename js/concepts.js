@@ -156,7 +156,7 @@ async function handleDeckRequestSubmit(event) {
 
   // Background Email Dispatch via FormSubmit AJAX endpoint
   try {
-    fetch('https://formsubmit.co/ajax/fermionbecproductions@gmail.com', {
+    fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -164,9 +164,10 @@ async function handleDeckRequestSubmit(event) {
       },
       body: JSON.stringify({
         _subject: emailSubject,
-        _cc: 'levibethel@gmail.com',
+        _cc: 'fermionbecproductions@gmail.com',
         _replyto: requesterEmail,
         _template: 'table',
+        _captcha: 'false',
         reference_code: refCode,
         project_title: projectTitle,
         project_id: projectId,

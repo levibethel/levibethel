@@ -1474,14 +1474,15 @@
       const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com&reply-to=${encodeURIComponent(email)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
       try {
-        fetch('https://formsubmit.co/ajax/fermionbecproductions@gmail.com', {
+        fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: emailSubject,
-            _cc: 'levibethel@gmail.com',
+            _cc: 'fermionbecproductions@gmail.com',
             _replyto: email,
             _template: 'table',
+            _captcha: 'false',
             audit_ref: refCode,
             client_name: name,
             client_email: email,

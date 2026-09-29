@@ -978,14 +978,15 @@
         `==================================================`;
 
       try {
-        fetch('https://formsubmit.co/ajax/fermionbecproductions@gmail.com', {
+        fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: accessSubject,
-            _cc: 'levibethel@gmail.com',
+            _cc: 'fermionbecproductions@gmail.com',
             _replyto: email,
             _template: 'table',
+            _captcha: 'false',
             event_type: 'VIP Proposal Clearance',
             client_company: comp,
             client_email: email,
@@ -1535,14 +1536,15 @@
 
       // Background Email Dispatch via FormSubmit AJAX
       try {
-        fetch('https://formsubmit.co/ajax/fermionbecproductions@gmail.com', {
+        fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: contractSubject,
-            _cc: 'levibethel@gmail.com' + (email && email !== 'On File' ? (',' + email) : ''),
-            _replyto: (email && email !== 'On File') ? email : 'fermionbecproductions@gmail.com',
+            _cc: 'fermionbecproductions@gmail.com' + (email && email !== 'On File' ? (',' + email) : ''),
+            _replyto: (email && email !== 'On File') ? email : 'levibethel@gmail.com',
             _template: 'table',
+            _captcha: 'false',
             seal_audit_reference: auditRef,
             signatory_name: name,
             signatory_title: title,
