@@ -184,39 +184,40 @@ function renderDeckRequestModal() {
 
         <!-- Success Feedback Container -->
         <div id="deck-success-container" class="hidden text-center py-6">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.25)]">
           <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
         </div>
         <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-2">
-          // TRANSMISSION &amp; EMAIL DISPATCH LOGGED
+          // FINAL STEP: CLIENT TRANSMISSION
         </span>
         <h3 class="text-2xl font-hero text-white mb-2">
-          REQUEST RECEIVED &amp; DISPATCHED
+          SEND INQUIRY VIA EMAIL APP
         </h3>
-        <p class="text-xs font-mono-hud text-emerald-400 mb-3 tracking-wider" id="deck-success-ref">
+        <p class="text-xs font-mono-hud text-amber-400 mb-3 tracking-wider" id="deck-success-ref">
           REF: FBP-DECK-2026-X9
         </p>
-        <div class="mb-4 p-3 rounded bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono-hud text-emerald-400 max-w-md mx-auto">
-          ✓ ENCRYPTED DISPATCH TRANSMITTED: Peter Levi Bethel (fermionbecproductions@gmail.com &amp; levibethel@gmail.com) has received your request. A verification notice is queued for your email.
+        <div id="deck-success-notice" class="mb-4 p-3.5 rounded bg-amber-500/10 border border-amber-500/40 text-[11px] font-mono-hud text-amber-300 max-w-md mx-auto leading-relaxed">
+          ⚠ ACTION REQUIRED: Tap below to open your email app and send your pre-formatted request. Your inquiry is not delivered until sent.
         </div>
         <p class="text-sm text-[#8C8C92] font-light max-w-md mx-auto mb-6 leading-relaxed">
-          Your inquiry for <strong class="text-white font-medium" id="deck-success-project-name">The Project</strong> has been delivered to Peter Levi Bethel. Credentials will be vetted and a secure view link will be dispatched to your email.
+          Your inquiry for <strong class="text-white font-medium" id="deck-success-project-name">The Project</strong> has been encrypted and formatted. Tap the button below to launch your email app (Mail, Gmail, Outlook) and hit <strong>"Send"</strong> to deliver your request directly to Peter Levi Bethel.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a 
             id="btn-deck-mailto-fallback" 
             href="#" 
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#16161D] hover:bg-[#1E1E26] border border-amber-500/40 text-amber-400 font-mono-hud text-xs tracking-wider transition"
+            onclick="handleMailtoClick()"
+            class="btn-hire w-full sm:w-auto text-xs flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(217,119,6,0.4)]"
           >
-            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <span>Verify / Send via Mail Client</span>
+            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Tap to Send via Email App (Required)</span>
           </a>
           <button 
             type="button" 
             onclick="closeDeckRequestModal()" 
-            class="btn-hire text-xs"
+            class="w-full sm:w-auto text-xs font-mono-hud text-[#888] hover:text-white px-5 py-3 rounded border border-[#28282E] hover:border-[#444] transition text-center"
           >
             Return to Gallery
           </button>
