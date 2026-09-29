@@ -156,7 +156,7 @@ async function handleDeckRequestSubmit(event) {
 
   // Background Email Dispatch via FormSubmit AJAX endpoint
   try {
-    fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
+    fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
