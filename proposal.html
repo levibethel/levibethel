@@ -964,6 +964,22 @@
       sessionStorage.setItem('fbp_authorized_key', 'GUEST-' + comp.toUpperCase().replace(/\s+/g, '-'));
       unlockContent('DISCOVERY GUEST // ' + comp.toUpperCase());
       showToast('Discovery Clearance Granted for ' + comp);
+
+      // Background Notification to levibethel@gmail.com
+      const guestPayload = new FormData();
+      guestPayload.append('_subject', `[DISCOVERY ACCESS GRANTED] ${comp} (${email}) Unlocked Proposal`);
+      guestPayload.append('_template', 'table');
+      guestPayload.append('_captcha', 'false');
+      guestPayload.append('company_name', comp);
+      guestPayload.append('corporate_email', email);
+      guestPayload.append('access_status', 'Discovery Guest Clearance Granted');
+      guestPayload.append('timestamp', new Date().toLocaleString());
+
+      fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
+        method: 'POST',
+        body: guestPayload,
+        headers: { 'Accept': 'application/json' }
+      }).catch(err => console.warn('Discovery notice error:', err));
     }
 
     async function checkURLAccess() {
@@ -1407,6 +1423,41 @@
       document.getElementById('btnExecuteAgreement').classList.add('bg-emerald-500', 'text-black', 'pointer-events-none');
       
       showToast('Agreement Digitally Sealed: ' + auditRef);
+
+      // Transmit Complete Executed Contract to levibethel@gmail.com
+      const contractPayload = new FormData();
+      const engName = (currentEngagement === 'launchpad') ? '30-Day Launchpad Sprint ($6,500)' : 
+                      (currentEngagement === 'retainer') ? ('Retainer Pipeline: ' + (document.getElementById('displayRetainerAttached')?.innerText || 'Monthly Retainer')) : 
+                      'Flagship Commercial Campaign ($50,000)';
+      const invTotal = document.getElementById('displayInvestmentTotal')?.innerText || (currentEngagement === 'launchpad' ? '$6,500' : '$50,000');
+      
+      contractPayload.append('_subject', `[EXECUTED CONTRACT & DIGITAL SEAL] ${company} — ${engName}`);
+      contractPayload.append('_template', 'table');
+      contractPayload.append('_captcha', 'false');
+      contractPayload.append('client_company', company);
+      contractPayload.append('signatory_name', name);
+      contractPayload.append('signatory_title', document.getElementById('clientTitle')?.value.trim() || 'Authorized Representative');
+      contractPayload.append('signatory_email', document.getElementById('clientEmail')?.value.trim() || 'Not specified');
+      contractPayload.append('signatory_phone', document.getElementById('clientPhone')?.value.trim() || 'Not specified');
+      contractPayload.append('filming_location', document.getElementById('clientLocation')?.value.trim() || 'Not specified');
+      contractPayload.append('production_timeline', document.getElementById('clientTimeline')?.value.trim() || 'Not specified');
+      contractPayload.append('special_requirements', document.getElementById('clientNotes')?.value.trim() || 'None');
+      contractPayload.append('engagement_model', engName);
+      contractPayload.append('investment_total', invTotal);
+      contractPayload.append('payment_terms', selectedPayment);
+      contractPayload.append('tamper_evident_seal_ref', auditRef);
+      contractPayload.append('execution_timestamp', new Date().toLocaleString());
+      contractPayload.append('legal_framework', 'Fermion Bec Creative Services Agreement v2.6 (2-7-21 SLA Attached)');
+
+      fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
+        method: 'POST',
+        body: contractPayload,
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        console.log('Contract execution successfully transmitted to levibethel@gmail.com');
+      }).catch(err => {
+        console.error('Contract dispatch error:', err);
+      });
     }
 
     // Initialize

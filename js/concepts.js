@@ -63,16 +63,16 @@ function closeDeckRequestModal() {
 }
 
 /**
- * Handle Form Submission for Deck Inquiries
+ * Handle Form Submission for Deck Inquiries (Direct Dispatch to levibethel@gmail.com)
  */
-function handleDeckRequestSubmit(event) {
+async function handleDeckRequestSubmit(event) {
   event.preventDefault();
 
   const form = event.target;
   const submitBtn = document.getElementById('btn-submit-deck-request');
 
   const projectId = document.getElementById('modal-project-id')?.value || '';
-  const projectTitle = document.getElementById('modal-project-title-display')?.value || '';
+  const projectTitle = document.getElementById('modal-project-title-display')?.value || 'Packaging Portfolio';
   const requesterName = document.getElementById('modal-requester-name')?.value || '';
   const requesterCompany = document.getElementById('modal-requester-company')?.value || '';
   const requesterEmail = document.getElementById('modal-requester-email')?.value || '';
@@ -81,7 +81,7 @@ function handleDeckRequestSubmit(event) {
 
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerText = 'TRANSMITTING REQUEST...';
+    submitBtn.innerText = 'TRANSMITTING CREDENTIALS...';
   }
 
   // Generate Reference ID
@@ -108,10 +108,39 @@ function handleDeckRequestSubmit(event) {
     console.warn('Storage unavailable:', e);
   }
 
-  console.log('Secure Deck Request Transmitted:', inquiryPayload);
+  // Live Dispatch to levibethel@gmail.com via FormSubmit
+  const formData = new FormData();
+  formData.append('_subject', `[CONFIDENTIAL DOSSIER REQUEST] ${projectTitle} — ${requesterCompany}`);
+  formData.append('_template', 'table');
+  formData.append('_captcha', 'false');
+  formData.append('project_requested', projectTitle);
+  formData.append('project_id', projectId);
+  formData.append('requester_name', requesterName);
+  formData.append('requester_company', requesterCompany);
+  formData.append('requester_email', requesterEmail);
+  formData.append('requester_role', requesterRole);
+  formData.append('timeline_scope', inquiryScope);
+  formData.append('reference_code', refCode);
+  formData.append('confidentiality_terms', 'CONFIRMED & ACCEPTED (TRUE)');
+  formData.append('submission_timestamp', new Date().toLocaleString());
 
-  // Simulate network dispatch delay for professional HUD feel
-  setTimeout(() => {
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (!response.ok) {
+      console.warn('FormSubmit HTTP status:', response.status);
+    }
+  } catch (err) {
+    console.error('Direct submission error:', err);
+    // Offline / Mailto Fallback
+    const mailtoSubject = encodeURIComponent(`Access Request - ${projectTitle}`);
+    const mailtoBody = encodeURIComponent(`Name: ${requesterName}\nEmail: ${requesterEmail}\nCompany: ${requesterCompany}\nRole: ${requesterRole}\nProject: ${projectTitle}\nRef: ${refCode}\nTerms Accepted: Yes`);
+    window.location.href = `mailto:levibethel@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+  } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.innerText = 'TRANSMIT DECK REQUEST';
@@ -126,7 +155,7 @@ function handleDeckRequestSubmit(event) {
     if (refDisplay) refDisplay.innerText = `REF: ${refCode}`;
     if (projectDisplay) projectDisplay.innerText = projectTitle;
     if (successContainer) successContainer.classList.remove('hidden');
-  }, 600);
+  }
 }
 
 /**
