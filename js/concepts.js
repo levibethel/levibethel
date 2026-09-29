@@ -63,7 +63,7 @@ function closeDeckRequestModal() {
 }
 
 /**
- * Handle Form Submission for Deck Inquiries (Direct Dispatch to levibethel@gmail.com)
+ * Handle Form Submission for Deck Inquiries
  */
 async function handleDeckRequestSubmit(event) {
   event.preventDefault();
@@ -72,7 +72,7 @@ async function handleDeckRequestSubmit(event) {
   const submitBtn = document.getElementById('btn-submit-deck-request');
 
   const projectId = document.getElementById('modal-project-id')?.value || '';
-  const projectTitle = document.getElementById('modal-project-title-display')?.value || 'Packaging Portfolio';
+  const projectTitle = document.getElementById('modal-project-title-display')?.value || '';
   const requesterName = document.getElementById('modal-requester-name')?.value || '';
   const requesterCompany = document.getElementById('modal-requester-company')?.value || '';
   const requesterEmail = document.getElementById('modal-requester-email')?.value || '';
@@ -81,11 +81,12 @@ async function handleDeckRequestSubmit(event) {
 
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerText = 'TRANSMITTING CREDENTIALS...';
+    submitBtn.innerText = 'TRANSMITTING & DISPATCHING EMAIL...';
   }
 
   // Generate Reference ID
   const refCode = 'FBP-DECK-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+  const timestamp = new Date().toISOString();
 
   const inquiryPayload = {
     refCode,
@@ -96,7 +97,7 @@ async function handleDeckRequestSubmit(event) {
     requesterEmail,
     requesterRole,
     inquiryScope,
-    timestamp: new Date().toISOString()
+    timestamp
   };
 
   // Persist locally for review/auditing
@@ -108,39 +109,87 @@ async function handleDeckRequestSubmit(event) {
     console.warn('Storage unavailable:', e);
   }
 
-  // Live Dispatch to levibethel@gmail.com via FormSubmit
-  const formData = new FormData();
-  formData.append('_subject', `[CONFIDENTIAL DOSSIER REQUEST] ${projectTitle} — ${requesterCompany}`);
-  formData.append('_template', 'table');
-  formData.append('_captcha', 'false');
-  formData.append('project_requested', projectTitle);
-  formData.append('project_id', projectId);
-  formData.append('requester_name', requesterName);
-  formData.append('requester_company', requesterCompany);
-  formData.append('requester_email', requesterEmail);
-  formData.append('requester_role', requesterRole);
-  formData.append('timeline_scope', inquiryScope);
-  formData.append('reference_code', refCode);
-  formData.append('confidentiality_terms', 'CONFIRMED & ACCEPTED (TRUE)');
-  formData.append('submission_timestamp', new Date().toLocaleString());
+  // Build Structured Email Content
+  const emailSubject = `[FBP DECK REQUEST] ${projectTitle} - ${requesterCompany} (${refCode})`;
+  const emailBodyText = `==================================================
+` +
+    `FERMION BEC PRODUCTIONS // DECK ACCESS PROTOCOL
+` +
+    `==================================================
+` +
+    `REFERENCE CODE : ${refCode}
+` +
+    `TIMESTAMP      : ${timestamp}
 
+` +
+    `PROJECT DETAILS:
+` +
+    `Project Title  : ${projectTitle}
+` +
+    `Project ID     : ${projectId}
+
+` +
+    `REQUESTER INFORMATION:
+` +
+    `Full Name      : ${requesterName}
+` +
+    `Company/Agency : ${requesterCompany}
+` +
+    `Email Address  : ${requesterEmail}
+` +
+    `Role / Title   : ${requesterRole || 'Not Specified'}
+` +
+    `Inquiry Scope  : ${inquiryScope || 'Confidential Packaging Review'}
+
+` +
+    `DISPATCH AUDIT:
+` +
+    `This request was submitted via Peter Levi Bethel's Portfolio & Concepts Packaging Suite.
+` +
+    `Primary Recipient : fermionbecproductions@gmail.com
+` +
+    `Executive Archive : levibethel@gmail.com
+` +
+    `==================================================`;
+
+  const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com&reply-to=${encodeURIComponent(requesterEmail)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBodyText)}`;
+
+  // Background Email Dispatch via FormSubmit AJAX endpoint
   try {
-    const response = await fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
+    fetch('https://formsubmit.co/ajax/fermionbecproductions@gmail.com', {
       method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: emailSubject,
+        _cc: 'levibethel@gmail.com',
+        _replyto: requesterEmail,
+        _template: 'table',
+        reference_code: refCode,
+        project_title: projectTitle,
+        project_id: projectId,
+        requester_name: requesterName,
+        company: requesterCompany,
+        requester_email: requesterEmail,
+        requester_role: requesterRole,
+        inquiry_scope: inquiryScope,
+        timestamp: timestamp
+      })
+    }).then(res => res.json()).then(data => {
+      console.log('Background email dispatch status:', data);
+    }).catch(err => {
+      console.warn('Background email dispatch network issue:', err);
     });
-
-    if (!response.ok) {
-      console.warn('FormSubmit HTTP status:', response.status);
-    }
   } catch (err) {
-    console.error('Direct submission error:', err);
-    // Offline / Mailto Fallback
-    const mailtoSubject = encodeURIComponent(`Access Request - ${projectTitle}`);
-    const mailtoBody = encodeURIComponent(`Name: ${requesterName}\nEmail: ${requesterEmail}\nCompany: ${requesterCompany}\nRole: ${requesterRole}\nProject: ${projectTitle}\nRef: ${refCode}\nTerms Accepted: Yes`);
-    window.location.href = `mailto:levibethel@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-  } finally {
+    console.warn('Dispatch error:', err);
+  }
+
+  console.log('Secure Deck Request Transmitted:', inquiryPayload);
+
+  // Update UI and activate fallback mail link
+  setTimeout(() => {
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.innerText = 'TRANSMIT DECK REQUEST';
@@ -150,12 +199,16 @@ async function handleDeckRequestSubmit(event) {
     const successContainer = document.getElementById('deck-success-container');
     const refDisplay = document.getElementById('deck-success-ref');
     const projectDisplay = document.getElementById('deck-success-project-name');
+    const mailtoBtn = document.getElementById('btn-deck-mailto-fallback');
 
     if (formContainer) formContainer.classList.add('hidden');
     if (refDisplay) refDisplay.innerText = `REF: ${refCode}`;
     if (projectDisplay) projectDisplay.innerText = projectTitle;
+    if (mailtoBtn) {
+      mailtoBtn.href = mailtoUrl;
+    }
     if (successContainer) successContainer.classList.remove('hidden');
-  }
+  }, 600);
 }
 
 /**

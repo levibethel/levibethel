@@ -961,25 +961,44 @@
       document.getElementById('clientEmail').value = email;
       updateLiveFields();
 
-      sessionStorage.setItem('fbp_authorized_key', 'GUEST-' + comp.toUpperCase().replace(/\s+/g, '-'));
+      const guestKey = 'GUEST-' + comp.toUpperCase().replace(/\s+/g, '-');
+      sessionStorage.setItem('fbp_authorized_key', guestKey);
+
+      // Email Dispatch for VIP Discovery Access
+      const accessSubject = `[VIP PROPOSAL ACCESS] Discovery Clearance Granted - ${comp}`;
+      const accessBody = `==================================================\n` +
+        `FERMION BEC PRODUCTIONS // VIP PROPOSAL ACCESS\n` +
+        `==================================================\n` +
+        `TIMESTAMP      : ${new Date().toISOString()}\n` +
+        `COMPANY/BRAND  : ${comp}\n` +
+        `EXECUTIVE EMAIL: ${email}\n` +
+        `SESSION KEY    : ${guestKey}\n` +
+        `PAGE URL       : ${window.location.href}\n` +
+        `STATUS         : Discovery Clearance Activated\n` +
+        `==================================================`;
+
+      try {
+        fetch('https://formsubmit.co/ajax/fermionbecproductions@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: accessSubject,
+            _cc: 'levibethel@gmail.com',
+            _replyto: email,
+            _template: 'table',
+            event_type: 'VIP Proposal Clearance',
+            client_company: comp,
+            client_email: email,
+            guest_session_key: guestKey,
+            timestamp: new Date().toISOString()
+          })
+        }).catch(err => console.warn('Guest access notification:', err));
+      } catch (err) {
+        console.warn(err);
+      }
+
       unlockContent('DISCOVERY GUEST // ' + comp.toUpperCase());
       showToast('Discovery Clearance Granted for ' + comp);
-
-      // Background Notification to levibethel@gmail.com
-      const guestPayload = new FormData();
-      guestPayload.append('_subject', `[DISCOVERY ACCESS GRANTED] ${comp} (${email}) Unlocked Proposal`);
-      guestPayload.append('_template', 'table');
-      guestPayload.append('_captcha', 'false');
-      guestPayload.append('company_name', comp);
-      guestPayload.append('corporate_email', email);
-      guestPayload.append('access_status', 'Discovery Guest Clearance Granted');
-      guestPayload.append('timestamp', new Date().toLocaleString());
-
-      fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
-        method: 'POST',
-        body: guestPayload,
-        headers: { 'Accept': 'application/json' }
-      }).catch(err => console.warn('Discovery notice error:', err));
     }
 
     async function checkURLAccess() {
@@ -1403,61 +1422,200 @@
         return;
       }
 
+      const email = document.getElementById('clientEmail').value.trim() || 'On File';
+      const title = document.getElementById('clientTitle').value.trim() || 'Executive Signatory';
+      const phone = document.getElementById('clientPhone').value.trim() || 'On File';
+      const location = document.getElementById('clientLocation').value.trim() || 'Tri-State Area';
+      const timeline = document.getElementById('clientTimeline').value.trim() || 'Target Production Schedule';
+
       // Generate Tamper-Evident Hash Reference
       const auditRef = generateAuditRef();
+      const timestamp = new Date().toISOString();
       document.getElementById('contractAuditCode').innerText = 'SEAL REF: ' + auditRef;
 
       // Convert Canvas to Print Image
+      let sigType = 'Typed Verified Electronic Signature';
       if (hasDrawn) {
         const dataUrl = canvas.toDataURL('image/png');
         const img = document.getElementById('printSigImg');
         img.src = dataUrl;
         img.classList.remove('hidden');
+        sigType = 'Drawn Electronic Signature (Canvas Stamped)';
       } else {
         document.getElementById('typedFallbackSig').innerText = name;
       }
 
       document.getElementById('printSigBlock').classList.remove('hidden');
-      document.getElementById('executionSuccessBanner').classList.remove('hidden');
-      document.getElementById('btnExecuteAgreement').innerHTML = '<span>Agreement Sealed // ' + auditRef + '</span>';
-      document.getElementById('btnExecuteAgreement').classList.add('bg-emerald-500', 'text-black', 'pointer-events-none');
-      
-      showToast('Agreement Digitally Sealed: ' + auditRef);
 
-      // Transmit Complete Executed Contract to levibethel@gmail.com
-      const contractPayload = new FormData();
-      const engName = (currentEngagement === 'launchpad') ? '30-Day Launchpad Sprint ($6,500)' : 
-                      (currentEngagement === 'retainer') ? ('Retainer Pipeline: ' + (document.getElementById('displayRetainerAttached')?.innerText || 'Monthly Retainer')) : 
-                      'Flagship Commercial Campaign ($50,000)';
-      const invTotal = document.getElementById('displayInvestmentTotal')?.innerText || (currentEngagement === 'launchpad' ? '$6,500' : '$50,000');
-      
-      contractPayload.append('_subject', `[EXECUTED CONTRACT & DIGITAL SEAL] ${company} — ${engName}`);
-      contractPayload.append('_template', 'table');
-      contractPayload.append('_captcha', 'false');
-      contractPayload.append('client_company', company);
-      contractPayload.append('signatory_name', name);
-      contractPayload.append('signatory_title', document.getElementById('clientTitle')?.value.trim() || 'Authorized Representative');
-      contractPayload.append('signatory_email', document.getElementById('clientEmail')?.value.trim() || 'Not specified');
-      contractPayload.append('signatory_phone', document.getElementById('clientPhone')?.value.trim() || 'Not specified');
-      contractPayload.append('filming_location', document.getElementById('clientLocation')?.value.trim() || 'Not specified');
-      contractPayload.append('production_timeline', document.getElementById('clientTimeline')?.value.trim() || 'Not specified');
-      contractPayload.append('special_requirements', document.getElementById('clientNotes')?.value.trim() || 'None');
-      contractPayload.append('engagement_model', engName);
-      contractPayload.append('investment_total', invTotal);
-      contractPayload.append('payment_terms', selectedPayment);
-      contractPayload.append('tamper_evident_seal_ref', auditRef);
-      contractPayload.append('execution_timestamp', new Date().toLocaleString());
-      contractPayload.append('legal_framework', 'Fermion Bec Creative Services Agreement v2.6 (2-7-21 SLA Attached)');
+      // Engagement & Payment details
+      let engLabel = '02. Flagship Commercial Campaign ($50,000 USD)';
+      if (currentEngagement === 'launchpad') {
+        engLabel = '01. Launchpad Sprint ($6,500 USD / 30-Day Sprint)';
+      } else if (currentEngagement === 'retainer') {
+        engLabel = '03. Partnership Retainer (' + (selectedPayment || 'Tiered Retainer') + ')';
+      }
 
-      fetch('https://formsubmit.co/ajax/levibethel@gmail.com', {
-        method: 'POST',
-        body: contractPayload,
-        headers: { 'Accept': 'application/json' }
-      }).then(() => {
-        console.log('Contract execution successfully transmitted to levibethel@gmail.com');
-      }).catch(err => {
-        console.error('Contract dispatch error:', err);
-      });
+      const paymentTerms = selectedPayment || 'Milestone Payment Terms';
+
+      // Compose Execution Email
+      const contractSubject = `[CONTRACT EXECUTED] Creative Services Agreement Sealed - ${company} (${auditRef})`;
+      const contractBody = `================================================================================
+` +
+        `FERMION BEC PRODUCTIONS LLC // LEGAL EXECUTION RECORD
+` +
+        `CREATIVE SERVICES AGREEMENT & STATEMENT OF WORK (SOW) - DIGITALLY SEALED
+` +
+        `================================================================================
+` +
+        `SEAL AUDIT REF : ${auditRef}
+` +
+        `EXECUTION TIME : ${timestamp}
+` +
+        `GOVERNING LAW  : State of New Jersey (Monmouth & Ocean County Jurisdiction)
+` +
+        `LEGAL STATUTE  : US Electronic Signatures in Global & National Commerce Act (E-SIGN Act)
+
+` +
+        `CLIENT SIGNATORY DETAILS:
+` +
+        `Authorized Signatory : ${name}
+` +
+        `Signatory Title      : ${title}
+` +
+        `Corporate Entity     : ${company}
+` +
+        `Invoicing / Billing  : ${email}
+` +
+        `Direct Phone         : ${phone}
+` +
+        `Production Facility  : ${location}
+` +
+        `Target Schedule      : ${timeline}
+
+` +
+        `PRODUCTION ENGAGEMENT ARCHITECTURE:
+` +
+        `Selected Model       : ${engLabel}
+` +
+        `Payment Structure    : ${paymentTerms}
+
+` +
+        `PRODUCER SIGNATORY:
+` +
+        `Producer Signatory   : Peter Bethel
+` +
+        `Title                : Founder, Director & Producer
+` +
+        `Company Organization : Fermion Bec Productions LLC
+` +
+        `Corporate Office     : 1206 Green View Way, Toms River, NJ 08753
+` +
+        `Direct Phone         : (646) 262-1379
+` +
+        `Production Inquiries : fermionbecproductions@gmail.com
+` +
+        `Lead Producer Desk   : levibethel@gmail.com
+` +
+        `Company Website      : https://www.fermionbecproductions.com
+` +
+        `Director Portfolio   : https://levibethel.github.io/levibethel/
+
+` +
+        `EXECUTION ATTESTATION:
+` +
+        `Signature Method     : ${sigType}
+` +
+        `Authority Statement  : Signatory has certified legal authority to bind ${company} to the terms of this Agreement.
+` +
+        `Agreement URL        : ${window.location.href}
+` +
+        `================================================================================`;
+
+      const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com,${encodeURIComponent(email)}&subject=${encodeURIComponent(contractSubject)}&body=${encodeURIComponent(contractBody)}`;
+
+      // Background Email Dispatch via FormSubmit AJAX
+      try {
+        fetch('https://formsubmit.co/ajax/fermionbecproductions@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: contractSubject,
+            _cc: 'levibethel@gmail.com' + (email && email !== 'On File' ? (',' + email) : ''),
+            _replyto: (email && email !== 'On File') ? email : 'fermionbecproductions@gmail.com',
+            _template: 'table',
+            seal_audit_reference: auditRef,
+            signatory_name: name,
+            signatory_title: title,
+            client_organization: company,
+            client_email: email,
+            client_phone: phone,
+            facility_location: location,
+            target_schedule: timeline,
+            engagement_architecture: engLabel,
+            payment_terms: paymentTerms,
+            execution_timestamp: timestamp,
+            signature_method: sigType
+          })
+        }).then(r => r.json()).then(data => {
+          console.log('Contract execution email dispatch status:', data);
+        }).catch(err => {
+          console.warn('Background contract dispatch network issue:', err);
+        });
+      } catch (err) {
+        console.warn('Contract dispatch error:', err);
+      }
+
+      // Persist to localStorage for client auditing
+      try {
+        const sealedLog = JSON.parse(localStorage.getItem('fbp_sealed_contracts') || '[]');
+        sealedLog.unshift({
+          auditRef,
+          name,
+          title,
+          company,
+          email,
+          phone,
+          engagement: engLabel,
+          paymentTerms,
+          timestamp
+        });
+        localStorage.setItem('fbp_sealed_contracts', JSON.stringify(sealedLog));
+      } catch (e) {
+        console.warn(e);
+      }
+
+      // Update UI Banner & Buttons
+      const successBanner = document.getElementById('executionSuccessBanner');
+      if (successBanner) {
+        successBanner.innerHTML = `
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <div class="font-bold text-sm mb-1 text-emerald-300">✓ AGREEMENT DIGITALLY EXECUTED, SEALED &amp; DISPATCHED</div>
+              <p class="text-xs text-[#AAA] leading-relaxed">
+                Execution certificate <strong>${auditRef}</strong> has been transmitted via email to <strong>fermionbecproductions@gmail.com</strong>, <strong>levibethel@gmail.com</strong>, and <strong>${email}</strong>.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0 no-print">
+              <a href="${mailtoUrl}" class="px-3.5 py-2 rounded bg-black/80 hover:bg-black border border-amber-500/50 text-amber-400 font-mono-hud text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span>Email Client Record</span>
+              </a>
+              <button type="button" onclick="window.print()" class="px-3.5 py-2 rounded bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-mono-hud text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 transition">
+                <span>Print / Save PDF</span>
+              </button>
+            </div>
+          </div>
+        `;
+        successBanner.classList.remove('hidden');
+      }
+
+      const executeBtn = document.getElementById('btnExecuteAgreement');
+      if (executeBtn) {
+        executeBtn.innerHTML = '<span>Agreement Sealed &amp; Dispatched // ' + auditRef + '</span>';
+        executeBtn.classList.add('bg-emerald-500', 'text-black', 'pointer-events-none');
+      }
+      
+      showToast('Agreement Sealed & Dispatched: ' + auditRef);
     }
 
     // Initialize
