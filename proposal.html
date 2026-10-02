@@ -649,7 +649,7 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div class="bg-[#0A0A0C] border border-[#1F1F24] p-6 rounded-xl">
           <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">// PRODUCER ENTITY</span>
-          <h3 class="font-serif-title text-base text-white font-semibold mb-1">Fermion Bec Productions LLC</h3>
+          <h3 class="font-serif-title text-base text-white font-semibold mb-1">Fermion Bec Productions</h3>
           <p class="text-xs text-[#888] font-mono-hud">Toms River, NJ 08753</p>
           <a href="https://fermionbecproductions.com" target="_blank" class="text-xs text-amber-400 underline font-mono-hud mt-2 block">fermionbecproductions.com</a>
         </div>
@@ -788,7 +788,7 @@
       <!-- Legal Agreement Body -->
       <div class="bg-[#0A0A0C] border border-[#1F1F24] p-8 rounded-xl text-xs font-mono-hud text-[#9C9CA4] space-y-6 leading-relaxed mb-8">
         <p class="text-sm text-white font-sans">
-          This Creative Services Agreement (“Agreement”) is entered into by and between <strong>Fermion Bec Productions LLC</strong>, a New Jersey limited liability company (“Producer”), and <strong id="csaClientCompany" class="text-amber-400">[Client Organization Name]</strong> (“Client”).
+          This Creative Services Agreement (“Agreement”) is entered into by and between <strong>Fermion Bec Productions</strong>, a New Jersey limited liability company (“Producer”), and <strong id="csaClientCompany" class="text-amber-400">[Client Organization Name]</strong> (“Client”).
         </p>
 
         <div>
@@ -818,7 +818,7 @@
 
         <div>
           <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">6. Limitation of Liability</h4>
-          <p>Except concerning each party’s indemnification obligations, neither party will be liable for incidental, consequential, indirect, or special damages (including lost profits or business interruption). Fermion Bec Productions LLC’s total aggregate liability under this Agreement shall not exceed the total cash Fees actually paid by Client to Fermion Bec Productions LLC under the applicable SOW.</p>
+          <p>Except concerning each party’s indemnification obligations, neither party will be liable for incidental, consequential, indirect, or special damages (including lost profits or business interruption). Fermion Bec Productions’s total aggregate liability under this Agreement shall not exceed the total cash Fees actually paid by Client to Fermion Bec Productions under the applicable SOW.</p>
         </div>
 
         <div>
@@ -850,7 +850,7 @@
             <div class="text-xs font-mono-hud text-[#888] space-y-1">
               <p><strong class="text-white">Signatory:</strong> Peter Bethel</p>
               <p><strong class="text-white">Title:</strong> Founder, Director &amp; Producer</p>
-              <p><strong class="text-white">Company:</strong> Fermion Bec Productions LLC</p>
+              <p><strong class="text-white">Company:</strong> Fermion Bec Productions</p>
               <p><strong class="text-white">Execution Date:</strong> <span id="producerDate">September 27, 2026</span></p>
             </div>
           </div>
@@ -983,7 +983,7 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: accessSubject,
-            _cc: 'fermionbecproductions@gmail.com',
+            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com',
             _replyto: email,
             _template: 'table',
             _captcha: 'false',
@@ -1462,7 +1462,7 @@
       const contractSubject = `[CONTRACT EXECUTED] Creative Services Agreement Sealed - ${company} (${auditRef})`;
       const contractBody = `================================================================================
 ` +
-        `FERMION BEC PRODUCTIONS LLC // LEGAL EXECUTION RECORD
+        `FERMION BEC PRODUCTIONS // LEGAL EXECUTION RECORD
 ` +
         `CREATIVE SERVICES AGREEMENT & STATEMENT OF WORK (SOW) - DIGITALLY SEALED
 ` +
@@ -1507,7 +1507,7 @@
 ` +
         `Title                : Founder, Director & Producer
 ` +
-        `Company Organization : Fermion Bec Productions LLC
+        `Company Organization : Fermion Bec Productions
 ` +
         `Corporate Office     : 1206 Green View Way, Toms River, NJ 08753
 ` +
@@ -1541,7 +1541,7 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: contractSubject,
-            _cc: 'fermionbecproductions@gmail.com' + (email && email !== 'On File' ? (',' + email) : ''),
+            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com' + (email && email !== 'On File' ? (',' + email) : ''),
             _replyto: (email && email !== 'On File') ? email : 'levibethel@gmail.com',
             _template: 'table',
             _captcha: 'false',
@@ -1586,6 +1586,13 @@
         console.warn(e);
       }
 
+      // Direct mailto trigger during execution gesture
+      try {
+        window.location.href = mailtoUrl;
+      } catch (err) {
+        console.warn('Direct mailto redirect:', err);
+      }
+
       // Update UI Banner & Buttons
       const successBanner = document.getElementById('executionSuccessBanner');
       if (successBanner) {
@@ -1598,9 +1605,9 @@
               </p>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0 no-print">
-              <a href="${mailtoUrl}" class="px-3.5 py-2 rounded bg-black/80 hover:bg-black border border-amber-500/50 text-amber-400 font-mono-hud text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 transition">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <span>Email Client Record</span>
+              <a href="${mailtoUrl}" class="px-4 py-2.5 rounded bg-amber-500 hover:bg-white text-black font-bold font-mono-hud text-xs uppercase tracking-wider inline-flex items-center gap-2 transition shadow-[0_0_20px_rgba(255,152,0,0.35)]">
+                <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span>Email Signed Record (Required)</span>
               </a>
               <button type="button" onclick="window.print()" class="px-3.5 py-2 rounded bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-mono-hud text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 transition">
                 <span>Print / Save PDF</span>
