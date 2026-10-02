@@ -304,9 +304,12 @@
         </div>
       </div>
 
-      <div class="flex flex-col items-start md:items-end gap-3 flex-shrink-0 w-full sm:w-auto">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center md:items-end gap-3 flex-shrink-0 w-full sm:w-auto">
+        <a href="proposal.html" class="text-xs font-mono-hud text-amber-400 hover:text-white transition flex items-center gap-1.5 border border-amber-500/30 px-3.5 py-2.5 rounded bg-amber-500/5 hover:bg-amber-500/20">
+          <span>Client Proposal &amp; SOW ↗</span>
+        </a>
         <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="text-xs font-mono-hud font-bold text-amber-500 hover:text-white uppercase tracking-widest transition flex items-center gap-2 border border-amber-500/30 px-4 py-2.5 rounded bg-amber-500/5 hover:bg-amber-500/20">
-          <span>// SCHEDULE PRODUCTION DISCOVERY</span>
+          <span>// SCHEDULE DISCOVERY</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
@@ -409,6 +412,7 @@
       <a href="#founder" class="nav-pill-btn">06 // Founder Authority</a>
       <a href="#audit" class="nav-pill-btn text-amber-400 font-bold border border-amber-500/30 bg-amber-500/5">07 // Book Assessment</a>
       <a href="concepts.html" class="nav-pill-btn text-[#8E9B96] hover:text-white border-l border-[#1C2420] ml-2 pl-3">Concepts Slate ↗</a>
+      <a href="proposal.html" class="nav-pill-btn text-amber-400 hover:text-white border-l border-[#1C2420] pl-3 font-semibold">Client SOW ↗</a>
     </nav>
 
     <!-- SECTION 2: THE PROBLEM (Diagnosing "Visual Debt") -->
@@ -776,6 +780,21 @@
               Inquire Tier C Studio
             </a>
           </div>
+        </div>
+
+        <!-- Direct SOW & Contract Execution Portal Callout -->
+        <div class="mt-8 p-6 rounded-xl bg-[#060807] border border-amber-500/30 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div>
+            <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest font-bold block mb-1">
+              // MASTER SERVICES AGREEMENT &amp; DIGITAL SOW EXECUTION
+            </span>
+            <p class="text-xs font-mono-hud text-[#8E9B96]">
+              Review transparent line-item deliverables, mutual non-disclosure terms, and execute client agreements digitally:
+            </p>
+          </div>
+          <a href="proposal.html" class="btn-secondary-vaos text-xs py-2.5 px-6 whitespace-nowrap">
+            <span>Review Full SOW &amp; Agreement ↗</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1460,22 +1479,24 @@
 
       <!-- Form Container -->
       <div id="deck-form-container">
-        <form id="deck-request-form" onsubmit="handleDeckRequestSubmit(event)" class="space-y-4">
+        <form id="deck-inquiry-form" onsubmit="handleDeckRequestSubmit(event)" class="space-y-4">
           
           <!-- Read-Only Auto-Captured Project Title -->
           <div>
-            <label class="block text-[11px] font-mono-hud text-amber-400/90 uppercase tracking-wider mb-1.5">
-              Target Concept Dossier
+            <label class="block text-[11px] font-mono-hud text-amber-400/90 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+              <span>Target Concept Dossier</span>
+              <span class="text-[9px] text-[#8E9B96]">// AUTO-CAPTURED (READ-ONLY)</span>
             </label>
             <div class="relative">
               <input 
                 type="text" 
-                id="modal-project-title" 
+                id="modal-project-title-display" 
                 readonly 
-                class="w-full bg-black/60 border border-[#1C2420] rounded px-3.5 py-2.5 text-xs text-white font-mono-hud focus:outline-none cursor-not-allowed select-none"
+                tabindex="-1"
+                class="w-full bg-[#060807] border border-amber-500/40 text-amber-300 font-mono-hud text-xs px-3.5 py-2.5 rounded cursor-not-allowed select-none focus:outline-none"
               />
-              <input type="hidden" id="modal-project-id" />
-              <input type="hidden" id="modal-project-format" />
+              <input type="hidden" id="modal-project-id" name="project_id" />
+              <input type="hidden" id="modal-project-format" name="project_format" />
               <span class="absolute right-3 top-2.5 text-[10px] font-mono-hud text-amber-500/70 tracking-widest uppercase">
                 LOCKED
               </span>
@@ -1484,12 +1505,13 @@
 
           <!-- Requester Name -->
           <div>
-            <label for="requester-name" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+            <label for="modal-requester-name" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
               Full Name <span class="text-amber-500">*</span>
             </label>
             <input 
               type="text" 
-              id="requester-name" 
+              id="modal-requester-name" 
+              name="requester_name"
               required 
               placeholder="e.g. Sarah Jenkins"
               class="w-full bg-[#060807] border border-[#1C2420] rounded px-3.5 py-2.5 text-xs text-white font-mono-hud focus:outline-none focus:border-amber-500 transition"
@@ -1498,12 +1520,13 @@
 
           <!-- Company / Agency -->
           <div>
-            <label for="requester-company" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+            <label for="modal-requester-company" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
               Production Company / Agency / Brand <span class="text-amber-500">*</span>
             </label>
             <input 
               type="text" 
-              id="requester-company" 
+              id="modal-requester-company" 
+              name="requester_company"
               required 
               placeholder="e.g. Apex Creative / High-Growth Corp"
               class="w-full bg-[#060807] border border-[#1C2420] rounded px-3.5 py-2.5 text-xs text-white font-mono-hud focus:outline-none focus:border-amber-500 transition"
@@ -1512,12 +1535,13 @@
 
           <!-- Professional Email -->
           <div>
-            <label for="requester-email" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+            <label for="modal-requester-email" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
               Corporate / Executive Email <span class="text-amber-500">*</span>
             </label>
             <input 
               type="email" 
-              id="requester-email" 
+              id="modal-requester-email" 
+              name="requester_email"
               required 
               placeholder="sjenkins@agency.com"
               class="w-full bg-[#060807] border border-[#1C2420] rounded px-3.5 py-2.5 text-xs text-white font-mono-hud focus:outline-none focus:border-amber-500 transition"
@@ -1527,22 +1551,24 @@
           <!-- Role & Scope -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="requester-role" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+              <label for="modal-requester-role" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
                 Role / Title
               </label>
               <input 
                 type="text" 
-                id="requester-role" 
+                id="modal-requester-role" 
+                name="requester_role"
                 placeholder="e.g. VP Marketing / CD"
                 class="w-full bg-[#060807] border border-[#1C2420] rounded px-3.5 py-2.5 text-xs text-white font-mono-hud focus:outline-none focus:border-amber-500 transition"
               />
             </div>
             <div>
-              <label for="inquiry-scope" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+              <label for="modal-inquiry-scope" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
                 Evaluation Purpose
               </label>
               <select 
-                id="inquiry-scope" 
+                id="modal-inquiry-scope" 
+                name="inquiry_scope"
                 class="w-full bg-[#060807] border border-[#1C2420] rounded px-3 py-2.5 text-xs text-[#AAA] font-mono-hud focus:outline-none focus:border-amber-500 transition"
               >
                 <option value="Commercial Production Commission">Commercial Production Commission</option>
@@ -1579,7 +1605,7 @@
             </button>
             <button 
               type="submit" 
-              id="btn-deck-submit" 
+              id="btn-submit-deck-request" 
               class="btn-hire text-xs py-3 px-6 cursor-pointer"
             >
               <span>Transmit Deck Request</span>

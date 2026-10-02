@@ -16,7 +16,7 @@ function openDeckRequestModal(projectId, encodedTitle, encodedFormat) {
   activeDeckInquiry = { projectId, title, format };
 
   const modal = document.getElementById('deck-request-modal');
-  const titleDisplay = document.getElementById('modal-project-title-display');
+  const titleDisplay = document.getElementById('modal-project-title-display') || document.getElementById('modal-project-title');
   const idInput = document.getElementById('modal-project-id');
   const formatInput = document.getElementById('modal-project-format');
   const formContainer = document.getElementById('deck-form-container');
@@ -39,7 +39,7 @@ function openDeckRequestModal(projectId, encodedTitle, encodedFormat) {
 
     // Focus on first editable input
     setTimeout(() => {
-      const nameInput = document.getElementById('modal-requester-name');
+      const nameInput = document.getElementById('modal-requester-name') || document.getElementById('requester-name');
       if (nameInput) nameInput.focus();
     }, 100);
   }
@@ -56,7 +56,7 @@ function closeDeckRequestModal() {
   }
 
   // Reset form
-  const form = document.getElementById('deck-inquiry-form');
+  const form = document.getElementById('deck-inquiry-form') || document.getElementById('deck-request-form');
   if (form) form.reset();
 
   activeDeckInquiry = null;
@@ -69,15 +69,15 @@ async function handleDeckRequestSubmit(event) {
   event.preventDefault();
 
   const form = event.target;
-  const submitBtn = document.getElementById('btn-submit-deck-request');
+  const submitBtn = document.getElementById('btn-submit-deck-request') || document.getElementById('btn-deck-submit');
 
   const projectId = document.getElementById('modal-project-id')?.value || '';
-  const projectTitle = document.getElementById('modal-project-title-display')?.value || '';
-  const requesterName = document.getElementById('modal-requester-name')?.value || '';
-  const requesterCompany = document.getElementById('modal-requester-company')?.value || '';
-  const requesterEmail = document.getElementById('modal-requester-email')?.value || '';
-  const requesterRole = document.getElementById('modal-requester-role')?.value || '';
-  const inquiryScope = document.getElementById('modal-inquiry-scope')?.value || '';
+  const projectTitle = (document.getElementById('modal-project-title-display') || document.getElementById('modal-project-title'))?.value || '';
+  const requesterName = (document.getElementById('modal-requester-name') || document.getElementById('requester-name'))?.value || '';
+  const requesterCompany = (document.getElementById('modal-requester-company') || document.getElementById('requester-company'))?.value || '';
+  const requesterEmail = (document.getElementById('modal-requester-email') || document.getElementById('requester-email'))?.value || '';
+  const requesterRole = (document.getElementById('modal-requester-role') || document.getElementById('requester-role'))?.value || '';
+  const inquiryScope = (document.getElementById('modal-inquiry-scope') || document.getElementById('inquiry-scope'))?.value || '';
 
   if (submitBtn) {
     submitBtn.disabled = true;
