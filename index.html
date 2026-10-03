@@ -8,7 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -35,13 +35,13 @@
 
     main, header, section, nav, article, div { min-width: 0; }
 
-    /* Typography Utilities */
+    /* Typography Utilities (Unified 3-Font System: Cinzel, Inter, JetBrains Mono) */
     .font-serif-title { font-family: 'Cinzel', serif; letter-spacing: 0.04em; }
-    .font-serif-sub { font-family: 'Playfair Display', serif; }
-    .font-hero { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
-    .font-studio { font-family: 'Syncopate', sans-serif; }
+    .font-serif-sub { font-family: 'Inter', sans-serif; font-style: italic; }
+    .font-hero { font-family: 'Cinzel', serif; letter-spacing: 0.05em; font-weight: 700; }
+    .font-studio { font-family: 'Cinzel', serif; letter-spacing: 0.12em; }
     .font-mono-hud { font-family: 'JetBrains Mono', monospace; }
-    .font-mono-code { font-family: 'Space Mono', monospace; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
 
     /* Film Grain Noise Overlay */
     .noise-overlay {
@@ -83,7 +83,8 @@
     }
 
     .nav-pill-btn {
-      font-family: 'Syncopate', sans-serif;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
       font-size: 0.65rem;
       color: var(--text-muted);
       cursor: pointer;
@@ -113,7 +114,7 @@
     .btn-hire {
       background: var(--accent-amber);
       color: #060807;
-      font-family: 'Syncopate', sans-serif;
+      font-family: 'Cinzel', serif;
       font-weight: 700;
       font-size: 0.82rem;
       text-transform: uppercase;
@@ -138,7 +139,7 @@
       border: 1px solid var(--border-subtle);
       background: var(--bg-surface);
       color: var(--text-primary);
-      font-family: 'Syncopate', sans-serif;
+      font-family: 'Cinzel', serif;
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.12em;
@@ -299,7 +300,7 @@
             Peter Levi Bethel • Lead Commercial Director &amp; DP
           </p>
           <p class="text-xs font-mono-hud text-amber-500/90 tracking-wider">
-            Engineering Visual Authority &amp; Pipeline Velocity for $10M–$100M Enterprise Brands
+            Expanding Market Visibility &amp; Driving Enterprise Conversions for High-Ticket B2B Brands
           </p>
         </div>
       </div>
@@ -325,26 +326,26 @@
           Cinematic Video Infrastructure for High-Ticket B2B &amp; Enterprise Brands.
         </h2>
         <p class="text-base sm:text-lg md:text-xl text-[#8E9B96] font-light leading-relaxed mb-8">
-          We engineer national-grade brand films, multi-camera content engines, and visual authority assets that de-risk enterprise sales cycles and eliminate <span class="text-white font-medium underline decoration-amber-500/60 underline-offset-4">Visual Debt</span> for companies with $50k+ customer lifetime values.
+          We engineer national-grade brand films, multi-camera content engines, and visual authority assets that de-risk enterprise sales cycles, expand market visibility, and eliminate <span class="text-white font-medium underline decoration-amber-500/60 underline-offset-4">Visual Debt</span> for companies with $50k+ customer lifetime values.
         </p>
 
         <!-- Strategic Metrics Strip -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-xs font-mono-hud">
           <div class="p-3.5 rounded bg-[#0E1210] border border-[#1C2420]">
-            <span class="text-amber-500 block font-bold text-sm mb-0.5">30-DAY SLA</span>
-            <span class="text-[#8E9B96]">2-7-21 Launchpad Standard</span>
+            <span class="text-amber-500 block font-bold text-sm mb-0.5">30-DAY LAUNCHPAD</span>
+            <span class="text-[#8E9B96]">Rapid Production Standard</span>
           </div>
           <div class="p-3.5 rounded bg-[#0E1210] border border-[#1C2420]">
-            <span class="text-amber-500 block font-bold text-sm mb-0.5">$50K+ DEALS</span>
-            <span class="text-[#8E9B96]">Engineered for Enterprise Bids</span>
+            <span class="text-amber-500 block font-bold text-sm mb-0.5">$50K+ PIPELINE</span>
+            <span class="text-[#8E9B96]">Engineered to Win Procurement</span>
           </div>
           <div class="p-3.5 rounded bg-[#0E1210] border border-[#1C2420]">
-            <span class="text-amber-500 block font-bold text-sm mb-0.5">100% WHITE-LABEL</span>
-            <span class="text-[#8E9B96]">Agency Firepower &amp; No Poaching</span>
+            <span class="text-amber-500 block font-bold text-sm mb-0.5">EXPANDED VISIBILITY</span>
+            <span class="text-[#8E9B96]">Omnichannel Brand Stature</span>
           </div>
           <div class="p-3.5 rounded bg-[#0E1210] border border-[#1C2420]">
-            <span class="text-amber-500 block font-bold text-sm mb-0.5">12-BIT RAW</span>
-            <span class="text-[#8E9B96]">DaVinci Studio Mastering</span>
+            <span class="text-amber-500 block font-bold text-sm mb-0.5">CONVERSION LIFT</span>
+            <span class="text-[#8E9B96]">De-Risks High-Ticket Sales</span>
           </div>
         </div>
 
@@ -365,7 +366,7 @@
           <div class="flex items-center gap-3">
             <span class="text-amber-500 font-bold">// HERO REEL MONITOR</span>
             <span class="text-[#2D3A34]">|</span>
-            <span>LARGE-FORMAT SENSORS &amp; ANAMORPHIC GLASS</span>
+            <span>VERSATILE CINEMA PACKAGES • SCALED TO BRAND VISION</span>
           </div>
           <div class="hidden sm:flex items-center gap-4 text-[11px]">
             <span>ASPECT: <button onclick="setRatio('scope')" class="hover:text-amber-500 underline text-amber-500" id="btn-scope">2.39:1</button> / <button onclick="setRatio('broadcast')" class="hover:text-amber-500" id="btn-broadcast">16:9</button> / <button onclick="setRatio('academy')" class="hover:text-amber-500" id="btn-academy">4:3</button></span>
@@ -514,11 +515,11 @@
             <ul class="text-xs font-mono-hud text-[#F0F3F1] space-y-2.5 mb-6">
               <li class="flex items-start gap-2">
                 <span class="text-emerald-400 font-bold">✓</span>
-                <span>Large-format cinema sensors, negative-fill lighting &amp; anamorphic glass</span>
+                <span>Tailored cinema camera packages &amp; precision motivated lighting</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-emerald-400 font-bold">✓</span>
-                <span>Strategic executive pacing designed to de-risk high-ticket procurement</span>
+                <span>Strategic executive storytelling designed to expand visibility &amp; close deals</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-emerald-400 font-bold">✓</span>
@@ -526,13 +527,13 @@
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-emerald-400 font-bold">✓</span>
-                <span>Transparent productized tiers with zero hidden gear rental surcharges</span>
+                <span>Transparent productized tiers with clear deliverables and zero hidden fees</span>
               </li>
             </ul>
           </div>
           <div class="pt-4 border-t border-[#1C2420] text-xs font-mono-hud text-emerald-400">
             <span class="block font-bold mb-0.5">ENTERPRISE IMPACT:</span>
-            Installs institutional visual authority, accelerating sales velocity by 30–45%.
+            Installs unshakeable visual authority, accelerating sales velocity and conversion by 30–45%.
           </div>
         </div>
       </div>
@@ -619,7 +620,7 @@
                 <span class="text-amber-500 font-bold text-sm">03</span>
                 <div>
                   <strong class="text-white block">DaVinci Resolve Studio Master Grade</strong>
-                  <span class="text-[#8E9B96]">12-bit RAW color transform, custom film print look modeling, broadcast stems.</span>
+                  <span class="text-[#8E9B96]">Cinema-grade color transform, custom film print aesthetic, multi-platform deliverable stems.</span>
                 </div>
               </li>
             </ul>
@@ -1135,25 +1136,25 @@
           The Production Engine: De-Risking Set Execution
         </h2>
         <p class="text-sm sm:text-base text-[#8E9B96] leading-relaxed">
-          High-ticket commercials do not tolerate on-set improvisation. We deploy owned cinema camera bodies, calibrated lighting packages, and a closed-loop DaVinci Resolve Studio color pipeline to ensure zero friction between creative vision and broadcast delivery.
+          High-ticket commercial production demands technical versatility and precision execution. We leverage deep experience across all major cinema camera bodies, optics, and lighting packages—finishing natively in DaVinci Resolve Studio to turn brand films into high-converting revenue assets.
         </p>
       </div>
 
-      <!-- 4 Technical Pillars -->
+      <!-- 4 Production Pillars -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
         <div class="bg-[#0E1210] border border-[#1C2420] p-6 rounded-xl hover:border-amber-500/40 transition">
-          <span class="text-xs font-mono-hud text-amber-500 font-bold block mb-2">01 // OPTICS &amp; SENSORS</span>
-          <h3 class="text-xl text-white font-hero mb-2 tracking-wide">Large-Format Sensors</h3>
+          <span class="text-xs font-mono-hud text-amber-500 font-bold block mb-2">01 // PRODUCTION SCALE</span>
+          <h3 class="text-xl text-white font-hero mb-2 tracking-wide">Adaptable Cinema Packages</h3>
           <p class="text-xs text-[#8E9B96] leading-relaxed">
-            12-bit RAW cinema sensors paired with anamorphic and spherical cine glass, preserving highlight roll-off and organic skin textures.
+            Versatile experience across all leading camera ecosystems and cinema optics—custom-scaling gear to fit the exact aesthetic, scope, and budget of your campaign.
           </p>
         </div>
 
         <div class="bg-[#0E1210] border border-[#1C2420] p-6 rounded-xl hover:border-amber-500/40 transition">
           <span class="text-xs font-mono-hud text-amber-500 font-bold block mb-2">02 // LIGHTING CRAFT</span>
-          <h3 class="text-xl text-white font-hero mb-2 tracking-wide">Calibrated Negative Fill</h3>
+          <h3 class="text-xl text-white font-hero mb-2 tracking-wide">Motivated Lighting &amp; Depth</h3>
           <p class="text-xs text-[#8E9B96] leading-relaxed">
-            Sculpting contrast through motivated shadow placement rather than blasting ambient light, creating depth that separates your brand from commodities.
+            Sculpting dimensional light and shadow to create an unmistakable premium look that instantly elevates brand stature above competitors.
           </p>
         </div>
 
@@ -1161,7 +1162,7 @@
           <span class="text-xs font-mono-hud text-amber-500 font-bold block mb-2">03 // COLOR PIPELINE</span>
           <h3 class="text-xl text-white font-hero mb-2 tracking-wide">DaVinci Resolve Studio</h3>
           <p class="text-xs text-[#8E9B96] leading-relaxed">
-            Node-based color management operating in DaVinci Wide Gamut, custom Kodak film print look modeling, 5.1 sound, and ProRes 4444 XQ delivery.
+            Finishing every project in DaVinci Resolve Studio for rich, cinema-grade fidelity that commands attention in executive boardrooms and across digital channels.
           </p>
         </div>
 
@@ -1194,16 +1195,16 @@
 
         <div id="dp" class="bg-[#0E1210] border border-[#1C2420] rounded-xl overflow-hidden group">
           <div class="h-64 overflow-hidden relative">
-            <img src="dp.jpg" alt="Cinema Optics & DP Build" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-700">
+            <img src="dp.jpg" alt="Cinematography & Camera Systems" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-700">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
             <span class="absolute bottom-3 left-3 text-[10px] font-mono-hud text-amber-400 bg-black/80 px-2.5 py-1 rounded border border-amber-500/30">
-              OPTICS // ANAMORPHIC BUILD
+              CINEMATOGRAPHY // VERSATILE RIGS
             </span>
           </div>
           <div class="p-5">
-            <h4 class="text-lg text-white font-hero mb-1">Cinema Optics &amp; DP</h4>
+            <h4 class="text-lg text-white font-hero mb-1">Cinematography &amp; Optics</h4>
             <p class="text-xs text-[#8E9B96] leading-relaxed">
-              Anamorphic flares, vintage prime texture, and high-dynamic-range lighting motivated by story and brand prestige.
+              Versatile across all cinema camera bodies and specialty optics, shaping motivated lighting that amplifies brand presence and commands viewer attention.
             </p>
           </div>
         </div>
@@ -1258,9 +1259,9 @@
 
           <div class="bg-[#060807] border border-[#1C2420] p-5 rounded-lg">
             <span class="text-amber-500 font-mono-hud text-xs font-bold block mb-1">GUARANTEE 02</span>
-            <h3 class="text-base text-white font-hero mb-2 tracking-wide">Owned Cinema Equity</h3>
+            <h3 class="text-base text-white font-hero mb-2 tracking-wide">Turnkey Production Packages</h3>
             <p class="text-xs text-[#8E9B96] leading-relaxed">
-              No third-party rental delays. Arrive on set with turnkey camera bodies, anamorphic primes, wireless video, and G&amp;E.
+              Scalable camera packages, optics, wireless monitoring, and lighting curated specifically for your client’s creative scope and budget.
             </p>
           </div>
 
@@ -1309,35 +1310,39 @@
 
         <div class="md:col-span-7">
           <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-2">
-            // FOUNDER AUTHORITY &amp; PHYSICAL ON-SET LEADERSHIP
+            // FOUNDER LEADERSHIP &amp; ON-SET CRAFT
           </span>
           <h2 class="text-3xl sm:text-4xl md:text-5xl text-white font-serif-title mb-6">
-            A Decade of Broadcast Leadership. Zero Corporate Bloat.
+            A Decade of Production Experience. Zero Corporate Bloat.
           </h2>
           <div class="text-sm text-[#8E9B96] space-y-4 leading-relaxed font-light mb-8">
             <p>
-              I founded Fermion Bec Productions to solve a singular problem: high-growth B2B companies with $50k+ customer lifetime values were being forced to choose between bloated legacy advertising agencies (high fees, months of slide decks, zero agility) and amateur solo freelancers (zero corporate acumen, unreliable delivery).
+              I founded Fermion Bec Productions to solve a singular problem: high-growth B2B companies and agencies need cinema-grade visual assets that expand market visibility and actively drive sales conversions—without paying for bloated agency overhead or enduring layers of detached account managers.
             </p>
             <p>
-              With over a decade of physical on-set experience spanning broadcast television (<strong class="text-white font-normal">Fox, FX, Apple</strong>), commercial brand campaigns, and narrative cinema, I operate with an uncompromising craft standard. When you partner with us, you are not handed off to a junior account manager. You get direct on-set access to the Director and Cinematographer executing your vision.
+              With a decade of physical production experience on set and eight years of specialized industry mentorship refining my technical and directorial craft, I operate with an uncompromising standard. When you partner with us, you work directly with the filmmaker directing and shooting your campaign, ensuring seamless execution from creative concept to final cut.
             </p>
             <p>
-              We operate exclusively in 12-bit RAW cinema workflows, shape motivated light through disciplined negative fill, and master every project natively in DaVinci Resolve Studio to produce unshakeable visual authority.
+              We bring comprehensive experience across all major cinema camera systems and optics, tailoring camera bodies and lighting to your unique brand vision. Every frame is finished natively in DaVinci Resolve Studio to deliver unmistakable visual authority that accelerates enterprise deal cycles and improves long-term profitability.
             </p>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-mono-hud pt-4 border-t border-[#1C2420]">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono-hud pt-4 border-t border-[#1C2420]">
             <div>
-              <span class="text-amber-500 block font-bold">BROADCAST CREDITS</span>
-              <span class="text-[#8E9B96]">Fox • FX • Apple TV</span>
+              <span class="text-amber-500 block font-bold">PRODUCTION CRAFT</span>
+              <span class="text-[#8E9B96]">10+ Years On-Set</span>
+            </div>
+            <div>
+              <span class="text-amber-500 block font-bold">SPECIALIZED MENTORSHIP</span>
+              <span class="text-[#8E9B96]">8 Years Mentorship</span>
             </div>
             <div>
               <span class="text-amber-500 block font-bold">COLOR SUITE</span>
               <span class="text-[#8E9B96]">DaVinci Resolve Studio</span>
             </div>
             <div>
-              <span class="text-amber-500 block font-bold">LOCATION</span>
-              <span class="text-[#8E9B96]">Toms River, NJ / Nationwide</span>
+              <span class="text-amber-500 block font-bold">COMMISSIONS</span>
+              <span class="text-[#8E9B96]">Metro NY/Philly &amp; US</span>
             </div>
           </div>
         </div>
