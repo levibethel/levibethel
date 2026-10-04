@@ -3,3 +3,7 @@
 reel.mp4
 node_modules/
 .tmp/
+backups/
+*.db
+*.db-shm
+*.db-wal

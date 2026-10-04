@@ -1,20 +1,19 @@
 {
   "name": "levibethel-portfolio",
-  "version": "1.2.0",
-  "description": "Portfolio and Concepts & Packaging Gallery for Peter Levi Bethel / Fermion Bec Productions",
+  "version": "1.3.0",
+  "description": "Portfolio and Client SOW Infrastructure for Fermion Bec Productions — Peter Levi Bethel",
   "main": "index.html",
   "scripts": {
     "dev": "bash scripts/dev.sh",
-    "start": "python3 -m http.server 3000 --directory .",
+    "start": "bash scripts/dev.sh",
     "build": "bash scripts/build.sh",
-    "serve": "python3 -m http.server 3000 --directory .",
+    "backup:db": "bash scripts/backup_sqlite.sh",
     "lint:json": "python3 -m json.tool data/concepts.json > /dev/null"
   },
   "keywords": [
-    "cinematography",
-    "film-packaging",
-    "lookbooks",
+    "commercial-video",
     "director",
+    "cinematographer",
     "fermion-bec-productions"
   ],
   "author": "Peter Levi Bethel",
