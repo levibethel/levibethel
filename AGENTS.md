@@ -11,6 +11,10 @@
 ---
 
 ## 2. Accuracy, Experience & Hardware Guardrails
+- **Commercial vs. Narrative IP Separation**:
+  - **Section 4 of `index.html` (Selected Commercial Case Studies)** must be **strictly reserved for commercial & B2B examples** (e.g. Automotive Luxury, Advanced Industrial Precision, Omni-Channel Live Commercial Multi-Cam, and Flagship Brand Authority).
+  - **Narrative Feature Film Packages**: All fully packaged film scripts, pitch decks, lookbooks, SAG-AFTRA budget sheets, and NJ tax credit schedules (e.g., *The Binding Seam*, *Crossfire Cousins*) must remain **strictly separated and protected** in `concepts.html` behind the confidential request protocol. Never mix feature screenplays or film investor budgets into the commercial homepage case studies grid.
+
 - **Founder Experience**:
   - Exactly **a decade (10+ years) of physical on-set production experience** spanning commercial, brand, and narrative cinema.
   - Exactly **8 years of specialized industry mentorship** refining directorial and cinematography craft.
