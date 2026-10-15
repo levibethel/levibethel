@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
   <title>Fermion Bec Productions | B2B Commercial Video Infrastructure & Revenue Engine</title>
   <meta name="description" content="Commercial video infrastructure for high-ticket B2B and enterprise brands. National-grade brand films, multi-camera content engines, and visual authority assets that de-risk enterprise sales cycles.">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1974,6 +1977,7 @@
       try {
         fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
           method: 'POST',
+          referrerPolicy: 'no-referrer',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: emailSubject,

@@ -100,13 +100,11 @@ async function handleDeckRequestSubmit(event) {
     timestamp
   };
 
-  // Persist locally for review/auditing
+  // Privacy & Data Protection: Purge any legacy unencrypted PII from localStorage
   try {
-    const existing = JSON.parse(localStorage.getItem('fbp_deck_inquiries') || '[]');
-    existing.unshift(inquiryPayload);
-    localStorage.setItem('fbp_deck_inquiries', JSON.stringify(existing));
+    localStorage.removeItem('fbp_deck_inquiries');
   } catch (e) {
-    console.warn('Storage unavailable:', e);
+    // Ignore storage access errors in strict privacy browsers
   }
 
   // Build Structured Email Content
@@ -165,6 +163,7 @@ async function handleDeckRequestSubmit(event) {
   try {
     fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
       method: 'POST',
+      referrerPolicy: 'no-referrer',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'

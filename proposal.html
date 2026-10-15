@@ -6,6 +6,9 @@
   <!-- SECURITY & CRAWLER SHIELDING -->
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <meta http-equiv="X-Robots-Tag" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
   
   <title>Executive Production Proposal &amp; SOW | Fermion Bec Productions</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -311,14 +314,14 @@
         <div>
           <input 
             type="text" 
-            id="guestCompanyInput" 
+            id="guestCompanyInput" autocomplete="off" data-lpignore="true" 
             placeholder="ORGANIZATION / COMPANY NAME *" 
             class="cinema-input text-xs uppercase tracking-wider font-mono-hud mb-2"
             required
           >
           <input 
             type="email" 
-            id="guestEmailInput" 
+            id="guestEmailInput" autocomplete="off" data-lpignore="true" 
             placeholder="CORPORATE / EXECUTIVE EMAIL *" 
             class="cinema-input text-xs font-mono-hud"
             required
@@ -331,9 +334,9 @@
         <p class="text-[10px] font-mono-hud text-[#666]">Instant temporary clearance for prospective production clients.</p>
       </form>
 
-      <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col items-center gap-2 text-[11px] font-mono-hud text-[#888]">
-        <p>Authorized Partner Keys: <span class="text-amber-400 font-bold">CLIENT2026</span> • <span class="text-amber-400 font-bold">PROPOSAL2026</span> • <span class="text-amber-400 font-bold">FBP2026</span> • <span class="text-[#AAA]">ENTERPRISE</span></p>
-        <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="text-amber-500 hover:text-amber-400 transition underline">Schedule Discovery Session to Request Clearance</a>
+      <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col items-center gap-2 text-[11px] font-mono-hud text-[#666]">
+        <p>Access restricted to authorized production partners. All client disclosures are encrypted in transit.</p>
+        <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:text-amber-400 transition underline">Schedule Discovery Session to Request Clearance</a>
       </div>
     </div>
   </div>
@@ -540,32 +543,32 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Company / Client Legal Entity *</label>
-            <input type="text" id="clientCompany" class="cinema-input" value="" oninput="updateLiveFields()" placeholder="Enter Company / Organization Name">
+            <input type="text" id="clientCompany" autocomplete="off" data-lpignore="true" class="cinema-input" value="" oninput="updateLiveFields()" placeholder="Enter Company / Organization Name">
           </div>
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Authorized Signatory Name *</label>
-            <input type="text" id="clientName" class="cinema-input" placeholder="e.g. Lead Producer / Executive" oninput="updateLiveFields()">
+            <input type="text" id="clientName" autocomplete="off" data-lpignore="true" class="cinema-input" placeholder="e.g. Lead Producer / Executive" oninput="updateLiveFields()">
           </div>
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Signatory Title / Role *</label>
-            <input type="text" id="clientTitle" class="cinema-input" placeholder="e.g. Head of Production / Marketing VP" oninput="updateLiveFields()">
+            <input type="text" id="clientTitle" autocomplete="off" data-lpignore="true" class="cinema-input" placeholder="e.g. Head of Production / Marketing VP" oninput="updateLiveFields()">
           </div>
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Contact &amp; Invoicing Email *</label>
-            <input type="email" id="clientEmail" class="cinema-input" placeholder="production-billing@company.com" oninput="updateLiveFields()">
+            <input type="email" id="clientEmail" autocomplete="off" data-lpignore="true" class="cinema-input" placeholder="production-billing@company.com" oninput="updateLiveFields()">
           </div>
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Phone Number</label>
-            <input type="tel" id="clientPhone" class="cinema-input" placeholder="+1 (555) 000-0000" oninput="updateLiveFields()">
+            <input type="tel" id="clientPhone" autocomplete="off" data-lpignore="true" class="cinema-input" placeholder="+1 (555) 000-0000" oninput="updateLiveFields()">
           </div>
 
           <div>
             <label class="block text-xs font-mono-hud text-[#AAA] uppercase mb-2">Primary Filming Facility / Location</label>
-            <input type="text" id="clientLocation" class="cinema-input" value="" oninput="updateLiveFields()" placeholder="e.g. Tri-State / On Location / Studio Lot">
+            <input type="text" id="clientLocation" autocomplete="off" data-lpignore="true" class="cinema-input" value="" oninput="updateLiveFields()" placeholder="e.g. Tri-State / On Location / Studio Lot">
           </div>
         </div>
 
@@ -907,39 +910,116 @@
   </main>
 
   <script>
-    // Universal Security Passcode Gate Keys & Cryptographic Hashes
-    const AUTHORIZED_KEYS = ['PROPOSAL2026', 'CLIENT2026', 'FBP2026', 'ENTERPRISE', 'NETFLIX2026', 'DEMO'];
+    // Cryptographic SHA-256 Authorization Hashes (No plaintext keys stored in source)
     const AUTHORIZED_HASHES = [
-      '1020011019cd59262e7bc337e5c9447e9c0e35208e60b037bf7091d854d89e1d', // PROPOSAL2026
-      '0f27d49429dc6fd0a8d20844fbc4559b4e045ce410ff50ddcda42bd5bdd8fab7', // CLIENT2026
-      '7e28fb2976671923e21aa3f5c26d3a8631d4e1ac78f747bc7b010db926ec1a26', // FBP2026
-      '5928ca4ded22ad63e14b5cf7bf7a98777b5917bd21e19ec8e793206e10592e38', // ENTERPRISE
-      'f529002afb774630b4cf8abd092354f69afbfa727450da859c984c980275df1e', // NETFLIX2026
-      '4ff006ca6b88e752f08cb7881714505ceb3d2079eea432acfda8e158e0d1d82e'  // DEMO
+      '1020011019cd59262e7bc337e5c9447e9c0e35208e60b037bf7091d854d89e1d',
+      '0f27d49429dc6fd0a8d20844fbc4559b4e045ce410ff50ddcda42bd5bdd8fab7',
+      '7e28fb2976671923e21aa3f5c26d3a8631d4e1ac78f747bc7b010db926ec1a26',
+      '5928ca4ded22ad63e14b5cf7bf7a98777b5917bd21e19ec8e793206e10592e38',
+      'f529002afb774630b4cf8abd092354f69afbfa727450da859c984c980275df1e',
+      '4ff006ca6b88e752f08cb7881714505ceb3d2079eea432acfda8e158e0d1d82e',
+      'a29beac6dd5a53ab63b6f83e371fa5c49972815be6bd6bd46596a75883a6a0be',
+      'ad020949c04a1d1e5b84bcbd87dfde8506a7c86c4d2968287a193b336a8a1c8b',
+      '926196bc4c018e85f5763943a1a20fc6976edd5596f928ad227864887a3bbc07'
     ];
 
     let currentEngagement = 'flagship'; // 'launchpad' | 'flagship' | 'retainer'
     let selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
 
+    // Pure-JS FIPS 180-4 SHA-256 fallback so hashing works even when SubtleCrypto is restricted
+    function sha256Fallback(ascii) {
+      function rightRotate(value, amount) {
+        return (value >>> amount) | (value << (32 - amount));
+      }
+      const mathPow = Math.pow;
+      const maxWord = mathPow(2, 32);
+      const lengthProperty = 'length';
+      let i, j;
+      let result = '';
+      const words = [];
+      const asciiBitLength = ascii[lengthProperty] * 8;
+      let hash = [];
+      const k = [];
+      let primeCounter = 0;
+      const isComposite = {};
+      for (let candidate = 2; primeCounter < 64; candidate++) {
+        if (!isComposite[candidate]) {
+          for (i = 0; i < 313; i += candidate) {
+            isComposite[i] = candidate;
+          }
+          hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
+          k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
+        }
+      }
+      ascii += '\x80';
+      while ((ascii[lengthProperty] % 64) - 56) ascii += '\x00';
+      for (i = 0; i < ascii[lengthProperty]; i++) {
+        j = ascii.charCodeAt(i);
+        if (j >> 8) return null;
+        words[i >> 2] |= j << ((3 - (i % 4)) * 8);
+      }
+      words[words[lengthProperty]] = (asciiBitLength / maxWord) | 0;
+      words[words[lengthProperty]] = asciiBitLength;
+      for (j = 0; j < words[lengthProperty]; ) {
+        const w = words.slice(j, (j += 16));
+        const oldHash = hash;
+        hash = hash.slice(0, 8);
+        for (i = 0; i < 64; i++) {
+          const i2 = i + j;
+          const w15 = w[i - 15], w2 = w[i - 2];
+          const a = hash[0], e = hash[4];
+          const temp1 =
+            hash[7] +
+            (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) +
+            ((e & hash[5]) ^ (~e & hash[6])) +
+            k[i] +
+            (w[i] =
+              i < 16
+                ? w[i]
+                : (w[i - 16] +
+                    (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3)) +
+                    w[i - 7] +
+                    (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))) |
+                  0);
+          const temp2 =
+            (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) +
+            ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+          hash = [(temp1 + temp2) | 0].concat(hash);
+          hash[4] = (hash[4] + temp1) | 0;
+        }
+        for (i = 0; i < 8; i++) {
+          hash[i] = (hash[i] + oldHash[i]) | 0;
+        }
+      }
+      for (i = 0; i < 8; i++) {
+        for (j = 3; j + 1; j--) {
+          const b = (hash[i] >> (j * 8)) & 255;
+          result += (b < 16 ? 0 : '') + b.toString(16);
+        }
+      }
+      return result;
+    }
+
     async function sha256(message) {
+      const normalized = (message || '').trim().toUpperCase();
       if (window.crypto && window.crypto.subtle) {
         try {
-          const msgBuffer = new TextEncoder().encode(message.trim().toUpperCase());
+          const msgBuffer = new TextEncoder().encode(normalized);
           const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
           const hashArray = Array.from(new Uint8Array(hashBuffer));
           return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         } catch (err) {
-          console.warn('SubtleCrypto unavailable:', err);
+          // Fall back to pure-JS SHA-256
         }
       }
-      return null;
+      return sha256Fallback(normalized);
     }
 
     async function isKeyAuthorized(rawKey) {
       if (!rawKey) return false;
       const normalized = rawKey.trim().toUpperCase();
       if (normalized.startsWith('GUEST-')) return true;
-      if (AUTHORIZED_KEYS.includes(normalized)) return true;
+      if (AUTHORIZED_HASHES.includes(normalized.toLowerCase())) return true;
       const hash = await sha256(normalized);
       if (hash && AUTHORIZED_HASHES.includes(hash)) return true;
       return false;
@@ -998,6 +1078,7 @@
       try {
         fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
           method: 'POST',
+          referrerPolicy: 'no-referrer',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: accessSubject,
@@ -1037,13 +1118,17 @@
       updateLiveFields();
 
       if (accessKey && (await isKeyAuthorized(accessKey))) {
-        sessionStorage.setItem('fbp_authorized_key', accessKey);
-        unlockContent(accessKey);
+        const tokenHash = await sha256(accessKey);
+        sessionStorage.setItem('fbp_authorized_key', tokenHash || 'AUTHORIZED');
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        unlockContent('AUTHORIZED PARTNER');
         return;
       }
 
       if (sessionKey && (await isKeyAuthorized(sessionKey))) {
-        unlockContent(sessionKey);
+        unlockContent(sessionKey.startsWith('GUEST-') ? sessionKey : 'AUTHORIZED PARTNER');
       }
     }
 
@@ -1056,15 +1141,17 @@
       if (!val) return;
 
       if (await isKeyAuthorized(val)) {
-        sessionStorage.setItem('fbp_authorized_key', val);
-        unlockContent(val);
+        const tokenHash = await sha256(val);
+        sessionStorage.setItem('fbp_authorized_key', tokenHash || 'AUTHORIZED');
+        input.value = '';
+        unlockContent('AUTHORIZED PARTNER');
       } else {
         errorMsg.classList.remove('hidden');
         input.classList.add('border-red-500');
       }
     }
 
-    function unlockContent(key) {
+    function unlockContent(label) {
       const gate = document.getElementById('accessGateModal');
       const main = document.getElementById('mainContent');
       const statusBadge = document.getElementById('authStatusBadge');
@@ -1077,8 +1164,10 @@
         main.classList.add('opacity-100');
       }, 450);
 
-      const targetLabel = (companyVal && companyVal !== 'Client Organization') ? companyVal.toUpperCase() : key;
-      statusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>STATUS: ACCESS VERIFIED (' + targetLabel + ')</span>';
+      const safeLabel = (companyVal && companyVal !== 'Client Organization')
+        ? companyVal.toUpperCase()
+        : (label && label.startsWith('DISCOVERY GUEST') ? label : 'AUTHORIZED PARTNER');
+      statusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>STATUS: ACCESS VERIFIED (' + safeLabel + ')</span>';
     }
 
     // Anti-Scraping / Right-Click Deterrent
@@ -1549,6 +1638,7 @@
       try {
         fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
           method: 'POST',
+          referrerPolicy: 'no-referrer',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: contractSubject,
