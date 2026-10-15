@@ -1,5 +1,5 @@
 # robots.txt for Peter Levi Bethel & Fermion Bec Productions
-# https://levibethel.github.io/levibethel/
+# https://fermionbecproductions.com/
 
 User-agent: *
 # Allow public portfolio and gallery pages
