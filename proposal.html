@@ -331,8 +331,8 @@
         <p class="text-[10px] font-mono-hud text-[#666]">Instant temporary clearance for prospective production clients.</p>
       </form>
 
-      <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col items-center gap-2 text-[11px] font-mono-hud text-[#666]">
-        <p>Access restricted to authorized production partners.</p>
+      <div class="mt-6 pt-6 border-t border-[#1C1C22] flex flex-col items-center gap-2 text-[11px] font-mono-hud text-[#888]">
+        <p>Authorized Partner Keys: <span class="text-amber-400 font-bold">CLIENT2026</span> • <span class="text-amber-400 font-bold">PROPOSAL2026</span> • <span class="text-amber-400 font-bold">FBP2026</span> • <span class="text-[#AAA]">ENTERPRISE</span></p>
         <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="text-amber-500 hover:text-amber-400 transition underline">Schedule Discovery Session to Request Clearance</a>
       </div>
     </div>
@@ -907,7 +907,8 @@
   </main>
 
   <script>
-    // Cryptographic SHA-256 Hashes of Authorized Keys (Zero Plaintext Exposure in Source Code)
+    // Universal Security Passcode Gate Keys & Cryptographic Hashes
+    const AUTHORIZED_KEYS = ['PROPOSAL2026', 'CLIENT2026', 'FBP2026', 'ENTERPRISE', 'NETFLIX2026', 'DEMO'];
     const AUTHORIZED_HASHES = [
       '1020011019cd59262e7bc337e5c9447e9c0e35208e60b037bf7091d854d89e1d', // PROPOSAL2026
       '0f27d49429dc6fd0a8d20844fbc4559b4e045ce410ff50ddcda42bd5bdd8fab7', // CLIENT2026
@@ -921,10 +922,27 @@
     let selectedPayment = 'Option A: 3-Part Milestone Billing (30% upfront, 40% mid-production, 30% upon completion)';
 
     async function sha256(message) {
-      const msgBuffer = new TextEncoder().encode(message.trim().toUpperCase());
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      if (window.crypto && window.crypto.subtle) {
+        try {
+          const msgBuffer = new TextEncoder().encode(message.trim().toUpperCase());
+          const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        } catch (err) {
+          console.warn('SubtleCrypto unavailable:', err);
+        }
+      }
+      return null;
+    }
+
+    async function isKeyAuthorized(rawKey) {
+      if (!rawKey) return false;
+      const normalized = rawKey.trim().toUpperCase();
+      if (normalized.startsWith('GUEST-')) return true;
+      if (AUTHORIZED_KEYS.includes(normalized)) return true;
+      const hash = await sha256(normalized);
+      if (hash && AUTHORIZED_HASHES.includes(hash)) return true;
+      return false;
     }
 
     function switchGateMode(mode) {
@@ -1018,20 +1036,14 @@
       }
       updateLiveFields();
 
-      if (accessKey) {
-        const hash = await sha256(accessKey);
-        if (AUTHORIZED_HASHES.includes(hash) || accessKey.startsWith('GUEST-')) {
-          sessionStorage.setItem('fbp_authorized_key', accessKey);
-          unlockContent(accessKey);
-          return;
-        }
+      if (accessKey && (await isKeyAuthorized(accessKey))) {
+        sessionStorage.setItem('fbp_authorized_key', accessKey);
+        unlockContent(accessKey);
+        return;
       }
 
-      if (sessionKey) {
-        const hash = await sha256(sessionKey);
-        if (AUTHORIZED_HASHES.includes(hash) || sessionKey.startsWith('GUEST-')) {
-          unlockContent(sessionKey);
-        }
+      if (sessionKey && (await isKeyAuthorized(sessionKey))) {
+        unlockContent(sessionKey);
       }
     }
 
@@ -1043,8 +1055,7 @@
 
       if (!val) return;
 
-      const hash = await sha256(val);
-      if (AUTHORIZED_HASHES.includes(hash)) {
+      if (await isKeyAuthorized(val)) {
         sessionStorage.setItem('fbp_authorized_key', val);
         unlockContent(val);
       } else {
