@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 2026 SECURITY, AI SHIELDING & CONTENT SECURITY POLICY -->
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="googlebot" content="index, follow, noai, noimageai">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto: https://formsubmit.co;">
   <title>Fermion Bec Productions | B2B Commercial Video Infrastructure & Revenue Engine</title>
   <meta name="description" content="Commercial video infrastructure for high-ticket B2B and enterprise brands. National-grade brand films, multi-camera content engines, and visual authority assets that de-risk enterprise sales cycles.">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -246,12 +250,34 @@
     .option-btn:hover {
       border-color: var(--accent-amber); background: var(--bg-surface-elevated); color: var(--accent-amber); padding-left: 1.6rem;
     }
+
+    /* Security Toast Notification & Asset Shielding */
+    #securityToast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      transform: translateY(150%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    #securityToast.show {
+      transform: translateY(0);
+    }
+    .concept-card img, #hero-video, #founder img {
+      -webkit-user-drag: none;
+      user-select: none;
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-amber-600 selection:text-white">
 
-  <!-- Grain Overlay -->
+  <!-- Grain Overlay & Security Toast -->
   <div class="noise-overlay"></div>
+  <div id="securityToast" class="bg-[#0E1210] border border-amber-500/50 text-white px-4 py-3 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.9)] flex items-center gap-3 font-mono-hud text-xs">
+    <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+    <span id="securityToastMessage">Fermion Bec Productions // Commercial Spec &amp; IP Protected</span>
+  </div>
 
   <!-- TOP UTILITY STRIP -->
   <div class="border-b border-[#1C2420] bg-[#0A0D0B] text-xs font-mono-hud py-2.5 px-6">
@@ -369,7 +395,7 @@
         </div>
 
         <div id="monitor" class="monitor-frame aspect-scope bg-black relative rounded-lg">
-          <video id="hero-video" controls autoplay loop muted playsinline class="w-full h-full object-cover opacity-90">
+          <video id="hero-video" controls controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="if(window.showSecurityToast){showSecurityToast('FBP // Master Reel Stream Protected');} return false;" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90">
             <source src="REEL-2.mp4" type="video/mp4">
             Your browser does not support video playback.
           </video>
@@ -1633,6 +1659,7 @@
             Receive the complete diagnostic breakdown, recommended package specifications, and custom production roadmap in your inbox:
           </p>
           <form id="quiz-dispatch-form" onsubmit="handleQuizReportDispatch(event)" class="space-y-3">
+            <input type="text" name="_honey" id="quiz-honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
             <input type="text" id="quiz-lead-name" required placeholder="Executive / Brand Name *" class="w-full bg-[#060807] border border-[#1C2420] text-white text-xs px-3.5 py-2.5 rounded focus:border-amber-500 focus:outline-none font-mono-hud">
             <input type="email" id="quiz-lead-email" required placeholder="Corporate Email Address *" class="w-full bg-[#060807] border border-[#1C2420] text-white text-xs px-3.5 py-2.5 rounded focus:border-amber-500 focus:outline-none font-mono-hud">
             <button type="submit" id="btn-quiz-dispatch" class="btn-hire w-full text-xs text-center cursor-pointer">
@@ -1680,6 +1707,7 @@
       <!-- Form Container -->
       <div id="deck-form-container">
         <form id="deck-inquiry-form" onsubmit="handleDeckRequestSubmit(event)" class="space-y-4">
+          <input type="text" name="_honey" id="deck-honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
           
           <!-- Read-Only Auto-Captured Project Title -->
           <div>
@@ -1924,8 +1952,27 @@
     ];
     let currentQ = 0, totalScore = 0;
 
+    let quizOpenedAt = 0;
+
+    function escapeHTMLSafe(str) {
+      return String(str || '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[ch]));
+    }
+
+    function showSecurityToast(msg) {
+      const toast = document.getElementById('securityToast');
+      const label = document.getElementById('securityToastMessage');
+      if (!toast || !label) return;
+      label.innerText = msg || 'Fermion Bec Productions // Commercial Spec & IP Protected';
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 2800);
+    }
+    window.showSecurityToast = showSecurityToast;
+
     function startQuiz() {
       currentQ = 0; totalScore = 0;
+      quizOpenedAt = Date.now();
       document.getElementById('quiz-question-container').classList.remove('hidden');
       document.getElementById('quiz-result-container').classList.add('hidden');
       const qf = document.getElementById('quiz-dispatch-form');
@@ -1938,6 +1985,18 @@
 
     function handleQuizReportDispatch(event) {
       event.preventDefault();
+      const honey = document.getElementById('quiz-honey');
+      if (honey && honey.value) return; // Honeypot bot trap
+      if (quizOpenedAt && (Date.now() - quizOpenedAt < 1200)) {
+        showSecurityToast('Security Verification: Please complete the assessment before submitting.');
+        return;
+      }
+      const lastDispatch = Number(sessionStorage.getItem('fbp_quiz_last_dispatch') || 0);
+      if (Date.now() - lastDispatch < 30000) {
+        showSecurityToast('Rate Limit Active: Please wait 30 seconds before sending another report.');
+        return;
+      }
+
       const name = document.getElementById('quiz-lead-name').value.trim();
       const email = document.getElementById('quiz-lead-email').value.trim();
       const title = document.getElementById('result-title').innerText;
@@ -1945,6 +2004,7 @@
       const submitBtn = document.getElementById('btn-quiz-dispatch');
 
       if (!name || !email) return;
+      sessionStorage.setItem('fbp_quiz_last_dispatch', String(Date.now()));
 
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -1967,12 +2027,13 @@
         `${title}\n` +
         `Recommendation   : ${desc}\n\n` +
         `DISPATCH AUDIT:\n` +
+        `Direct Inquiries: info@fermionbecproductions.com\n` +
         `Primary Desk    : fermionbecproductions@gmail.com\n` +
         `Executive Desk  : levibethel@gmail.com\n` +
         `Strategy Booking: https://calendar.app.google/PMCtX5rRvdCpoVPQ6\n` +
         `==================================================`;
 
-      const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com&reply-to=${encodeURIComponent(email)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com,info@fermionbecproductions.com&reply-to=${encodeURIComponent(email)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
       try {
         fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
@@ -1981,7 +2042,7 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: emailSubject,
-            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com',
+            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com,info@fermionbecproductions.com',
             _replyto: email,
             _template: 'table',
             _captcha: 'false',
@@ -2005,7 +2066,9 @@
         }
         document.getElementById('quiz-dispatch-form').classList.add('hidden');
         const successBox = document.getElementById('quiz-dispatch-success');
-        successBox.innerHTML = `✓ Diagnostic report <strong>${refCode}</strong> dispatched to <strong>${email}</strong> and logged with Fermion Bec Productions. <a href="${mailtoUrl}" class="underline text-amber-400 block mt-1">Open in Email Client</a>`;
+        const safeEmail = escapeHTMLSafe(email);
+        const safeRef = escapeHTMLSafe(refCode);
+        successBox.innerHTML = `✓ Diagnostic report <strong>${safeRef}</strong> dispatched to <strong>${safeEmail}</strong> and logged with Fermion Bec Productions. <a href="${mailtoUrl}" class="underline text-amber-400 block mt-1">Open in Email Client</a>`;
         successBox.classList.remove('hidden');
       }, 500);
     }

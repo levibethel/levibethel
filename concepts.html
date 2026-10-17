@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 2026 SECURITY, AI SHIELDING & CONTENT SECURITY POLICY -->
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="googlebot" content="index, follow, noai, noimageai">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto: https://formsubmit.co;">
   <title>Concepts & Packaging | Fermion Bec Productions — Peter Levi Bethel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -220,12 +224,34 @@
       transform: translateY(-2px);
       box-shadow: 0 0 25px rgba(217,119,6,0.5);
     }
+
+    /* Security Toast Notification & Asset Shielding */
+    #securityToast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      transform: translateY(150%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    #securityToast.show {
+      transform: translateY(0);
+    }
+    .concept-card img, header img {
+      -webkit-user-drag: none;
+      user-select: none;
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-amber-600 selection:text-white">
 
-  <!-- Grain Overlay -->
+  <!-- Grain Overlay & Security Toast -->
   <div class="noise-overlay"></div>
+  <div id="securityToast" class="bg-[#0A0A0E] border border-amber-500/50 text-white px-4 py-3 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.9)] flex items-center gap-3 font-mono-hud text-xs">
+    <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+    <span id="securityToastMessage">Fermion Bec Productions // WGA &amp; Commercial IP Protected</span>
+  </div>
 
   <!-- MAIN CONTAINER -->
   <main class="max-w-7xl mx-auto px-6 py-10 md:py-16 relative z-10">
@@ -705,6 +731,7 @@
       <!-- Form Container -->
       <div id="deck-form-container">
         <form id="deck-inquiry-form" onsubmit="handleDeckRequestSubmit(event)" class="space-y-4">
+          <input type="text" name="_honey" id="deck-honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
           
           <!-- Read-Only Auto-Captured Project Title -->
           <div>

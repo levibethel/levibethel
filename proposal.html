@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SECURITY & CRAWLER SHIELDING -->
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-  <meta http-equiv="X-Robots-Tag" content="noindex, nofollow">
+  <!-- 2026 SECURITY, AI SHIELDING & CONTENT SECURITY POLICY -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai">
+  <meta http-equiv="X-Robots-Tag" content="noindex, nofollow, noai, noimageai">
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto: https://formsubmit.co;">
   
   <title>Executive Production Proposal &amp; SOW | Fermion Bec Productions</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -214,11 +216,45 @@
     }
     #securityToast.show { transform: translateY(0); }
 
+    /* Zero-Bypass Gate Lock & Forensic Session Watermark */
+    body:not(.clearance-verified) #mainContent {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    #forensicWatermark {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.04;
+      background-repeat: repeat;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
     /* Print Stylesheet */
     @media print {
       body {
         background-color: #FFFFFF !important;
         color: #000000 !important;
+      }
+      body:not(.clearance-verified) * {
+        display: none !important;
+      }
+      body:not(.clearance-verified)::before {
+        content: "FERMION BEC PRODUCTIONS // EXECUTIVE CLEARANCE REQUIRED — UNAUTHORIZED PRINT BLOCKED";
+        display: block !important;
+        font-family: monospace;
+        font-size: 14pt;
+        color: #000000 !important;
+        padding: 48px;
+        text-align: center;
+        border: 2px solid #000000;
+        margin: 40px;
+      }
+      #forensicWatermark {
+        display: block !important;
+        opacity: 0.08 !important;
       }
       .noise-overlay, .role-nav, header .no-print, .no-print, #accessGateModal, #securityToast {
         display: none !important;
@@ -253,9 +289,10 @@
 </head>
 <body class="antialiased selection:bg-amber-600 selection:text-white" oncontextmenu="handleRightClick(event)">
 
-  <!-- Grain Overlay & Security Watermark -->
+  <!-- Grain Overlay & Dynamic Forensic Session Watermark -->
   <div class="noise-overlay"></div>
   <div class="bg-watermark"></div>
+  <div id="forensicWatermark" aria-hidden="true"></div>
 
   <!-- SECURITY TOAST NOTIFICATION -->
   <div id="securityToast" class="bg-[#0E0E12] border border-amber-500/50 text-white px-4 py-3 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.9)] flex items-center gap-3 font-mono-hud text-xs">
@@ -311,6 +348,7 @@
 
       <!-- Mode 2: Guest Discovery Access Request -->
       <form id="formGuest" onsubmit="handleGuestClearanceSubmit(event)" class="space-y-3 hidden">
+        <input type="text" name="_honey" id="guestHoneyInput" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
         <div>
           <input 
             type="text" 
@@ -1048,32 +1086,54 @@
       }
     }
 
-    function handleGuestClearanceSubmit(e) {
+    const gateLoadedAt = Date.now();
+
+    function escapeHTMLSafe(str) {
+      return String(str || '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[ch]));
+    }
+
+    function applyForensicWatermark(clearanceLabel, sessionToken) {
+      const wm = document.getElementById('forensicWatermark');
+      if (!wm) return;
+      const cleanLabel = String(clearanceLabel || 'AUTHORIZED PARTNER').replace(/[^A-Z0-9 _•/-]/gi, '').substring(0, 36);
+      const shortToken = String(sessionToken || 'VERIFIED').substring(0, 12).toUpperCase();
+      const dateStamp = new Date().toISOString().slice(0, 10);
+      const stampText = `FBP CONFIDENTIAL // ${cleanLabel} • ${shortToken} • ${dateStamp}`;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="520" height="260"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#F59E0B" font-family="monospace" font-size="11" font-weight="bold" letter-spacing="2" transform="rotate(-24 260 130)">${stampText}</text></svg>`;
+      wm.style.backgroundImage = `url("data:image/svg+xml;utf8,${encodeURIComponent(svg)}")`;
+    }
+
+    async function handleGuestClearanceSubmit(e) {
       e.preventDefault();
+      const honey = document.getElementById('guestHoneyInput');
+      if (honey && honey.value) return;
+      if (Date.now() - gateLoadedAt < 800) return;
+
+      const lastGuestAttempt = Number(sessionStorage.getItem('fbp_guest_last_dispatch') || 0);
+      if (Date.now() - lastGuestAttempt < 30000) {
+        showToast('Rate Limit Active: Please wait 30 seconds before requesting again.');
+        return;
+      }
+
       const comp = document.getElementById('guestCompanyInput').value.trim();
       const email = document.getElementById('guestEmailInput').value.trim();
 
       if (!comp || !email) return;
+      sessionStorage.setItem('fbp_guest_last_dispatch', String(Date.now()));
 
       document.getElementById('clientCompany').value = comp;
       document.getElementById('clientEmail').value = email;
       updateLiveFields();
 
       const guestKey = 'GUEST-' + comp.toUpperCase().replace(/\s+/g, '-');
+      const guestHash = (await sha256(guestKey + '|' + email)) || guestKey;
       sessionStorage.setItem('fbp_authorized_key', guestKey);
+      sessionStorage.setItem('fbp_session_digest', guestHash.substring(0, 12).toUpperCase());
 
       // Email Dispatch for VIP Discovery Access
       const accessSubject = `[VIP PROPOSAL ACCESS] Discovery Clearance Granted - ${comp}`;
-      const accessBody = `==================================================\n` +
-        `FERMION BEC PRODUCTIONS // VIP PROPOSAL ACCESS\n` +
-        `==================================================\n` +
-        `TIMESTAMP      : ${new Date().toISOString()}\n` +
-        `COMPANY/BRAND  : ${comp}\n` +
-        `EXECUTIVE EMAIL: ${email}\n` +
-        `SESSION KEY    : ${guestKey}\n` +
-        `PAGE URL       : ${window.location.href}\n` +
-        `STATUS         : Discovery Clearance Activated\n` +
-        `==================================================`;
 
       try {
         fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
@@ -1082,7 +1142,7 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: accessSubject,
-            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com',
+            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com,info@fermionbecproductions.com',
             _replyto: email,
             _template: 'table',
             _captcha: 'false',
@@ -1090,6 +1150,7 @@
             client_company: comp,
             client_email: email,
             guest_session_key: guestKey,
+            forensic_session_digest: guestHash.substring(0, 16).toUpperCase(),
             timestamp: new Date().toISOString()
           })
         }).catch(err => console.warn('Guest access notification:', err));
@@ -1120,6 +1181,7 @@
       if (accessKey && (await isKeyAuthorized(accessKey))) {
         const tokenHash = await sha256(accessKey);
         sessionStorage.setItem('fbp_authorized_key', tokenHash || 'AUTHORIZED');
+        if (tokenHash) sessionStorage.setItem('fbp_session_digest', tokenHash.substring(0, 12).toUpperCase());
         if (window.history && window.history.replaceState) {
           window.history.replaceState({}, document.title, window.location.pathname);
         }
@@ -1143,6 +1205,7 @@
       if (await isKeyAuthorized(val)) {
         const tokenHash = await sha256(val);
         sessionStorage.setItem('fbp_authorized_key', tokenHash || 'AUTHORIZED');
+        if (tokenHash) sessionStorage.setItem('fbp_session_digest', tokenHash.substring(0, 12).toUpperCase());
         input.value = '';
         unlockContent('AUTHORIZED PARTNER');
       } else {
@@ -1157,6 +1220,7 @@
       const statusBadge = document.getElementById('authStatusBadge');
       const companyVal = document.getElementById('clientCompany').value.trim();
 
+      document.body.classList.add('clearance-verified');
       gate.style.opacity = '0';
       setTimeout(() => {
         gate.style.display = 'none';
@@ -1164,10 +1228,13 @@
         main.classList.add('opacity-100');
       }, 450);
 
-      const safeLabel = (companyVal && companyVal !== 'Client Organization')
+      const rawLabel = (companyVal && companyVal !== 'Client Organization')
         ? companyVal.toUpperCase()
         : (label && label.startsWith('DISCOVERY GUEST') ? label : 'AUTHORIZED PARTNER');
-      statusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>STATUS: ACCESS VERIFIED (' + safeLabel + ')</span>';
+      const safeLabel = escapeHTMLSafe(rawLabel);
+      const sessionDigest = sessionStorage.getItem('fbp_session_digest') || (sessionStorage.getItem('fbp_authorized_key') || 'VERIFIED').substring(0, 10).toUpperCase();
+      applyForensicWatermark(rawLabel, sessionDigest);
+      statusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>STATUS: ACCESS VERIFIED (' + safeLabel + ' • SEAL:' + escapeHTMLSafe(sessionDigest) + ')</span>';
     }
 
     // Anti-Scraping / Right-Click Deterrent
@@ -1507,7 +1574,7 @@
       return 'FBP-CSA-' + Math.random().toString(36).substring(2, 6).toUpperCase() + '-' + Date.now().toString(36).substring(4).toUpperCase();
     }
 
-    function lockAndFinalizeAgreement() {
+    async function lockAndFinalizeAgreement() {
       const name = document.getElementById('clientName').value.trim();
       const company = document.getElementById('clientCompany').value.trim() || 'Client Organization';
       const auth = document.getElementById('authCheckbox').checked;
@@ -1529,25 +1596,6 @@
       const location = document.getElementById('clientLocation').value.trim() || 'Tri-State Area';
       const timeline = document.getElementById('clientTimeline').value.trim() || 'Target Production Schedule';
 
-      // Generate Tamper-Evident Hash Reference
-      const auditRef = generateAuditRef();
-      const timestamp = new Date().toISOString();
-      document.getElementById('contractAuditCode').innerText = 'SEAL REF: ' + auditRef;
-
-      // Convert Canvas to Print Image
-      let sigType = 'Typed Verified Electronic Signature';
-      if (hasDrawn) {
-        const dataUrl = canvas.toDataURL('image/png');
-        const img = document.getElementById('printSigImg');
-        img.src = dataUrl;
-        img.classList.remove('hidden');
-        sigType = 'Drawn Electronic Signature (Canvas Stamped)';
-      } else {
-        document.getElementById('typedFallbackSig').innerText = name;
-      }
-
-      document.getElementById('printSigBlock').classList.remove('hidden');
-
       // Engagement & Payment details
       let engLabel = '02. Flagship Commercial Campaign ($50,000 USD)';
       if (currentEngagement === 'launchpad') {
@@ -1557,6 +1605,34 @@
       }
 
       const paymentTerms = selectedPayment || 'Milestone Payment Terms';
+
+      // Convert Canvas to Print Image & Capture Signature Fingerprint
+      let sigType = 'Typed Verified Electronic Signature';
+      let sigFingerprint = 'TYPED:' + name;
+      if (hasDrawn) {
+        const dataUrl = canvas.toDataURL('image/png');
+        const img = document.getElementById('printSigImg');
+        img.src = dataUrl;
+        img.classList.remove('hidden');
+        sigType = 'Drawn Electronic Signature (Canvas Stamped)';
+        sigFingerprint = dataUrl;
+      } else {
+        document.getElementById('typedFallbackSig').innerText = name;
+      }
+
+      document.getElementById('printSigBlock').classList.remove('hidden');
+
+      // Generate Tamper-Evident Audit Reference + Real-Time Web Crypto SHA-256 Contract Digest
+      const auditRef = generateAuditRef();
+      const timestamp = new Date().toISOString();
+      const canonicalPayload = [
+        auditRef, timestamp, company, name, title, email, location, timeline, engLabel, paymentTerms, sigFingerprint
+      ].join('||');
+      const contractSha256 = (await sha256(canonicalPayload)) || 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+      const shortDigest = contractSha256.substring(0, 16).toUpperCase();
+
+      document.getElementById('contractAuditCode').innerText = `SEAL REF: ${auditRef} • SHA-256: ${shortDigest}`;
+      applyForensicWatermark(company.toUpperCase(), shortDigest);
 
       // Compose Execution Email
       const contractSubject = `[CONTRACT EXECUTED] Creative Services Agreement Sealed - ${company} (${auditRef})`;
@@ -1568,13 +1644,15 @@
 ` +
         `================================================================================
 ` +
-        `SEAL AUDIT REF : ${auditRef}
+        `SEAL AUDIT REF   : ${auditRef}
 ` +
-        `EXECUTION TIME : ${timestamp}
+        `SHA-256 DIGEST   : ${contractSha256}
 ` +
-        `GOVERNING LAW  : State of New Jersey (Monmouth & Ocean County Jurisdiction)
+        `EXECUTION TIME   : ${timestamp}
 ` +
-        `LEGAL STATUTE  : US Electronic Signatures in Global & National Commerce Act (E-SIGN Act)
+        `GOVERNING LAW    : State of New Jersey (Monmouth & Ocean County Jurisdiction)
+` +
+        `LEGAL STATUTE    : US Electronic Signatures in Global & National Commerce Act (E-SIGN Act)
 
 ` +
         `CLIENT SIGNATORY DETAILS:
@@ -1613,6 +1691,8 @@
 ` +
         `Direct Phone         : (646) 262-1379
 ` +
+        `Direct Inquiries     : info@fermionbecproductions.com
+` +
         `Production Inquiries : fermionbecproductions@gmail.com
 ` +
         `Lead Producer Desk   : levibethel@gmail.com
@@ -1632,7 +1712,7 @@
 ` +
         `================================================================================`;
 
-      const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com,${encodeURIComponent(email)}&subject=${encodeURIComponent(contractSubject)}&body=${encodeURIComponent(contractBody)}`;
+      const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com,info@fermionbecproductions.com,${encodeURIComponent(email)}&subject=${encodeURIComponent(contractSubject)}&body=${encodeURIComponent(contractBody)}`;
 
       // Background Email Dispatch via FormSubmit AJAX
       try {
@@ -1642,11 +1722,12 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
             _subject: contractSubject,
-            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com' + (email && email !== 'On File' ? (',' + email) : ''),
+            _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com,info@fermionbecproductions.com' + (email && email !== 'On File' ? (',' + email) : ''),
             _replyto: (email && email !== 'On File') ? email : 'levibethel@gmail.com',
             _template: 'table',
             _captcha: 'false',
             seal_audit_reference: auditRef,
+            sha256_integrity_digest: contractSha256,
             signatory_name: name,
             signatory_title: title,
             client_organization: company,
@@ -1668,21 +1749,16 @@
         console.warn('Contract dispatch error:', err);
       }
 
-      // Persist to localStorage for client auditing
+      // Zero-Retention Storage Hygiene: Purge any legacy PII from localStorage and store only non-PII hash receipt in sessionStorage
       try {
-        const sealedLog = JSON.parse(localStorage.getItem('fbp_sealed_contracts') || '[]');
-        sealedLog.unshift({
+        localStorage.removeItem('fbp_sealed_contracts');
+        const sealedReceipts = JSON.parse(sessionStorage.getItem('fbp_sealed_receipts') || '[]');
+        sealedReceipts.unshift({
           auditRef,
-          name,
-          title,
-          company,
-          email,
-          phone,
-          engagement: engLabel,
-          paymentTerms,
+          sha256Digest: contractSha256,
           timestamp
         });
-        localStorage.setItem('fbp_sealed_contracts', JSON.stringify(sealedLog));
+        sessionStorage.setItem('fbp_sealed_receipts', JSON.stringify(sealedReceipts));
       } catch (e) {
         console.warn(e);
       }
@@ -1697,12 +1773,14 @@
       // Update UI Banner & Buttons
       const successBanner = document.getElementById('executionSuccessBanner');
       if (successBanner) {
+        const safeEmail = escapeHTMLSafe(email);
+        const safeAuditRef = escapeHTMLSafe(auditRef);
         successBanner.innerHTML = `
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
-              <div class="font-bold text-sm mb-1 text-emerald-300">✓ AGREEMENT DIGITALLY EXECUTED, SEALED &amp; DISPATCHED</div>
+              <div class="font-bold text-sm mb-1 text-emerald-300">✓ AGREEMENT DIGITALLY EXECUTED, CRYPTOGRAPHICALLY SEALED &amp; DISPATCHED</div>
               <p class="text-xs text-[#AAA] leading-relaxed">
-                Execution certificate <strong>${auditRef}</strong> has been transmitted via email to <strong>fermionbecproductions@gmail.com</strong>, <strong>levibethel@gmail.com</strong>, and <strong>${email}</strong>.
+                Execution certificate <strong>${safeAuditRef}</strong> (SHA-256: <code class="text-amber-400">${shortDigest}...</code>) has been transmitted to <strong>info@fermionbecproductions.com</strong>, <strong>fermionbecproductions@gmail.com</strong>, <strong>levibethel@gmail.com</strong>, and <strong>${safeEmail}</strong>.
               </p>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0 no-print">

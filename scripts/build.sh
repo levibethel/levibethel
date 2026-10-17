@@ -92,6 +92,21 @@ else
   FAILED=1
 fi
 
+# 7. Check 2026 Security Headers, Forensic Watermark, Video Protection & Bot Shields
+echo -n " [7/7] Verifying 2026 security & IP protection suite... "
+CSP_CHECK=$(grep -l "Content-Security-Policy" index.html proposal.html concepts.html | wc -l | tr -d ' ')
+VID_CHECK=$(grep "nodownload" index.html)
+WM_CHECK=$(grep "forensicWatermark" proposal.html)
+AI_CHECK=$(grep "GPTBot" robots.txt)
+HONEY_CHECK=$(grep "_honey" index.html proposal.html concepts.html | wc -l | tr -d ' ')
+
+if [ "$CSP_CHECK" -eq 3 ] && [ -n "$VID_CHECK" ] && [ -n "$WM_CHECK" ] && [ -n "$AI_CHECK" ] && [ "$HONEY_CHECK" -ge 3 ]; then
+  echo "PASS (CSP, AI bot shield, video lock, forensic watermark & honeypots verified)"
+else
+  echo "FAIL: Security suite check failed (CSP=$CSP_CHECK, HONEY=$HONEY_CHECK)"
+  FAILED=1
+fi
+
 echo "========================================================"
 if [ $FAILED -eq 0 ]; then
   echo " BUILD RESULT: ALL CHECKS PASSED // READY FOR PRODUCTION"

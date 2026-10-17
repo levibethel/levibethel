@@ -1,8 +1,8 @@
 # robots.txt for Peter Levi Bethel & Fermion Bec Productions
-# https://fermionbecproductions.com/
+# https://www.fermionbecproductions.com/
 
+# 1. Standard Search Engines & Discovery Crawlers
 User-agent: *
-# Allow public portfolio and gallery pages
 Allow: /
 Allow: /index.html
 Allow: /concepts.html
@@ -14,8 +14,57 @@ Disallow: /proposal/
 Disallow: /*proposal*
 Disallow: /data/
 Disallow: /scripts/
+Disallow: /backups/
 Disallow: /*.json$
 Disallow: /*.bak$
+Disallow: /*.db$
 
 # Crawl-delay for polite crawling
 Crawl-delay: 10
+
+# 2. 2026 AI Model Training & Dataset Scraper Shielding
+# Blocks generative AI training ingestion of proprietary copy, frames, and IP lookbooks
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /

@@ -1,10 +1,38 @@
 /**
  * Fermion Bec Productions - Concepts & Packaging Client Controller
- * Manages modal interactions, data rendering, filtering, and deck inquiry submissions.
+ * Manages modal interactions, data rendering, filtering, asset protection, and deck inquiry submissions.
  */
 
 // Global State
 let activeDeckInquiry = null;
+let deckModalOpenedAt = 0;
+
+/**
+ * HTML Escape Helper (DOM XSS Defense)
+ */
+function escapeHTML(str) {
+  return String(str || '').replace(/[&<>"']/g, (ch) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[ch]));
+}
+
+/**
+ * Branded Security Toast Alert
+ */
+function triggerSecurityToast(msg) {
+  const toast = document.getElementById('securityToast');
+  const label = document.getElementById('securityToastMessage');
+  if (!toast || !label) return;
+  label.innerText = msg || 'Fermion Bec Productions // WGA & Commercial IP Protected';
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2800);
+}
 
 /**
  * Open the Deck Request Modal with auto-populated read-only project title
@@ -12,8 +40,9 @@ let activeDeckInquiry = null;
 function openDeckRequestModal(projectId, encodedTitle, encodedFormat) {
   const title = decodeURIComponent(encodedTitle || '');
   const format = decodeURIComponent(encodedFormat || '');
-  
+
   activeDeckInquiry = { projectId, title, format };
+  deckModalOpenedAt = Date.now();
 
   const modal = document.getElementById('deck-request-modal');
   const titleDisplay = document.getElementById('modal-project-title-display') || document.getElementById('modal-project-title');
@@ -63,21 +92,40 @@ function closeDeckRequestModal() {
 }
 
 /**
- * Handle Form Submission for Deck Inquiries
+ * Handle Form Submission for Deck Inquiries (with Zero-CAPTCHA Bot Telemetry & Rate Limiting)
  */
 async function handleDeckRequestSubmit(event) {
   event.preventDefault();
 
-  const form = event.target;
+  // 1. Honeypot Bot Trap
+  const honey = document.getElementById('deck-honey');
+  if (honey && honey.value) return;
+
+  // 2. Behavioral Human-Interaction Timing Gate (>1.2s)
+  if (deckModalOpenedAt && (Date.now() - deckModalOpenedAt < 1200)) {
+    triggerSecurityToast('Security Verification: Please complete all required fields.');
+    return;
+  }
+
+  // 3. Session Rate-Limit Cooldown (30s)
+  const lastDeckDispatch = Number(sessionStorage.getItem('fbp_deck_last_dispatch') || 0);
+  if (Date.now() - lastDeckDispatch < 30000) {
+    triggerSecurityToast('Rate Limit Active: Please wait 30 seconds before submitting another request.');
+    return;
+  }
+
   const submitBtn = document.getElementById('btn-submit-deck-request') || document.getElementById('btn-deck-submit');
 
-  const projectId = document.getElementById('modal-project-id')?.value || '';
-  const projectTitle = (document.getElementById('modal-project-title-display') || document.getElementById('modal-project-title'))?.value || '';
-  const requesterName = (document.getElementById('modal-requester-name') || document.getElementById('requester-name'))?.value || '';
-  const requesterCompany = (document.getElementById('modal-requester-company') || document.getElementById('requester-company'))?.value || '';
-  const requesterEmail = (document.getElementById('modal-requester-email') || document.getElementById('requester-email'))?.value || '';
-  const requesterRole = (document.getElementById('modal-requester-role') || document.getElementById('requester-role'))?.value || '';
-  const inquiryScope = (document.getElementById('modal-inquiry-scope') || document.getElementById('inquiry-scope'))?.value || '';
+  const projectId = (document.getElementById('modal-project-id')?.value || '').trim();
+  const projectTitle = ((document.getElementById('modal-project-title-display') || document.getElementById('modal-project-title'))?.value || '').trim();
+  const requesterName = ((document.getElementById('modal-requester-name') || document.getElementById('requester-name'))?.value || '').trim();
+  const requesterCompany = ((document.getElementById('modal-requester-company') || document.getElementById('requester-company'))?.value || '').trim();
+  const requesterEmail = ((document.getElementById('modal-requester-email') || document.getElementById('requester-email'))?.value || '').trim();
+  const requesterRole = ((document.getElementById('modal-requester-role') || document.getElementById('requester-role'))?.value || '').trim();
+  const inquiryScope = ((document.getElementById('modal-inquiry-scope') || document.getElementById('inquiry-scope'))?.value || '').trim();
+
+  if (!requesterName || !requesterCompany || !requesterEmail) return;
+  sessionStorage.setItem('fbp_deck_last_dispatch', String(Date.now()));
 
   if (submitBtn) {
     submitBtn.disabled = true;
@@ -88,18 +136,6 @@ async function handleDeckRequestSubmit(event) {
   const refCode = 'FBP-DECK-' + Math.random().toString(36).substring(2, 7).toUpperCase();
   const timestamp = new Date().toISOString();
 
-  const inquiryPayload = {
-    refCode,
-    projectId,
-    projectTitle,
-    requesterName,
-    requesterCompany,
-    requesterEmail,
-    requesterRole,
-    inquiryScope,
-    timestamp
-  };
-
   // Privacy & Data Protection: Purge any legacy unencrypted PII from localStorage
   try {
     localStorage.removeItem('fbp_deck_inquiries');
@@ -109,48 +145,28 @@ async function handleDeckRequestSubmit(event) {
 
   // Build Structured Email Content
   const emailSubject = `[FBP DECK REQUEST] ${projectTitle} - ${requesterCompany} (${refCode})`;
-  const emailBodyText = `==================================================
-` +
-    `FERMION BEC PRODUCTIONS // DECK ACCESS PROTOCOL
-` +
-    `==================================================
-` +
-    `REFERENCE CODE : ${refCode}
-` +
-    `TIMESTAMP      : ${timestamp}
-
-` +
-    `PROJECT DETAILS:
-` +
-    `Project Title  : ${projectTitle}
-` +
-    `Project ID     : ${projectId}
-
-` +
-    `REQUESTER INFORMATION:
-` +
-    `Full Name      : ${requesterName}
-` +
-    `Company/Agency : ${requesterCompany}
-` +
-    `Email Address  : ${requesterEmail}
-` +
-    `Role / Title   : ${requesterRole || 'Not Specified'}
-` +
-    `Inquiry Scope  : ${inquiryScope || 'Confidential Packaging Review'}
-
-` +
-    `DISPATCH AUDIT:
-` +
-    `This request was submitted via Peter Levi Bethel's Portfolio & Concepts Packaging Suite.
-` +
-    `Primary Recipient : fermionbecproductions@gmail.com
-` +
-    `Executive Archive : levibethel@gmail.com
-` +
+  const emailBodyText = `==================================================\n` +
+    `FERMION BEC PRODUCTIONS // DECK ACCESS PROTOCOL\n` +
+    `==================================================\n` +
+    `REFERENCE CODE : ${refCode}\n` +
+    `TIMESTAMP      : ${timestamp}\n\n` +
+    `PROJECT DETAILS:\n` +
+    `Project Title  : ${projectTitle}\n` +
+    `Project ID     : ${projectId}\n\n` +
+    `REQUESTER INFORMATION:\n` +
+    `Full Name      : ${requesterName}\n` +
+    `Company/Agency : ${requesterCompany}\n` +
+    `Email Address  : ${requesterEmail}\n` +
+    `Role / Title   : ${requesterRole || 'Not Specified'}\n` +
+    `Inquiry Scope  : ${inquiryScope || 'Confidential Packaging Review'}\n\n` +
+    `DISPATCH AUDIT:\n` +
+    `This request was submitted via Peter Levi Bethel's Portfolio & Concepts Packaging Suite.\n` +
+    `Direct Inquiries  : info@fermionbecproductions.com\n` +
+    `Primary Recipient : fermionbecproductions@gmail.com\n` +
+    `Executive Archive : levibethel@gmail.com\n` +
     `==================================================`;
 
-  const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com&reply-to=${encodeURIComponent(requesterEmail)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBodyText)}`;
+  const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com,info@fermionbecproductions.com&reply-to=${encodeURIComponent(requesterEmail)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBodyText)}`;
 
   // Attempt direct mail client trigger during user gesture
   try {
@@ -170,7 +186,7 @@ async function handleDeckRequestSubmit(event) {
       },
       body: JSON.stringify({
         _subject: emailSubject,
-        _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com',
+        _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com,info@fermionbecproductions.com',
         _replyto: requesterEmail,
         _template: 'table',
         _captcha: 'false',
@@ -192,8 +208,6 @@ async function handleDeckRequestSubmit(event) {
   } catch (err) {
     console.warn('Dispatch error:', err);
   }
-
-  console.log('Secure Deck Request Transmitted:', inquiryPayload);
 
   // Update UI and activate direct mail link
   setTimeout(() => {
@@ -224,7 +238,7 @@ async function handleDeckRequestSubmit(event) {
 function handleMailtoClick() {
   const noticeBox = document.getElementById('deck-success-notice');
   if (noticeBox) {
-    noticeBox.innerHTML = `✓ DISPATCH INITIATED: Hit <strong>"Send"</strong> in your mail app to transmit this request to <strong>fermionbecproductions@gmail.com</strong> & <strong>levibethel@gmail.com</strong>. Once received, credentials will be vetted and your view link dispatched.`;
+    noticeBox.innerHTML = `✓ DISPATCH INITIATED: Hit <strong>"Send"</strong> in your mail app to transmit this request to <strong>info@fermionbecproductions.com</strong>, <strong>fermionbecproductions@gmail.com</strong> &amp; <strong>levibethel@gmail.com</strong>. Once received, credentials will be vetted and your view link dispatched.`;
     noticeBox.classList.remove('bg-amber-500/10', 'border-amber-500/40', 'text-amber-300');
     noticeBox.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-400');
   }
@@ -232,13 +246,13 @@ function handleMailtoClick() {
 
 if (typeof window !== 'undefined') {
   window.handleMailtoClick = handleMailtoClick;
+  window.escapeHTML = escapeHTML;
 }
 
 /**
  * Filter Concepts in Gallery
  */
 function filterConcepts(category, btnElement) {
-  // Update button active states
   const buttons = document.querySelectorAll('.concept-filter-btn');
   buttons.forEach(btn => {
     btn.classList.remove('active', 'border-amber-500/60', 'bg-amber-500/10', 'text-amber-400');
@@ -250,7 +264,6 @@ function filterConcepts(category, btnElement) {
     btnElement.classList.remove('border-[#26262E]', 'text-[#777]');
   }
 
-  // Filter cards
   const cards = document.querySelectorAll('.concept-card');
   const data = window.CONCEPTS_DATA || [];
 
@@ -270,10 +283,8 @@ function filterConcepts(category, btnElement) {
   });
 }
 
-
 /**
  * Auto-rotating Stacked Cards Controller
- * Cycles through production package materials across all cards with smooth transitions.
  */
 function initStackedRotatingCards() {
   const stackContainers = document.querySelectorAll('.card-stack-wrap');
@@ -313,11 +324,9 @@ function initStackedRotatingCards() {
       intervalId = setInterval(showNext, intervalMs);
     }
 
-    // Hover pauses rotation
     container.addEventListener('mouseenter', () => { isPaused = true; });
     container.addEventListener('mouseleave', () => { isPaused = false; });
 
-    // Click cycles immediately
     container.addEventListener('click', (e) => {
       e.stopPropagation();
       isPaused = false;
@@ -329,9 +338,26 @@ function initStackedRotatingCards() {
   });
 }
 
-// Global Event Listeners (Escape key, Outside Click, Hash Routing)
+/**
+ * Bind Asset Protection Shields to Lookbook & Portfolio Imagery
+ */
+function initAssetProtectionShields() {
+  const protectedMedia = document.querySelectorAll('.concept-card img, header img, #founder img');
+  protectedMedia.forEach(img => {
+    img.setAttribute('draggable', 'false');
+    img.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+      triggerSecurityToast('Fermion Bec Productions // Lookbook & Visual IP Protected');
+    });
+    img.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      triggerSecurityToast('Fermion Bec Productions // Lookbook & Visual IP Protected');
+    });
+  });
+}
+
+// Global Event Listeners (Escape key, Outside Click, Hash Routing, Asset Shielding)
 document.addEventListener('DOMContentLoaded', () => {
-  // Escape key closes modal
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeDeckRequestModal();
@@ -339,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Click outside modal card to close
   const modal = document.getElementById('deck-request-modal');
   if (modal) {
     modal.addEventListener('click', (e) => {
@@ -349,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Handle URL hash on initial load & hashchange
   function handleHashNavigation() {
     const hash = window.location.hash.toLowerCase();
     if (hash === '#packaging' || hash === '#concepts' || hash === '#pitch') {
@@ -362,5 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   handleHashNavigation();
   initStackedRotatingCards();
+  initAssetProtectionShields();
   window.addEventListener('hashchange', handleHashNavigation);
 });
