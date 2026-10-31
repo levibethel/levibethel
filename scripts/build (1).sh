@@ -29,6 +29,7 @@ IMAGES=(
   "essential1.jpg"
   "essential2.jpg"
   "essential3.jpg"
+  "filmlaurel.png"
 )
 
 ALL_IMG_OK=1
