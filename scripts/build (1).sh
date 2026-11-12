@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Fermion Bec Productions - Build & Asset Verification Script
-# Validates integrity of Concepts & Packaging gallery assets, video reel, and markup
+# Validates integrity of Concepts & Packaging gallery assets, video reel, pricing architecture, and markup
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${REPO_DIR}" || exit 1
@@ -12,7 +12,7 @@ echo "========================================================"
 FAILED=0
 
 # 1. Validate JSON Data
-echo -n " [1/6] Validating data/concepts.json format... "
+echo -n " [1/8] Validating data/concepts.json format... "
 if python3 -m json.tool data/concepts.json > /dev/null 2>&1; then
   echo "PASS"
 else
@@ -21,7 +21,7 @@ else
 fi
 
 # 2. Validate Image Assets
-echo -n " [2/6] Checking project mood board thumbnails... "
+echo -n " [2/8] Checking project mood board thumbnails... "
 IMAGES=(
   "assets/images/concepts/the-weight-of-light.jpg"
   "assets/images/concepts/the-binding-seam.jpg"
@@ -42,14 +42,14 @@ for img in "${IMAGES[@]}"; do
 done
 
 if [ $ALL_IMG_OK -eq 1 ]; then
-  echo "PASS (6/6 images verified)"
+  echo "PASS (7/7 images verified)"
 else
   echo "FAIL: missing image assets"
   FAILED=1
 fi
 
 # 3. Validate Hero Video Reel (REEL-2.mp4)
-echo -n " [3/6] Checking video reel asset (REEL-2.mp4)... "
+echo -n " [3/8] Checking video reel asset (REEL-2.mp4)... "
 if [ -f "REEL-2.mp4" ] && grep -q 'src="REEL-2.mp4"' index.html; then
   echo "PASS (REEL-2.mp4 present and referenced)"
 else
@@ -58,7 +58,7 @@ else
 fi
 
 # 4. Check IP Protection (Ensure no PDF viewer or download buttons)
-echo -n " [4/6] Verifying IP protection rules (no PDF / download links)... "
+echo -n " [4/8] Verifying IP protection rules (no PDF / download links)... "
 PDF_CHECK=$(grep -i -E "(\.pdf|embed.*pdf|iframe.*pdf|<object.*pdf|download=)" components/concepts/ index.html concepts.html 2>/dev/null | grep -v "Peter_Bethel" | grep -v "THE_BINDING_SEAM")
 if [ -z "$PDF_CHECK" ]; then
   echo "PASS (Strict IP protection confirmed)"
@@ -67,7 +67,7 @@ else
 fi
 
 # 5. Check Required Form Fields
-echo -n " [5/6] Checking modal form required fields... "
+echo -n " [5/8] Checking modal form required fields... "
 FORM_NAME_CHECK=$(grep "modal-requester-name" index.html)
 FORM_COMPANY_CHECK=$(grep "modal-requester-company" index.html)
 FORM_EMAIL_CHECK=$(grep "modal-requester-email" index.html)
@@ -81,7 +81,7 @@ else
 fi
 
 # 6. Check Seed Projects in Markup
-echo -n " [6/6] Verifying slate titles in gallery... "
+echo -n " [6/8] Verifying slate titles in gallery... "
 P1=$(grep "The Weight of Light" index.html)
 P2=$(grep "The Binding Seam" index.html)
 P3=$(grep "Crossfire Cousins" index.html)
@@ -94,7 +94,7 @@ else
 fi
 
 # 7. Check 2026 Security Headers, Forensic Watermark, Video Protection & Bot Shields
-echo -n " [7/7] Verifying 2026 security & IP protection suite... "
+echo -n " [7/8] Verifying 2026 security & IP protection suite... "
 CSP_CHECK=$(grep -l "Content-Security-Policy" index.html proposal.html concepts.html | wc -l | tr -d ' ')
 VID_CHECK=$(grep "nodownload" index.html)
 WM_CHECK=$(grep "forensicWatermark" proposal.html)
@@ -105,6 +105,20 @@ if [ "$CSP_CHECK" -eq 3 ] && [ -n "$VID_CHECK" ] && [ -n "$WM_CHECK" ] && [ -n "
   echo "PASS (CSP, AI bot shield, video lock, forensic watermark & honeypots verified)"
 else
   echo "FAIL: Security suite check failed (CSP=$CSP_CHECK, HONEY=$HONEY_CHECK)"
+  FAILED=1
+fi
+
+# 8. Check Unified Pricing Architecture ($8,500 Launchpad, $4k/$7k/$12k Retainers, Multipliers & Zero Legacy Pricing)
+echo -n " [8/8] Verifying unified pricing architecture & multipliers... "
+LEGACY_CHECK=$(grep -E "(\\\$6,500|\\\$3,500|\\\$4,500|\\\$5,500|\\\$6,000|3\.5K|8\.5K|50% upfront / 50% upon delivery)" index.html proposal.html)
+NEW_LAUNCHPAD=$(grep -l "\$8,500" index.html proposal.html | wc -l | tr -d ' ')
+NEW_TIERS=$(grep -E "(\\\$4,000|\\\$7,000|\\\$12,000)" index.html | wc -l | tr -d ' ')
+MULTIPLIERS=$(grep "10.2 kW Clean Power Package" index.html)
+
+if [ -z "$LEGACY_CHECK" ] && [ "$NEW_LAUNCHPAD" -eq 2 ] && [ "$NEW_TIERS" -ge 3 ] && [ -n "$MULTIPLIERS" ]; then
+  echo "PASS (Unified $8.5k Launchpad, $4k/$7k/$12k Retainer Ladder & Multipliers verified)"
+else
+  echo "FAIL: Legacy pricing found or new tiers missing"
   FAILED=1
 fi
 
