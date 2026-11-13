@@ -42,7 +42,7 @@ for img in "${IMAGES[@]}"; do
 done
 
 if [ $ALL_IMG_OK -eq 1 ]; then
- echo "PASS (7/7 images verified)"
+ echo "PASS (6/6 images verified)"
 else
  echo "FAIL: missing image assets"
  FAILED=1
@@ -110,9 +110,9 @@ fi
 
 # 8. Check Unified Pricing Architecture ($8,500 Launchpad, $4k/$7k/$12k Retainers, Multipliers & Zero Legacy Pricing)
 echo -n " [8/9] Verifying unified pricing architecture & multipliers... "
-LEGACY_CHECK=$(grep -E "(\\$6,500|\\$3,500|\\$4,500|\\$5,500|\\$6,000|3\.5K|8\.5K|50% upfront / 50% upon delivery)" index.html proposal.html)
+LEGACY_CHECK=$(grep -E '(\$6,500|\$3,500|\$4,500|\$5,500|\$6,000|3\.5K|8\.5K|50% upfront / 50% upon delivery)' index.html proposal.html)
 NEW_LAUNCHPAD=$(grep -l "\$8,500" index.html proposal.html | wc -l | tr -d ' ')
-NEW_TIERS=$(grep -E "(\\$4,000|\\$7,000|\\$12,000)" index.html | wc -l | tr -d ' ')
+NEW_TIERS=$(grep -E '(\$4,000|\$7,000|\$12,000)' index.html | wc -l | tr -d ' ')
 MULTIPLIERS=$(grep "10.2 kW Clean Power Package" index.html)
 
 if [ -z "$LEGACY_CHECK" ] && [ "$NEW_LAUNCHPAD" -eq 2 ] && [ "$NEW_TIERS" -ge 3 ] && [ -n "$MULTIPLIERS" ]; then
@@ -122,32 +122,17 @@ else
  FAILED=1
 fi
 
-# 9. Check 4 Brand Logo Variants & Scrollable Depth Architecture
-echo -n " [9/9] Verifying 4 brand logo SVGs & scroll-depth layers... "
-LOGOS=(
- "assets/images/fbp-logo-primary.svg"
- "assets/images/fbp-logo-white.svg"
- "assets/images/fbp-logo-charcoal.svg"
- "assets/images/fbp-monogram.svg"
-)
-ALL_LOGO_OK=1
-for l in "${LOGOS[@]}"; do
- if [ ! -f "$l" ]; then
-  echo ""
-  echo " Missing logo: $l"
-  ALL_LOGO_OK=0
- fi
-done
+# 9. Check Scrollable Depth Architecture & Clean Asset References
+echo -n " [9/9] Verifying scroll-depth layers & clean markup... "
 DEPTH_CHECK=$(grep -l "depth-reveal" index.html proposal.html concepts.html | wc -l | tr -d ' ')
-CHARCOAL_PRINT_CHECK=$(grep "fbp-logo-charcoal.svg" proposal.html)
+OLD_REF_CHECK=$(grep -E "(fbp-logo-|fbp-monogram|filmlaurel\.png)" index.html proposal.html concepts.html)
 
-if [ $ALL_LOGO_OK -eq 1 ] && [ "$DEPTH_CHECK" -eq 3 ] && [ -n "$CHARCOAL_PRINT_CHECK" ]; then
- echo "PASS (4/4 brand logos & scroll-depth architecture verified)"
+if [ "$DEPTH_CHECK" -eq 3 ] && [ -z "$OLD_REF_CHECK" ]; then
+  echo "PASS (Scroll-depth architecture verified; logo & laurel images removed)"
 else
- echo "FAIL: Missing brand logo SVGs or scroll-depth classes (DEPTH=$DEPTH_CHECK)"
- FAILED=1
+  echo "FAIL: Scroll-depth or old asset references check failed (DEPTH=$DEPTH_CHECK)"
+  FAILED=1
 fi
-
 echo "========================================================"
 if [ $FAILED -eq 0 ]; then
  echo " BUILD RESULT: ALL CHECKS PASSED // READY FOR PRODUCTION"
