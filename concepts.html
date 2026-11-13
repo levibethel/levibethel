@@ -1,953 +1,1072 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 2026 SECURITY, AI SHIELDING & CONTENT SECURITY POLICY -->
-  <meta name="robots" content="index, follow, noai, noimageai">
-  <meta name="googlebot" content="index, follow, noai, noimageai">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto: https://formsubmit.co;">
-  <title>Concepts & Packaging | Fermion Bec Productions — Peter Levi Bethel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg-dark: #050505;
-      --card-bg: #0A0A0C;
-      --accent-gold: #D97706;
-      --accent-amber: #F59E0B;
-      --text-muted: #888888;
-      --border-color: #222225;
-    }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="icon" type="image/svg+xml" href="assets/images/fbp-monogram.svg">
+ <!-- 2026 SECURITY, AI SHIELDING & CONTENT SECURITY POLICY -->
+ <meta name="robots" content="index, follow, noai, noimageai">
+ <meta name="googlebot" content="index, follow, noai, noimageai">
+ <meta name="referrer" content="strict-origin-when-cross-origin">
+ <meta http-equiv="X-Content-Type-Options" content="nosniff">
+ <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()">
+ <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto: https://formsubmit.co;">
+ <title>Concepts &amp; Packaging | Fermion Bec Productions — Peter Levi Bethel</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
-    body {
-      background-color: var(--bg-dark);
-      color: #E5E5E5;
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      min-width: 0;
-    }
+<style>
+ :root {
+  --bg-dark: #050505;
+  --card-bg: #0A0A0C;
+  --accent-gold: #D97706;
+  --accent-amber: #F59E0B;
+  --text-muted: #888888;
+  --border-color: #222225;
+  --scroll-y: 0px;
+  --scroll-progress: 0%;
+ }
 
-    main, header, section, nav, article, div { min-width: 0; }
+ body {
+  background-color: var(--bg-dark);
+  color: #E5E5E5;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  min-width: 0;
+ }
 
-    @media (orientation: landscape) and (max-height: 600px) {
-      main { padding-top: 2rem !important; padding-bottom: 2rem !important; }
-      header { margin-bottom: 2rem !important; padding-bottom: 1rem !important; gap: 2rem !important; }
-      header h1 { font-size: 3rem !important; line-height: 0.95; }
-      .role-nav { margin-bottom: 2.5rem !important; }
-    }
+ main, header, section, nav, article, div { min-width: 0; }
 
-    @media (max-width: 1023px) {
-      .btn-hire { max-width: 100%; padding-left: 1.25rem !important; padding-right: 1.25rem !important; white-space: normal !important; }
-      .role-nav { justify-content: flex-start !important; flex-wrap: wrap; overflow-x: visible !important; gap: 0.75rem 1.25rem !important; }
-      .role-nav .role-btn { white-space: normal; text-align: left; }
-      .role-nav .role-btn:last-child { border-left: 0 !important; padding-left: 0 !important; }
-      #concepts-filter-bar { flex-wrap: wrap; overflow-x: visible !important; }
-    }
+ /* Scrollable Atmospheric Depth Layer */
+ #scroll-depth-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: var(--scroll-progress);
+  background: linear-gradient(90deg, #D97706, #F59E0B, #34D399);
+  z-index: 95;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
+ }
 
-    .font-hero { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.03em; font-weight: 800; }
-    .font-studio { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.12em; font-weight: 600; }
-    .font-mono-hud { font-family: 'JetBrains Mono', monospace; }
-    .font-serif-title { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; font-weight: 700; }
-    .font-serif-sub { font-family: 'Inter', sans-serif; font-style: italic; }
+ #depth-backdrop {
+  position: fixed;
+  inset: -15vh -10vw;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+ }
 
-    /* Film Grain Noise Overlay */
-    .noise-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      pointer-events: none;
-      z-index: 90;
-      opacity: 0.035;
-      background: url('https://grainy-gradients.vercel.app/noise.svg');
-      filter: contrast(180%) brightness(100%);
-    }
+ .depth-orb-amber {
+  position: absolute;
+  top: -8%; right: -6%;
+  width: 56vw; height: 56vw;
+  max-width: 760px; max-height: 760px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, rgba(217, 119, 6, 0.02) 45%, transparent 72%);
+  transform: translate3d(0, calc(var(--scroll-y) * -0.14), 0);
+  will-change: transform;
+ }
 
-    
-    /* Stacked Rotating Cards Component */
-    .card-stack-wrap {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      perspective: 600px;
-    }
-    .card-stack-layer-back2 {
-      position: absolute;
-      inset: 0;
-      background: rgba(12, 12, 16, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 4px;
-      transform: rotate(-3.5deg) translate(-2px, -2px);
-      pointer-events: none;
-      transition: transform 0.4s ease, border-color 0.4s ease;
-    }
-    .card-stack-layer-back1 {
-      position: absolute;
-      inset: 0;
-      background: rgba(18, 18, 24, 0.95);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      border-radius: 4px;
-      transform: rotate(2.5deg) translate(2px, -1px);
-      pointer-events: none;
-      transition: transform 0.4s ease, border-color 0.4s ease;
-    }
-    .concept-card:hover .card-stack-layer-back2 {
-      transform: rotate(-6deg) translate(-4px, -3px);
-      border-color: rgba(245, 158, 11, 0.4);
-    }
-    .concept-card:hover .card-stack-layer-back1 {
-      transform: rotate(4.5deg) translate(3px, -2px);
-      border-color: rgba(245, 158, 11, 0.6);
-    }
-    .card-stack-front {
-      position: relative;
-      z-index: 10;
-      background: rgba(8, 8, 11, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(245, 158, 11, 0.35);
-      border-radius: 4px;
-      padding: 0.15rem 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-      transition: border-color 0.3s ease, transform 0.3s ease;
-    }
-    .card-stack-front:hover {
-      border-color: rgba(245, 158, 11, 0.8);
-      background: rgba(14, 14, 18, 0.98);
-    }
-    .rotating-card-track {
-      position: relative;
-      display: inline-block;
-      min-width: 120px;
-      max-width: 170px;
-      height: 13px;
-      overflow: hidden;
-      vertical-align: middle;
-    }
-    .rotating-card-item {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      opacity: 0;
-      transform: translateY(8px) rotateX(-20deg);
-      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
-    }
-    .rotating-card-item.active {
-      opacity: 1;
-      transform: translateY(0) rotateX(0deg);
-      pointer-events: auto;
-    }
-    .rotating-card-item.exiting {
-      opacity: 0;
-      transform: translateY(-8px) rotateX(20deg);
-    }
+ .depth-orb-slate {
+  position: absolute;
+  bottom: -10%; left: -8%;
+  width: 50vw; height: 50vw;
+  max-width: 680px; max-height: 680px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.045) 0%, transparent 70%);
+  transform: translate3d(0, calc(var(--scroll-y) * 0.1), 0);
+  will-change: transform;
+ }
 
-    /* Navigation Dock */
-    .role-nav {
-      justify-content: flex-start;
-      justify-content: safe center;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .role-nav::-webkit-scrollbar {
-      display: none;
-    }
+ .depth-reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0) scale(0.988);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+ }
+ .depth-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+ }
 
-    /* Navigation Dock Buttons */
-    .role-btn {
-      font-family: 'Inter', sans-serif; font-weight: 600;
-      font-size: 0.68rem;
-      color: #666666;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      position: relative;
-      padding: 0.75rem 0;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    @media (min-width: 1400px) {
-      .role-btn {
-        font-size: 0.74rem;
-        letter-spacing: 0.1em;
-      }
-    }
-    .role-btn:hover {
-      color: #D1D5DB;
-    }
-    .role-btn.active {
-      color: #FFFFFF;
-      text-shadow: 0 0 12px rgba(217, 119, 6, 0.6);
-    }
-    .role-btn::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0%; height: 2px;
-      background: var(--accent-gold);
-      transition: width 0.3s ease;
-    }
-    .role-btn.active::after { width: 100%; }
+ .depth-card {
+  box-shadow: 0 18px 42px -18px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+ }
+ .depth-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 56px -16px rgba(0, 0, 0, 0.92), 0 0 28px rgba(245, 158, 11, 0.14);
+ }
 
-    /* CTA Button */
-    .btn-hire {
-      background: var(--accent-gold);
-      color: #000000;
-      font-family: 'Inter', sans-serif; font-weight: 600;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      padding: 1.1rem 3rem;
-      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-    .btn-hire:hover {
-      background: #FFFFFF;
-      transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(217,119,6,0.5);
-    }
+ @media (prefers-reduced-motion: reduce) {
+  .depth-orb-amber, .depth-orb-slate { transform: none !important; }
+  .depth-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .depth-card:hover { transform: none !important; }
+ }
 
-    /* Security Toast Notification & Asset Shielding */
-    #securityToast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 100;
-      transform: translateY(150%);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
-    }
-    #securityToast.show {
-      transform: translateY(0);
-    }
-    .concept-card img, header img {
-      -webkit-user-drag: none;
-      user-select: none;
-    }
-  </style>
+ @media (orientation: landscape) and (max-height: 600px) {
+  main { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+  header { margin-bottom: 2rem !important; padding-bottom: 1rem !important; gap: 2rem !important; }
+  header h1 { font-size: 3rem !important; line-height: 0.95; }
+  .role-nav { margin-bottom: 2.5rem !important; }
+ }
+
+ @media (max-width: 1023px) {
+  .btn-hire { max-width: 100%; padding-left: 1.25rem !important; padding-right: 1.25rem !important; white-space: normal !important; }
+  .role-nav { justify-content: flex-start !important; flex-wrap: wrap; overflow-x: visible !important; gap: 0.75rem 1.25rem !important; }
+  .role-nav .role-btn { white-space: normal; text-align: left; }
+  .role-nav .role-btn:last-child { border-left: 0 !important; padding-left: 0 !important; }
+  #concepts-filter-bar { flex-wrap: wrap; overflow-x: visible !important; }
+ }
+
+ .font-hero { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.03em; font-weight: 800; }
+ .font-studio { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.12em; font-weight: 600; }
+ .font-mono-hud { font-family: 'JetBrains Mono', monospace; }
+ .font-serif-title { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; font-weight: 700; }
+ .font-serif-sub { font-family: 'Inter', sans-serif; font-style: italic; }
+
+ /* Film Grain Noise Overlay */
+ .noise-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.035;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+  filter: contrast(180%) brightness(100%);
+ }
+
+ /* Stacked Rotating Cards Component */
+ .card-stack-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  perspective: 600px;
+ }
+ .card-stack-layer-back2 {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 12, 16, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  transform: rotate(-3.5deg) translate(-2px, -2px);
+  pointer-events: none;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+ }
+ .card-stack-layer-back1 {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 24, 0.95);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 4px;
+  transform: rotate(2.5deg) translate(2px, -1px);
+  pointer-events: none;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+ }
+ .concept-card:hover .card-stack-layer-back2 {
+  transform: rotate(-6deg) translate(-4px, -3px);
+  border-color: rgba(245, 158, 11, 0.4);
+ }
+ .concept-card:hover .card-stack-layer-back1 {
+  transform: rotate(4.5deg) translate(3px, -2px);
+  border-color: rgba(245, 158, 11, 0.6);
+ }
+ .card-stack-front {
+  position: relative;
+  z-index: 10;
+  background: rgba(8, 8, 11, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+ }
+ .card-stack-front:hover {
+  border-color: rgba(245, 158, 11, 0.8);
+  background: rgba(14, 14, 18, 0.98);
+ }
+ .rotating-card-track {
+  position: relative;
+  display: inline-block;
+  min-width: 120px;
+  max-width: 170px;
+  height: 13px;
+  overflow: hidden;
+  vertical-align: middle;
+ }
+ .rotating-card-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(8px) rotateX(-20deg);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+ }
+ .rotating-card-item.active {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+  pointer-events: auto;
+ }
+ .rotating-card-item.exiting {
+  opacity: 0;
+  transform: translateY(-8px) rotateX(20deg);
+ }
+
+ /* Navigation Dock */
+ .role-nav {
+  justify-content: flex-start;
+  justify-content: safe center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65);
+ }
+ .role-nav::-webkit-scrollbar {
+  display: none;
+ }
+
+ /* Navigation Dock Buttons */
+ .role-btn {
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  font-size: 0.68rem;
+  color: #666666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+  padding: 0.75rem 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+ }
+ @media (min-width: 1400px) {
+  .role-btn {
+   font-size: 0.74rem;
+   letter-spacing: 0.1em;
+  }
+ }
+ .role-btn:hover {
+  color: #D1D5DB;
+ }
+ .role-btn.active {
+  color: #FFFFFF;
+  text-shadow: 0 0 12px rgba(217, 119, 6, 0.6);
+ }
+ .role-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0%; height: 2px;
+  background: var(--accent-gold);
+  transition: width 0.3s ease;
+ }
+ .role-btn.active::after { width: 100%; }
+
+ /* CTA Button */
+ .btn-hire {
+  background: var(--accent-gold);
+  color: #000000;
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 1.1rem 3rem;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  transition: all 0.3s ease;
+  display: inline-block;
+ }
+ .btn-hire:hover {
+  background: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(217,119,6,0.5);
+ }
+
+ /* Security Toast Notification & Asset Shielding */
+ #securityToast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  transform: translateY(150%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+ }
+ #securityToast.show {
+  transform: translateY(0);
+ }
+ .concept-card img, header img {
+  -webkit-user-drag: none;
+  user-select: none;
+ }
+</style>
 </head>
 <body class="antialiased selection:bg-amber-600 selection:text-white">
 
-  <!-- Grain Overlay & Security Toast -->
-  <div class="noise-overlay"></div>
-  <div id="securityToast" class="bg-[#0A0A0E] border border-amber-500/50 text-white px-4 py-3 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.9)] flex items-center gap-3 font-mono-hud text-xs">
-    <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
-    <span id="securityToastMessage">Fermion Bec Productions // WGA &amp; Commercial IP Protected</span>
-  </div>
+ <!-- Scroll Depth Progress Bar & Parallax Atmospheric Backdrop -->
+ <div id="scroll-depth-bar" aria-hidden="true"></div>
+ <div id="depth-backdrop" aria-hidden="true">
+  <div class="depth-orb-amber"></div>
+  <div class="depth-orb-slate"></div>
+ </div>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-6 py-10 md:py-16 relative z-10">
+ <!-- Grain Overlay & Security Toast -->
+ <div class="noise-overlay"></div>
+ <div id="securityToast" class="bg-[#0A0A0E] border border-amber-500/50 text-white px-4 py-3 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.9)] flex items-center gap-3 font-mono-hud text-xs">
+  <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+  <span id="securityToastMessage">Fermion Bec Productions // WGA &amp; Commercial IP Protected</span>
+ </div>
 
-    <!-- HEADER / BRANDING -->
-    <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 border-b border-[#222225] pb-8 gap-8">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8">
-        
-        <div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-xl overflow-hidden border border-amber-500/40 shadow-[0_0_25px_rgba(217,119,6,0.25)] flex-shrink-0 bg-[#0A0A0C] relative group">
-          <img src="levibethelheaderimg.jpg" alt="Peter Levi Bethel" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-500">
-        </div>
+ <!-- MAIN CONTAINER -->
+ <main class="max-w-7xl mx-auto px-6 py-10 md:py-16 relative z-10">
 
-        <div>
-          <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs font-mono-hud text-amber-500 border border-amber-500/30 px-2 py-0.5 rounded bg-amber-500/10 tracking-widest uppercase">Fermion Bec Productions</span>
-            <span class="text-xs font-mono-hud text-emerald-400 flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              Q3/Q4 2026 OPEN
-            </span>
-          </div>
-          <h1 class="text-5xl md:text-7xl text-white font-hero tracking-wider">
-            <a href="index.html" class="hover:text-amber-100 transition">PETER LEVI BETHEL</a>
-          </h1>
-          <p class="text-[#888] text-xs md:text-sm font-studio tracking-[0.2em] uppercase mb-2">Director • Cinematographer • Editor</p>
-          <p class="text-xs font-mono-hud text-amber-500/90 tracking-wider">Specializing in Feature Film & Commercial Production</p>
-        </div>
-      </div>
+ <!-- HEADER / BRANDING -->
+ <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 border-b border-[#222225] pb-8 gap-8">
+  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8">
 
-      <div class="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
-        <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="text-xs font-mono-hud font-bold text-amber-500 hover:text-white uppercase tracking-widest transition flex items-center gap-2">
-          <span>// SCHEDULE CONSULTATION</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-      </div>
-    </header>
+   <div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-xl overflow-hidden border border-amber-500/40 shadow-[0_0_25px_rgba(217,119,6,0.25)] flex-shrink-0 bg-[#0A0A0C] relative group">
+    <img src="levibethelheaderimg.jpg" alt="Peter Levi Bethel" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:filter-none transition-all duration-500">
+   </div>
 
-    <!-- NAVIGATION DOCK -->
-    <nav class="role-nav sticky top-0 bg-[#050505]/95 backdrop-blur z-40 py-4 mb-16 border-b border-[#222225] flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 overflow-x-auto px-2 sm:px-4">
-      <a href="index.html#director" class="role-btn">Commercial Direction</a>
-      <a href="index.html#dp" class="role-btn">Cinema Optics &amp; DP</a>
-      <a href="index.html#editor" class="role-btn">DaVinci Color Suite</a>
-      <a href="concepts.html" class="role-btn active text-amber-400 font-medium">Concepts &amp; Packaging</a>
-      <a href="index.html#fermion-bec" class="role-btn text-amber-500 font-bold border-l border-[#333] pl-3 md:pl-4 lg:pl-6 xl:pl-8">Secure FBP Retainer</a>
-    </nav>
-
-    <!-- CONCEPTS & PACKAGING SECTION -->
-    <section id="view-packaging" class="mb-24">
-      
-      <!-- Section Header -->
-      <div class="mb-14 border-b border-[#1F1F24] pb-8">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest border border-amber-500/30 px-2.5 py-0.5 rounded bg-amber-500/10">
-                // PACKAGING &amp; PITCH SLATE
-              </span>
-              <span class="text-[11px] font-mono-hud text-emerald-400 flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                ACTIVE PACKAGING 2026
-              </span>
-            </div>
-            <h2 class="text-4xl md:text-6xl text-white font-hero tracking-wider">
-              CONCEPTS &amp; PACKAGING
-            </h2>
-          </div>
-          
-          <!-- IP Security Callout -->
-          <div class="text-left md:text-right max-w-md">
-            <div class="inline-flex items-center gap-2 bg-[#0E0E12] border border-amber-500/30 px-3 py-1.5 rounded mb-1">
-              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-              <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest font-semibold">IP PROTECTION PROTOCOL</span>
-            </div>
-            <p class="text-[11px] font-mono-hud text-[#777] leading-relaxed">
-              Full presentation decks, treatment one-pagers, and lookbooks are confidential. No full text or PDF files rendered. Use <span class="text-amber-400">"Request Full Deck"</span> for executive credentials.
-            </p>
-          </div>
-        </div>
-
-        <!-- Curatorial Statement -->
-        <p class="text-sm md:text-base text-[#8C8C92] font-light max-w-3xl leading-relaxed">
-          Demonstrating high-concept narrative development, commercial visual proposals, and atmospheric lookbooks. Each package establishes optical strategy, color space, and tonal pacing without exposing confidential plot mechanics or financial data.
-        </p>
-
-        <!-- Filter Bar -->
-        <div class="flex flex-wrap items-center justify-between gap-4 mt-8 pt-6 border-t border-[#18181D]">
-          <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="concepts-filter-bar">
-            <button 
-              type="button" 
-              onclick="filterConcepts('all', this)" 
-              class="concept-filter-btn active text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 transition"
-            >
-              All Projects (3)
-            </button>
-            <button 
-              type="button" 
-              onclick="filterConcepts('feature', this)" 
-              class="concept-filter-btn text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-[#26262E] text-[#777] hover:text-white hover:border-[#444] transition"
-            >
-              Features (2)
-            </button>
-            <button 
-              type="button" 
-              onclick="filterConcepts('commercial', this)" 
-              class="concept-filter-btn text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-[#26262E] text-[#777] hover:text-white hover:border-[#444] transition"
-            >
-              Commercials (1)
-            </button>
-          </div>
-
-          <div class="text-[11px] font-mono-hud text-[#555] flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse"></span>
-            <span>PROPRIETARY SLATE // READY TO PITCH</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Responsive Masonry / Standard Grid -->
-      <div id="concepts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-        
-        <!-- CARD 1: The Weight of Light -->
-        <article class="concept-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 transition-all duration-500 hover:shadow-[0_0_35px_rgba(217,119,6,0.15)] relative" data-project-id="the-weight-of-light">
-          <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1A1A1F]">
-            <img 
-              src="assets/images/concepts/the-weight-of-light.jpg" 
-              alt="The Weight of Light Mood Board" 
-              onerror="this.onerror=null; this.src='essential1.jpg';" 
-              class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
-              <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
-                2.39:1 SCOPE
-              </span>
-              <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-weight-of-light" title="Click to cycle production package materials">
-                <div class="card-stack-layer-back2"></div>
-                <div class="card-stack-layer-back1"></div>
-                <div class="card-stack-front">
-                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
-                  <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PKG:</span>
-                  <div class="rotating-card-track">
-                    <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/06 6-Slide Visual Proposal</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/06 Anamorphic Optical Strategy</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/06 Desert Dawn Lighting Manifest</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/06 Motivated High-Key Lighting</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/06 Vehicle Dynamic Framing Grids</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/06 DaVinci Wide Gamut CST Color</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
-              <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-              <span>RESTRICTED IP</span>
-            </div>
-            <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
-              <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4A373;" title="Tone: Desert Dawn Amber #D4A373"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #111318;" title="Tone: Metallic Obsidian #111318"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #4E4856;" title="Tone: Mountain Slate #4E4856"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #C4BFCA;" title="Tone: Specular Salt Chrome #C4BFCA"></span>
-            </div>
-          </div>
-
-          <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
-                  // Commercial Concept Deck (Lucid Motors)
-                </span>
-              </div>
-              <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
-                The Weight of Light
-              </h3>
-              <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-6">
-                A six-slide visual proposal exploring the intersection of raw cinematic environments and automotive engineering.
-              </p>
-              <div class="text-[10px] font-mono-hud text-[#686870] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
-                <p><span class="text-[#888]">ATMOSPHERE:</span> Anamorphic Optics • Desert Dawn • High-Contrast Motivated Light</p>
-                <p><span class="text-[#888]">PROTECTION:</span> CONFIDENTIAL // PROPRIETARY COMMERCIAL SPEC</p>
-              </div>
-              <div class="flex flex-wrap gap-1.5 mb-8">
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Commercial Deck</span>
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Lucid Motors</span>
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Anamorphic</span>
-              </div>
-            </div>
-
-            <div class="pt-5 border-t border-[#1C1C22] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-              <div class="text-[10px] font-mono-hud text-[#555] flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-                <span>CONFIDENTIAL DECK</span>
-              </div>
-              <button 
-                type="button"
-                onclick="openDeckRequestModal('the-weight-of-light', 'The Weight of Light', 'Commercial Concept Deck (Lucid Motors)')"
-                class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(217,119,6,0.1)]"
-              >
-                <span>Request Full Deck</span>
-                <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 2: The Binding Seam -->
-        <article class="concept-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 transition-all duration-500 hover:shadow-[0_0_35px_rgba(217,119,6,0.15)] relative" data-project-id="the-binding-seam">
-          <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1A1A1F]">
-            <img 
-              src="assets/images/concepts/the-binding-seam.jpg" 
-              alt="The Binding Seam Mood Board" 
-              onerror="this.onerror=null; this.src='essential1.jpg';" 
-              class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
-              <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
-                2.39:1 SCOPE
-              </span>
-              <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-binding-seam" title="Click to cycle production package assets">
-                <div class="card-stack-layer-back2"></div>
-                <div class="card-stack-layer-back1"></div>
-                <div class="card-stack-front">
-                  <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse flex-shrink-0"></span>
-                  <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PACKAGE:</span>
-                  <div class="rotating-card-track">
-                    <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/12 110-Page Master Screenplay</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/12 12-Slide Visual Lookbook Deck</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/12 Official 10-Slide Pitch Deck</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/12 $850k Budget Top Sheet (SAG-AFTRA)</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/12 35% NJ Tax Credit ($228k Rebate)</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/12 18-Day Master Production Plan</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/12 Brand Sponsorship Stack Dossier</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/12 Camera & Multicam Case Study</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="8">09/12 Cast & Crew Sourcing Dossier</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="9">10/12 Equipment & Office Manifest</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="10">11/12 Director's Thematic Project Bible</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="11">12/12 Executive One-Pager Submission</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
-              <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-              <span>RESTRICTED IP</span>
-            </div>
-            <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5">
-              <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #8B2500;" title="Tone: #8B2500"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #FF8C00;" title="Tone: #FF8C00"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #0A0F0D;" title="Tone: #0A0F0D"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D8D8D8;" title="Tone: #D8D8D8"></span>
-            </div>
-          </div>
-
-          <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
-                  // COMPLETELY PACKAGED FEATURE LENGTH HORROR
-                </span>
-              </div>
-              <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
-                The Binding Seam
-              </h3>
-
-              <!-- REFINED OFFICIAL FESTIVAL LAUREL SHOWCASE -->
-              <div class="mb-6 p-4 rounded-xl bg-gradient-to-r from-[#08090C] via-[#101218] to-[#08090C] border border-amber-500/45 shadow-[0_0_30px_rgba(245,158,11,0.15)] flex flex-col sm:flex-row items-center gap-4">
-                <div class="relative flex-shrink-0 rounded-xl overflow-hidden border border-amber-500/35 bg-[#14181C] p-1 shadow-[0_0_20px_rgba(197,160,89,0.25)]">
-                  <img 
-                    src="filmlaurel.png" 
-                    alt="Winner &amp; Finalist — The Binding Seam by Peter Levi Bethel (The Scared Slate, Unlimited Studios 2026)" 
-                    class="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div class="min-w-0 text-center sm:text-left">
-                  <span class="text-[9px] font-mono-hud text-amber-400 uppercase tracking-widest font-bold block mb-0.5">
-                    // 2026 OFFICIAL ACCOLADE
-                  </span>
-                  <div class="text-sm sm:text-base font-hero text-white tracking-wide font-bold leading-snug">
-                    WINNER &amp; FINALIST — THE SCARED SLATE
-                  </div>
-                  <div class="text-xs font-mono-hud text-amber-400/95 font-medium mt-0.5">
-                    Unlimited Studios (2026) • By Peter Levi Bethel
-                  </div>
-                  <div class="text-[10px] font-mono-hud text-[#8C8C92] mt-1 leading-relaxed">
-                    Award-recognized 110-page feature screenplay &amp; 12-part investor package.
-                  </div>
-                </div>
-              </div>
-
-              <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-6">
-                A proof-of-concept visual breakdown establishing the tonal landscape, color palette, and atmospheric tension for a grounded dramatic thriller.
-              </p>
-              <div class="text-[10px] font-mono-hud text-[#686870] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
-                <p><span class="text-[#888]">ATMOSPHERE:</span> Barnegat Fog • Obsidian Pitch Pines • Bog Iron Rust & Amber Flare</p>
-                <p><span class="text-[#888]">PROTECTION:</span> CONFIDENTIAL // WGA REGISTERED IP • PROTECTED SLATE</p>
-              </div>
-              <div class="flex flex-wrap gap-1.5 mb-8">
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Completely Packaged</span>
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">A24 Aesthetic</span>
-              </div>
-            </div>
-
-            <div class="pt-5 border-t border-[#1C1C22] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-              <div class="text-[10px] font-mono-hud text-[#555] flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-                <span>CONFIDENTIAL DECK</span>
-              </div>
-              <button 
-                type="button"
-                onclick="openDeckRequestModal('the-binding-seam', 'The Binding Seam', 'Completely Packaged Feature Length Horror')"
-                class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(217,119,6,0.1)]"
-              >
-                <span>Request Full Deck</span>
-                <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 3: Crossfire Cousins -->
-        <article class="concept-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 transition-all duration-500 hover:shadow-[0_0_35px_rgba(217,119,6,0.15)] relative" data-project-id="crossfire-cousins">
-          <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1A1A1F]">
-            <img 
-              src="assets/images/concepts/crossfire-cousins.jpg" 
-              alt="Crossfire Cousins Mood Board" 
-              onerror="this.onerror=null; this.src='essential3.jpg';" 
-              class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
-              <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
-                2.39:1 SCOPE
-              </span>
-              <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="crossfire-cousins" title="Click to cycle production package assets">
-                <div class="card-stack-layer-back2"></div>
-                <div class="card-stack-layer-back1"></div>
-                <div class="card-stack-front">
-                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
-                  <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">LOOKBOOK &amp; ASSETS:</span>
-                  <div class="rotating-card-track">
-                    <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/08 108-Page Action Comedy Script</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/08 13-Slide Production Pitch Deck</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/08 Anamorphic Visual Lookbook</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/08 6-Location 12-Day Clustered Plan</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/08 6-Camera Simultaneous Workflow</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/08 $2.1M Financial & NJEDA Waterfall</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/08 Pre-Lit Spatial Blocking Blueprint</span>
-                    <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/08 Matriarchal & Antagonist Packaging</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
-              <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-              <span>RESTRICTED IP</span>
-            </div>
-            <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
-              <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #E65C00;" title="Tone: Anamorphic Streak #E65C00"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4AF37;" title="Tone: California Gold #D4AF37"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #1A1C23;" title="Tone: Deep Indigo Shadow #1A1C23"></span>
-              <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #8B92A5;" title="Tone: Stucco Slate #8B92A5"></span>
-            </div>
-          </div>
-
-          <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
-                  // Feature Film Production Deck
-                </span>
-              </div>
-              <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
-                Crossfire Cousins
-              </h3>
-              <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-6">
-                A conceptual lookbook highlighting character dynamics, atmospheric scene breakdowns, and the overarching cinematic visual strategy for a character-driven feature.
-              </p>
-              <div class="text-[10px] font-mono-hud text-[#686870] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
-                <p><span class="text-[#888]">ATMOSPHERE:</span> Character Dynamics • High-Friction Shadows • Urban Twilight &amp; Tungsten</p>
-                <p><span class="text-[#888]">PROTECTION:</span> CONFIDENTIAL // FINANCING &amp; PACKAGING SUITE</p>
-              </div>
-              <div class="flex flex-wrap gap-1.5 mb-8">
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Production Deck</span>
-                <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Lookbook</span>
-              </div>
-            </div>
-
-            <div class="pt-5 border-t border-[#1C1C22] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-              <div class="text-[10px] font-mono-hud text-[#555] flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-                <span>CONFIDENTIAL DECK</span>
-              </div>
-              <button 
-                type="button"
-                onclick="openDeckRequestModal('crossfire-cousins', 'Crossfire Cousins', 'Feature Film Production Deck')"
-                class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(217,119,6,0.1)]"
-              >
-                <span>Request Full Deck</span>
-                <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <!-- Bottom Packaging Commission Callout -->
-      <div class="mt-16 bg-[#0A0A0E] border border-[#1F1F26] rounded-xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div>
-          <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">
-            // CUSTOM PACKAGING COMMISSION
-          </span>
-          <h3 class="text-2xl text-white font-hero tracking-wide mb-2">
-            NEED A PRODUCTION DECK OR LOOKBOOK ENGINEERED?
-          </h3>
-          <p class="text-xs text-[#888] max-w-xl leading-relaxed font-light">
-            Fermion Bec Productions crafts bespoke visual lookbooks, director's treatments, and commercial pitch decks for independent filmmakers, production houses, and luxury brands.
-          </p>
-        </div>
-        <a 
-          href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" 
-          target="_blank" 
-          class="btn-hire text-xs whitespace-nowrap"
-        >
-          Book Packaging Session
-        </a>
-      </div>
-
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="text-center py-16 border-t border-[#222225] bg-[#0A0A0C]/50 rounded p-8">
-      <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-3">// INITIATE PRODUCTION</span>
-      <h2 class="text-4xl md:text-5xl text-white mb-6 font-hero">READY TO ELEVATE YOUR NEXT COMMERCIAL OR FEATURE?</h2>
-      
-      <div class="flex justify-center items-center mb-10">
-        <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="btn-hire">
-          Schedule Consultation
-        </a>
-      </div>
-
-      <div class="text-xs font-mono-hud text-[#555] space-y-2">
-        <p>New Jersey / NYC Metropolitan Area • Available Nationwide</p>
-        <p>© 2026 PETER LEVI BETHEL / FERMION BEC PRODUCTIONS. ALL RIGHTS RESERVED.</p>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- DECK REQUEST MODAL (CONFIDENTIAL PACKAGING PROTOCOL) -->
-  <div id="deck-request-modal" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-4 sm:p-6 backdrop-blur-md transition-opacity duration-300">
-    <div class="bg-[#0A0A0E] border border-[#26262E] rounded-2xl max-w-xl w-full p-6 sm:p-8 md:p-10 relative shadow-[0_0_60px_rgba(0,0,0,0.95)] max-h-[90vh] overflow-y-auto">
-      
-      <!-- Header HUD -->
-      <div class="flex justify-between items-start mb-6 border-b border-[#1E1E24] pb-4">
-        <div>
-          <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">
-            // DECK ACCESS PROTOCOL • CONFIDENTIAL
-          </span>
-          <h3 class="text-2xl sm:text-3xl font-hero text-white tracking-wide">
-            REQUEST PACKAGING DOSSIER
-          </h3>
-        </div>
-        <button 
-          type="button"
-          onclick="closeDeckRequestModal()" 
-          class="text-xs font-mono-hud text-[#888] hover:text-white transition px-2 py-1 rounded hover:bg-white/5"
-          aria-label="Close modal"
-        >
-          [CLOSE ✕]
-        </button>
-      </div>
-
-      <!-- IP Protection Notice -->
-      <div class="mb-6 p-3.5 bg-[#0F0F14] border border-[#222228] rounded-lg text-xs text-[#8E8E98] leading-relaxed flex items-start gap-3">
-        <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-        </svg>
-        <p>
-          Presentation decks and treatments are protected by Fermion Bec Productions. Access is granted to verified studio executives, producers, agency reps, and commercial brand leaders under mutual confidentiality.
-        </p>
-      </div>
-
-      <!-- Form Container -->
-      <div id="deck-form-container">
-        <form id="deck-inquiry-form" onsubmit="handleDeckRequestSubmit(event)" class="space-y-4">
-          <input type="text" name="_honey" id="deck-honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
-          
-          <!-- Read-Only Auto-Captured Project Title -->
-          <div>
-            <label class="block text-[11px] font-mono-hud text-amber-400 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-              <span>Requested Project Deck</span>
-              <span class="text-[9px] text-[#666]">// AUTO-CAPTURED (READ-ONLY)</span>
-            </label>
-            <div class="relative">
-              <input 
-                type="text" 
-                id="modal-project-title-display" 
-                readonly 
-                tabindex="-1"
-                class="w-full bg-[#121217] border border-amber-500/40 text-amber-300 font-mono-hud text-xs sm:text-sm px-3.5 py-2.5 rounded cursor-not-allowed select-none focus:outline-none focus:border-amber-500"
-                value=""
-              />
-              <div class="absolute right-3 top-2.5 text-[#666]">
-                <svg class="w-4 h-4 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-              </div>
-            </div>
-            <input type="hidden" id="modal-project-id" name="project_id" value="" />
-            <input type="hidden" id="modal-project-format" name="project_format" value="" />
-          </div>
-
-          <!-- Requester Name (Required) -->
-          <div>
-            <label for="modal-requester-name" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
-              Requester's Full Name <span class="text-amber-500">*</span>
-            </label>
-            <input 
-              type="text" 
-              id="modal-requester-name" 
-              name="requester_name" 
-              required 
-              placeholder="e.g., Alexandra Vance" 
-              class="w-full bg-[#0F0F14] border border-[#2A2A33] text-white text-sm px-3.5 py-2.5 rounded focus:border-amber-500 focus:bg-[#14141A] focus:outline-none transition"
-            />
-          </div>
-
-          <!-- Production Company / Agency (Required) -->
-          <div>
-            <label for="modal-requester-company" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
-              Production Company / Agency / Brand <span class="text-amber-500">*</span>
-            </label>
-            <input 
-              type="text" 
-              id="modal-requester-company" 
-              name="requester_company" 
-              required 
-              placeholder="e.g., A24, Anonymous Content, Lucid Motors, CAA" 
-              class="w-full bg-[#0F0F14] border border-[#2A2A33] text-white text-sm px-3.5 py-2.5 rounded focus:border-amber-500 focus:bg-[#14141A] focus:outline-none transition"
-            />
-          </div>
-
-          <!-- Professional Email (Required) -->
-          <div>
-            <label for="modal-requester-email" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
-              Professional Email Address <span class="text-amber-500">*</span>
-            </label>
-            <input 
-              type="email" 
-              id="modal-requester-email" 
-              name="requester_email" 
-              required 
-              placeholder="e.g., alexandra@anonymouscontent.com" 
-              class="w-full bg-[#0F0F14] border border-[#2A2A33] text-white text-sm px-3.5 py-2.5 rounded focus:border-amber-500 focus:bg-[#14141A] focus:outline-none transition"
-            />
-          </div>
-
-          <!-- Role & Timeline -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label for="modal-requester-role" class="block text-[11px] font-mono-hud text-[#888] uppercase tracking-wider mb-1.5">
-                Professional Capacity
-              </label>
-              <select 
-                id="modal-requester-role" 
-                name="requester_role" 
-                class="w-full bg-[#0F0F14] border border-[#2A2A33] text-[#CCC] text-xs px-3.5 py-2.5 rounded focus:border-amber-500 focus:outline-none transition"
-              >
-                <option value="Producer / Executive">Producer / Executive</option>
-                <option value="Acquisitions / Financing">Acquisitions / Financing</option>
-                <option value="Agency / Management">Agency / Management</option>
-                <option value="Commercial Brand / Agency Lead">Commercial Brand / Agency Lead</option>
-                <option value="Cinematographer / Crew">Cinematographer / Crew</option>
-                <option value="Other">Other Representative</option>
-              </select>
-            </div>
-            <div>
-              <label for="modal-inquiry-scope" class="block text-[11px] font-mono-hud text-[#888] uppercase tracking-wider mb-1.5">
-                Timeline / Slate Phase
-              </label>
-              <select 
-                id="modal-inquiry-scope" 
-                name="inquiry_scope" 
-                class="w-full bg-[#0F0F14] border border-[#2A2A33] text-[#CCC] text-xs px-3.5 py-2.5 rounded focus:border-amber-500 focus:outline-none transition"
-              >
-                <option value="Q3/Q4 2026 Production">Q3/Q4 2026 Production</option>
-                <option value="Development &amp; Packaging">Development &amp; Packaging</option>
-                <option value="Commercial Bid / Pitch">Commercial Bid / Pitch</option>
-                <option value="General Agency Review">General Agency Review</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Mutual Confidentiality Checkbox -->
-          <div class="pt-2">
-            <label class="flex items-start gap-2.5 cursor-pointer text-xs text-[#888]">
-              <input 
-                type="checkbox" 
-                required 
-                class="mt-0.5 rounded bg-[#121216] border-[#333] text-amber-500 focus:ring-0 cursor-pointer"
-              />
-              <span>I acknowledge that requested decks are proprietary to Fermion Bec Productions and agree to maintain strict confidentiality.</span>
-            </label>
-          </div>
-
-          <!-- Submit Button & Controls -->
-          <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
-            <button 
-              type="submit" 
-              id="btn-submit-deck-request"
-              class="w-full sm:w-auto flex-1 btn-hire text-center cursor-pointer"
-            >
-              Transmit Deck Request
-            </button>
-            <button 
-              type="button" 
-              onclick="closeDeckRequestModal()" 
-              class="w-full sm:w-auto text-xs font-mono-hud text-[#888] hover:text-white px-5 py-3 rounded border border-[#28282E] hover:border-[#444] transition text-center"
-            >
-              Cancel
-            </button>
-          </div>
-
-        </form>
-      </div>
-
-      <!-- Success Container -->
-      <div id="deck-success-container" class="hidden text-center py-6">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.25)]">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-        </div>
-        <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-2">
-          // FINAL STEP: CLIENT TRANSMISSION
-        </span>
-        <h3 class="text-2xl font-hero text-white mb-2">
-          SEND INQUIRY VIA EMAIL APP
-        </h3>
-        <p class="text-xs font-mono-hud text-amber-400 mb-3 tracking-wider" id="deck-success-ref">
-          REF: FBP-DECK-2026-X9
-        </p>
-        <div id="deck-success-notice" class="mb-4 p-3.5 rounded bg-amber-500/10 border border-amber-500/40 text-[11px] font-mono-hud text-amber-300 max-w-md mx-auto leading-relaxed">
-          ⚠ ACTION REQUIRED: Tap below to open your email app and send your pre-formatted request. Your inquiry is not delivered until sent.
-        </div>
-        <p class="text-sm text-[#8C8C92] font-light max-w-md mx-auto mb-6 leading-relaxed">
-          Your inquiry for <strong class="text-white font-medium" id="deck-success-project-name">The Project</strong> has been encrypted and formatted. Tap the button below to launch your email app (Mail, Gmail, Outlook) and hit <strong>"Send"</strong> to deliver your request directly to Peter Levi Bethel.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a 
-            id="btn-deck-mailto-fallback" 
-            href="#" 
-            onclick="handleMailtoClick()"
-            class="btn-hire w-full sm:w-auto text-xs flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(217,119,6,0.4)]"
-          >
-            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <span>Tap to Send via Email App (Required)</span>
-          </a>
-          <button 
-            type="button" 
-            onclick="closeDeckRequestModal()" 
-            class="w-full sm:w-auto text-xs font-mono-hud text-[#888] hover:text-white px-5 py-3 rounded border border-[#28282E] hover:border-[#444] transition text-center"
-          >
-            Return to Gallery
-          </button>
-        </div>
-      </div>
-
+   <div>
+    <div class="flex items-center gap-3 mb-2 flex-wrap">
+     <img src="assets/images/fbp-logo-primary.svg" alt="Fermion Bec Productions Logo" class="h-10 w-auto object-contain">
+     <span class="text-xs font-mono-hud text-amber-500 border border-amber-500/30 px-2 py-0.5 rounded bg-amber-500/10 tracking-widest uppercase">Fermion Bec Productions</span>
+     <span class="text-xs font-mono-hud text-emerald-400 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      Q3/Q4 2026 OPEN
+     </span>
     </div>
+    <h1 class="text-5xl md:text-7xl text-white font-hero tracking-wider">
+     <a href="index.html" class="hover:text-amber-100 transition">PETER LEVI BETHEL</a>
+    </h1>
+    <p class="text-[#888] text-xs md:text-sm font-studio tracking-[0.2em] uppercase mb-2">Director • Cinematographer • Editor</p>
+    <p class="text-xs font-mono-hud text-amber-500/90 tracking-wider">Specializing in Feature Film &amp; Commercial Production</p>
+   </div>
   </div>
 
-  <!-- CONCEPTS & PACKAGING ARCHITECTURE -->
-  <script src="data/concepts.js"></script>
-  <script src="components/concepts/ConceptCard.js"></script>
-  <script src="components/concepts/DeckRequestModal.js"></script>
-  <script src="components/concepts/ConceptsGallery.js"></script>
-  <script src="js/concepts.js"></script>
+  <div class="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
+   <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="text-xs font-mono-hud font-bold text-amber-500 hover:text-white uppercase tracking-widest transition flex items-center gap-2">
+    <span>// SCHEDULE CONSULTATION</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+   </a>
+  </div>
+ </header>
+
+ <!-- NAVIGATION DOCK -->
+ <nav class="role-nav sticky top-0 bg-[#050505]/90 backdrop-blur-xl z-40 py-4 mb-16 border-b border-[#222225] flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 overflow-x-auto px-2 sm:px-4">
+  <a href="index.html#director" class="role-btn">Commercial Direction</a>
+  <a href="index.html#dp" class="role-btn">Cinema Optics &amp; DP</a>
+  <a href="index.html#editor" class="role-btn">DaVinci Color Suite</a>
+  <a href="concepts.html" class="role-btn active text-amber-400 font-medium">Concepts &amp; Packaging</a>
+  <a href="index.html#fermion-bec" class="role-btn text-amber-500 font-bold border-l border-[#333] pl-3 md:pl-4 lg:pl-6 xl:pl-8">Secure FBP Retainer</a>
+ </nav>
+
+ <!-- CONCEPTS & PACKAGING SECTION -->
+ <section id="view-packaging" class="mb-24 depth-reveal">
+
+  <!-- Section Header -->
+  <div class="mb-14 border-b border-[#1F1F24] pb-8">
+   <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6">
+    <div>
+     <div class="flex items-center gap-3 mb-2">
+      <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest border border-amber-500/30 px-2.5 py-0.5 rounded bg-amber-500/10">
+       // PACKAGING &amp; PITCH SLATE
+      </span>
+      <span class="text-[11px] font-mono-hud text-emerald-400 flex items-center gap-1.5">
+       <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+       ACTIVE PACKAGING 2026
+      </span>
+     </div>
+     <h2 class="text-4xl md:text-6xl text-white font-hero tracking-wider">
+      CONCEPTS &amp; PACKAGING
+     </h2>
+    </div>
+
+    <!-- IP Security Callout -->
+    <div class="text-left md:text-right max-w-md">
+     <div class="inline-flex items-center gap-2 bg-[#0E0E12] border border-amber-500/30 px-3 py-1.5 rounded mb-1">
+      <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+      <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest font-semibold">IP PROTECTION PROTOCOL</span>
+     </div>
+     <p class="text-[11px] font-mono-hud text-[#777] leading-relaxed">
+      Full presentation decks, treatment one-pagers, and lookbooks are confidential. No full text or PDF files rendered. Use <span class="text-amber-400">"Request Full Deck"</span> for executive credentials.
+     </p>
+    </div>
+   </div>
+
+   <!-- Curatorial Statement -->
+   <p class="text-sm md:text-base text-[#8C8C92] font-light max-w-3xl leading-relaxed">
+    Demonstrating high-concept narrative development, commercial visual proposals, and atmospheric lookbooks. Each package establishes optical strategy, color space, and tonal pacing without exposing confidential plot mechanics or financial data.
+   </p>
+
+   <!-- Filter Bar -->
+   <div class="flex flex-wrap items-center justify-between gap-4 mt-8 pt-6 border-t border-[#18181D]">
+    <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="concepts-filter-bar">
+     <button
+      type="button"
+      onclick="filterConcepts('all', this)"
+      class="concept-filter-btn active text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 transition"
+     >
+      All Projects (3)
+     </button>
+     <button
+      type="button"
+      onclick="filterConcepts('feature', this)"
+      class="concept-filter-btn text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-[#26262E] text-[#777] hover:text-white hover:border-[#444] transition"
+     >
+      Features (2)
+     </button>
+     <button
+      type="button"
+      onclick="filterConcepts('commercial', this)"
+      class="concept-filter-btn text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-[#26262E] text-[#777] hover:text-white hover:border-[#444] transition"
+     >
+      Commercials (1)
+     </button>
+    </div>
+
+    <div class="text-[11px] font-mono-hud text-[#555] flex items-center gap-2">
+     <span class="w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse"></span>
+     <span>PROPRIETARY SLATE // READY TO PITCH</span>
+    </div>
+   </div>
+  </div>
+
+  <!-- Responsive Masonry / Standard Grid -->
+  <div id="concepts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+
+   <!-- CARD 1: The Weight of Light -->
+   <article class="concept-card depth-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative" data-project-id="the-weight-of-light">
+    <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1A1A1F]">
+     <img
+      src="assets/images/concepts/the-weight-of-light.jpg"
+      alt="The Weight of Light Mood Board"
+      onerror="this.onerror=null; this.src='essential1.jpg';"
+      class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
+      loading="lazy"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
+     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
+      <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
+       2.39:1 SCOPE
+      </span>
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-weight-of-light" title="Click to cycle production package materials">
+       <div class="card-stack-layer-back2"></div>
+       <div class="card-stack-layer-back1"></div>
+       <div class="card-stack-front">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+        <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PKG:</span>
+        <div class="rotating-card-track">
+         <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/06 6-Slide Visual Proposal</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/06 Anamorphic Optical Strategy</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/06 Desert Dawn Lighting Manifest</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/06 Motivated High-Key Lighting</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/06 Vehicle Dynamic Framing Grids</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/06 DaVinci Wide Gamut CST Color</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+      <span>RESTRICTED IP</span>
+     </div>
+     <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
+      <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4A373;" title="Tone: Desert Dawn Amber #D4A373"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #111318;" title="Tone: Metallic Obsidian #111318"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #4E4856;" title="Tone: Mountain Slate #4E4856"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #C4BFCA;" title="Tone: Specular Salt Chrome #C4BFCA"></span>
+     </div>
+    </div>
+
+    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
+        // Commercial Concept Deck (Lucid Motors)
+       </span>
+      </div>
+      <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
+       The Weight of Light
+      </h3>
+      <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-6">
+       A six-slide visual proposal exploring the intersection of raw cinematic environments and automotive engineering.
+      </p>
+      <div class="text-[10px] font-mono-hud text-[#686870] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
+       <p><span class="text-[#888]">ATMOSPHERE:</span> Anamorphic Optics • Desert Dawn • High-Contrast Motivated Light</p>
+       <p><span class="text-[#888]">PROTECTION:</span> CONFIDENTIAL // PROPRIETARY COMMERCIAL SPEC</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mb-8">
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Commercial Deck</span>
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Lucid Motors</span>
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Anamorphic</span>
+      </div>
+     </div>
+
+     <div class="pt-5 border-t border-[#1C1C22] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      <div class="text-[10px] font-mono-hud text-[#555] flex items-center gap-1.5">
+       <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+       </svg>
+       <span>CONFIDENTIAL DECK</span>
+      </div>
+      <button
+       type="button"
+       onclick="openDeckRequestModal('the-weight-of-light', 'The Weight of Light', 'Commercial Concept Deck (Lucid Motors)')"
+       class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(217,119,6,0.1)]"
+      >
+       <span>Request Full Deck</span>
+       <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+       </svg>
+      </button>
+     </div>
+    </div>
+   </article>
+
+   <!-- CARD 2: The Binding Seam -->
+   <article class="concept-card depth-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative" data-project-id="the-binding-seam">
+    <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1A1A1F]">
+     <img
+      src="assets/images/concepts/the-binding-seam.jpg"
+      alt="The Binding Seam Mood Board"
+      onerror="this.onerror=null; this.src='essential1.jpg';"
+      class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
+      loading="lazy"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
+     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
+      <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
+       2.39:1 SCOPE
+      </span>
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-binding-seam" title="Click to cycle production package assets">
+       <div class="card-stack-layer-back2"></div>
+       <div class="card-stack-layer-back1"></div>
+       <div class="card-stack-front">
+        <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse flex-shrink-0"></span>
+        <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PACKAGE:</span>
+        <div class="rotating-card-track">
+         <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/12 110-Page Master Screenplay</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/12 12-Slide Visual Lookbook Deck</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/12 Official 10-Slide Pitch Deck</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/12 $850k Budget Top Sheet (SAG-AFTRA)</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/12 35% NJ Tax Credit ($228k Rebate)</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/12 18-Day Master Production Plan</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/12 Brand Sponsorship Stack Dossier</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/12 Camera &amp; Multicam Case Study</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="8">09/12 Cast &amp; Crew Sourcing Dossier</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="9">10/12 Equipment &amp; Office Manifest</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="10">11/12 Director's Thematic Project Bible</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="11">12/12 Executive One-Pager Submission</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+      <span>RESTRICTED IP</span>
+     </div>
+     <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5">
+      <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #8B2500;" title="Tone: #8B2500"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #FF8C00;" title="Tone: #FF8C00"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #0A0F0D;" title="Tone: #0A0F0D"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D8D8D8;" title="Tone: #D8D8D8"></span>
+     </div>
+    </div>
+
+    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
+        // COMPLETELY PACKAGED FEATURE LENGTH HORROR
+       </span>
+      </div>
+      <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
+       The Binding Seam
+      </h3>
+
+      <!-- REFINED OFFICIAL FESTIVAL LAUREL SHOWCASE -->
+      <div class="mb-6 p-4 rounded-xl bg-gradient-to-r from-[#08090C] via-[#101218] to-[#08090C] border border-amber-500/45 shadow-[0_0_30px_rgba(245,158,11,0.15)] flex flex-col sm:flex-row items-center gap-4">
+       <div class="relative flex-shrink-0 rounded-xl overflow-hidden border border-amber-500/35 bg-[#14181C] p-1 shadow-[0_0_20px_rgba(197,160,89,0.25)]">
+        <img
+         src="filmlaurel.png"
+         alt="Winner &amp; Finalist — The Binding Seam by Peter Levi Bethel (The Scared Slate, Unlimited Studios 2026)"
+         class="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500"
+        />
+       </div>
+       <div class="min-w-0 text-center sm:text-left">
+        <span class="text-[9px] font-mono-hud text-amber-400 uppercase tracking-widest font-bold block mb-0.5">
+         // 2026 OFFICIAL ACCOLADE
+        </span>
+        <div class="text-sm sm:text-base font-hero text-white tracking-wide font-bold leading-snug">
+         WINNER &amp; FINALIST — THE SCARED SLATE
+        </div>
+        <div class="text-xs font-mono-hud text-amber-400/95 font-medium mt-0.5">
+         Unlimited Studios (2026) • By Peter Levi Bethel
+        </div>
+        <div class="text-[10px] font-mono-hud text-[#8C8C92] mt-1 leading-relaxed">
+         Award-recognized 110-page feature screenplay &amp; 12-part investor package.
+        </div>
+       </div>
+      </div>
+
+      <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-6">
+       A proof-of-concept visual breakdown establishing the tonal landscape, color palette, and atmospheric tension for a grounded dramatic thriller.
+      </p>
+      <div class="text-[10px] font-mono-hud text-[#686870] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
+       <p><span class="text-[#888]">ATMOSPHERE:</span> Barnegat Fog • Obsidian Pitch Pines • Bog Iron Rust &amp; Amber Flare</p>
+       <p><span class="text-[#888]">PROTECTION:</span> CONFIDENTIAL // WGA REGISTERED IP • PROTECTED SLATE</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mb-8">
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Completely Packaged</span>
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">A24 Aesthetic</span>
+      </div>
+     </div>
+
+     <div class="pt-5 border-t border-[#1C1C22] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      <div class="text-[10px] font-mono-hud text-[#555] flex items-center gap-1.5">
+       <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+       </svg>
+       <span>CONFIDENTIAL DECK</span>
+      </div>
+      <button
+       type="button"
+       onclick="openDeckRequestModal('the-binding-seam', 'The Binding Seam', 'Completely Packaged Feature Length Horror')"
+       class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(217,119,6,0.1)]"
+      >
+       <span>Request Full Deck</span>
+       <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+       </svg>
+      </button>
+     </div>
+    </div>
+   </article>
+
+   <!-- CARD 3: Crossfire Cousins -->
+   <article class="concept-card depth-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative" data-project-id="crossfire-cousins">
+    <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1A1A1F]">
+     <img
+      src="assets/images/concepts/crossfire-cousins.jpg"
+      alt="Crossfire Cousins Mood Board"
+      onerror="this.onerror=null; this.src='essential3.jpg';"
+      class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
+      loading="lazy"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0D] via-transparent to-black/60 pointer-events-none"></div>
+     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
+      <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
+       2.39:1 SCOPE
+      </span>
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="crossfire-cousins" title="Click to cycle production package assets">
+       <div class="card-stack-layer-back2"></div>
+       <div class="card-stack-layer-back1"></div>
+       <div class="card-stack-front">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+        <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">LOOKBOOK &amp; ASSETS:</span>
+        <div class="rotating-card-track">
+         <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/08 108-Page Action Comedy Script</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/08 13-Slide Production Pitch Deck</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/08 Anamorphic Visual Lookbook</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/08 6-Location 12-Day Clustered Plan</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/08 6-Camera Simultaneous Workflow</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/08 $2.1M Financial &amp; NJEDA Waterfall</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/08 Pre-Lit Spatial Blocking Blueprint</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/08 Matriarchal &amp; Antagonist Packaging</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+      <span>RESTRICTED IP</span>
+     </div>
+     <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
+      <span class="text-[9px] font-mono-hud text-[#777] uppercase tracking-wider mr-1">TONE:</span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #E65C00;" title="Tone: Anamorphic Streak #E65C00"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4AF37;" title="Tone: California Gold #D4AF37"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #1A1C23;" title="Tone: Deep Indigo Shadow #1A1C23"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #8B92A5;" title="Tone: Stucco Slate #8B92A5"></span>
+     </div>
+    </div>
+
+    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
+        // Feature Film Production Deck
+       </span>
+      </div>
+      <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
+       Crossfire Cousins
+      </h3>
+      <p class="text-xs md:text-sm text-[#8C8C92] font-light leading-relaxed mb-6">
+       A conceptual lookbook highlighting character dynamics, atmospheric scene breakdowns, and the overarching cinematic visual strategy for a character-driven feature.
+      </p>
+      <div class="text-[10px] font-mono-hud text-[#686870] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
+       <p><span class="text-[#888]">ATMOSPHERE:</span> Character Dynamics • High-Friction Shadows • Urban Twilight &amp; Tungsten</p>
+       <p><span class="text-[#888]">PROTECTION:</span> CONFIDENTIAL // FINANCING &amp; PACKAGING SUITE</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mb-8">
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Production Deck</span>
+       <span class="text-[10px] font-mono-hud text-[#888] bg-[#121216] border border-[#222226] px-2 py-0.5 rounded tracking-wider uppercase">Lookbook</span>
+      </div>
+     </div>
+
+     <div class="pt-5 border-t border-[#1C1C22] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      <div class="text-[10px] font-mono-hud text-[#555] flex items-center gap-1.5">
+       <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+       </svg>
+       <span>CONFIDENTIAL DECK</span>
+      </div>
+      <button
+       type="button"
+       onclick="openDeckRequestModal('crossfire-cousins', 'Crossfire Cousins', 'Feature Film Production Deck')"
+       class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-[0_0_15px_rgba(217,119,6,0.1)]"
+      >
+       <span>Request Full Deck</span>
+       <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+       </svg>
+      </button>
+     </div>
+    </div>
+   </article>
+
+  </div>
+
+  <!-- Bottom Packaging Commission Callout -->
+  <div class="depth-card mt-16 bg-[#0A0A0E] border border-[#1F1F26] rounded-xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+   <div>
+    <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">
+     // CUSTOM PACKAGING COMMISSION
+    </span>
+    <h3 class="text-2xl text-white font-hero tracking-wide mb-2">
+     NEED A PRODUCTION DECK OR LOOKBOOK ENGINEERED?
+    </h3>
+    <p class="text-xs text-[#888] max-w-xl leading-relaxed font-light">
+     Fermion Bec Productions crafts bespoke visual lookbooks, director's treatments, and commercial pitch decks for independent filmmakers, production houses, and luxury brands.
+    </p>
+   </div>
+   <a
+    href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6"
+    target="_blank"
+    class="btn-hire text-xs whitespace-nowrap"
+   >
+    Book Packaging Session
+   </a>
+  </div>
+
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="text-center py-16 border-t border-[#222225] bg-[#0A0A0C]/50 rounded p-8 depth-reveal">
+  <img src="assets/images/fbp-logo-white.svg" alt="Fermion Bec Productions Solid White Logo" class="h-14 w-auto mx-auto mb-5 opacity-90">
+  <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-3">// INITIATE PRODUCTION</span>
+  <h2 class="text-4xl md:text-5xl text-white mb-6 font-hero">READY TO ELEVATE YOUR NEXT COMMERCIAL OR FEATURE?</h2>
+
+  <div class="flex justify-center items-center mb-10">
+   <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="btn-hire">
+    Schedule Consultation
+   </a>
+  </div>
+
+  <div class="text-xs font-mono-hud text-[#555] space-y-2">
+   <p>New Jersey / NYC Metropolitan Area • Available Nationwide</p>
+   <p>© 2026 PETER LEVI BETHEL / FERMION BEC PRODUCTIONS. ALL RIGHTS RESERVED.</p>
+  </div>
+ </footer>
+
+ </main>
+
+ <!-- DECK REQUEST MODAL (CONFIDENTIAL PACKAGING PROTOCOL) -->
+ <div id="deck-request-modal" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-4 sm:p-6 backdrop-blur-md transition-opacity duration-300">
+  <div class="bg-[#0A0A0E] border border-[#26262E] rounded-2xl max-w-xl w-full p-6 sm:p-8 md:p-10 relative shadow-[0_0_60px_rgba(0,0,0,0.95)] max-h-[90vh] overflow-y-auto">
+
+   <!-- Header HUD -->
+   <div class="flex justify-between items-start mb-6 border-b border-[#1E1E24] pb-4">
+    <div class="flex items-center gap-3">
+     <img src="assets/images/fbp-monogram.svg" alt="FBP Monogram" class="w-8 h-8 object-contain flex-shrink-0">
+     <div>
+      <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">
+       // DECK ACCESS PROTOCOL • CONFIDENTIAL
+      </span>
+      <h3 class="text-2xl sm:text-3xl font-hero text-white tracking-wide">
+       REQUEST PACKAGING DOSSIER
+      </h3>
+     </div>
+    </div>
+    <button
+     type="button"
+     onclick="closeDeckRequestModal()"
+     class="text-xs font-mono-hud text-[#888] hover:text-white transition px-2 py-1 rounded hover:bg-white/5"
+     aria-label="Close modal"
+    >
+     [CLOSE ✕]
+    </button>
+   </div>
+
+   <!-- IP Protection Notice -->
+   <div class="mb-6 p-3.5 bg-[#0F0F14] border border-[#222228] rounded-lg text-xs text-[#8E8E98] leading-relaxed flex items-start gap-3">
+    <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+    </svg>
+    <p>
+     Presentation decks and treatments are protected by Fermion Bec Productions. Access is granted to verified studio executives, producers, agency reps, and commercial brand leaders under mutual confidentiality.
+    </p>
+   </div>
+
+   <!-- Form Container -->
+   <div id="deck-form-container">
+    <form id="deck-inquiry-form" onsubmit="handleDeckRequestSubmit(event)" class="space-y-4">
+     <input type="text" name="_honey" id="deck-honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+
+     <!-- Read-Only Auto-Captured Project Title -->
+     <div>
+      <label class="block text-[11px] font-mono-hud text-amber-400 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+       <span>Requested Project Deck</span>
+       <span class="text-[9px] text-[#666]">// AUTO-CAPTURED (READ-ONLY)</span>
+      </label>
+      <div class="relative">
+       <input
+        type="text"
+        id="modal-project-title-display"
+        readonly
+        tabindex="-1"
+        class="w-full bg-[#121217] border border-amber-500/40 text-amber-300 font-mono-hud text-xs sm:text-sm px-3.5 py-2.5 rounded cursor-not-allowed select-none focus:outline-none focus:border-amber-500"
+        value=""
+       />
+       <div class="absolute right-3 top-2.5 text-[#666]">
+        <svg class="w-4 h-4 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+       </div>
+      </div>
+      <input type="hidden" id="modal-project-id" name="project_id" value="" />
+      <input type="hidden" id="modal-project-format" name="project_format" value="" />
+     </div>
+
+     <!-- Requester Name (Required) -->
+     <div>
+      <label for="modal-requester-name" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+       Requester's Full Name <span class="text-amber-500">*</span>
+      </label>
+      <input
+       type="text"
+       id="modal-requester-name"
+       name="requester_name"
+       required
+       placeholder="e.g., Alexandra Vance"
+       class="w-full bg-[#0F0F14] border border-[#2A2A33] text-white text-sm px-3.5 py-2.5 rounded focus:border-amber-500 focus:bg-[#14141A] focus:outline-none transition"
+      />
+     </div>
+
+     <!-- Production Company / Agency (Required) -->
+     <div>
+      <label for="modal-requester-company" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+       Production Company / Agency / Brand <span class="text-amber-500">*</span>
+      </label>
+      <input
+       type="text"
+       id="modal-requester-company"
+       name="requester_company"
+       required
+       placeholder="e.g., A24, Anonymous Content, Lucid Motors, CAA"
+       class="w-full bg-[#0F0F14] border border-[#2A2A33] text-white text-sm px-3.5 py-2.5 rounded focus:border-amber-500 focus:bg-[#14141A] focus:outline-none transition"
+      />
+     </div>
+
+     <!-- Professional Email (Required) -->
+     <div>
+      <label for="modal-requester-email" class="block text-[11px] font-mono-hud text-[#AAA] uppercase tracking-wider mb-1.5">
+       Professional Email Address <span class="text-amber-500">*</span>
+      </label>
+      <input
+       type="email"
+       id="modal-requester-email"
+       name="requester_email"
+       required
+       placeholder="e.g., alexandra@anonymouscontent.com"
+       class="w-full bg-[#0F0F14] border border-[#2A2A33] text-white text-sm px-3.5 py-2.5 rounded focus:border-amber-500 focus:bg-[#14141A] focus:outline-none transition"
+      />
+     </div>
+
+     <!-- Role & Timeline -->
+     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div>
+       <label for="modal-requester-role" class="block text-[11px] font-mono-hud text-[#888] uppercase tracking-wider mb-1.5">
+        Professional Capacity
+       </label>
+       <select
+        id="modal-requester-role"
+        name="requester_role"
+        class="w-full bg-[#0F0F14] border border-[#2A2A33] text-[#CCC] text-xs px-3.5 py-2.5 rounded focus:border-amber-500 focus:outline-none transition"
+       >
+        <option value="Producer / Executive">Producer / Executive</option>
+        <option value="Acquisitions / Financing">Acquisitions / Financing</option>
+        <option value="Agency / Management">Agency / Management</option>
+        <option value="Commercial Brand / Agency Lead">Commercial Brand / Agency Lead</option>
+        <option value="Cinematographer / Crew">Cinematographer / Crew</option>
+        <option value="Other">Other Representative</option>
+       </select>
+      </div>
+      <div>
+       <label for="modal-inquiry-scope" class="block text-[11px] font-mono-hud text-[#888] uppercase tracking-wider mb-1.5">
+        Timeline / Slate Phase
+       </label>
+       <select
+        id="modal-inquiry-scope"
+        name="inquiry_scope"
+        class="w-full bg-[#0F0F14] border border-[#2A2A33] text-[#CCC] text-xs px-3.5 py-2.5 rounded focus:border-amber-500 focus:outline-none transition"
+       >
+        <option value="Q3/Q4 2026 Production">Q3/Q4 2026 Production</option>
+        <option value="Development &amp; Packaging">Development &amp; Packaging</option>
+        <option value="Commercial Bid / Pitch">Commercial Bid / Pitch</option>
+        <option value="General Agency Review">General Agency Review</option>
+       </select>
+      </div>
+     </div>
+
+     <!-- Mutual Confidentiality Checkbox -->
+     <div class="pt-2">
+      <label class="flex items-start gap-2.5 cursor-pointer text-xs text-[#888]">
+       <input
+        type="checkbox"
+        required
+        class="mt-0.5 rounded bg-[#121216] border-[#333] text-amber-500 focus:ring-0 cursor-pointer"
+       />
+       <span>I acknowledge that requested decks are proprietary to Fermion Bec Productions and agree to maintain strict confidentiality.</span>
+      </label>
+     </div>
+
+     <!-- Submit Button & Controls -->
+     <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
+      <button
+       type="submit"
+       id="btn-submit-deck-request"
+       class="w-full sm:w-auto flex-1 btn-hire text-center cursor-pointer"
+      >
+       Transmit Deck Request
+      </button>
+      <button
+       type="button"
+       onclick="closeDeckRequestModal()"
+       class="w-full sm:w-auto text-xs font-mono-hud text-[#888] hover:text-white px-5 py-3 rounded border border-[#28282E] hover:border-[#444] transition text-center"
+      >
+       Cancel
+      </button>
+     </div>
+
+    </form>
+   </div>
+
+   <!-- Success Container -->
+   <div id="deck-success-container" class="hidden text-center py-6">
+    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.25)]">
+     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+     </svg>
+    </div>
+    <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-2">
+     // FINAL STEP: CLIENT TRANSMISSION
+    </span>
+    <h3 class="text-2xl font-hero text-white mb-2">
+     SEND INQUIRY VIA EMAIL APP
+    </h3>
+    <p class="text-xs font-mono-hud text-amber-400 mb-3 tracking-wider" id="deck-success-ref">
+     REF: FBP-DECK-2026-X9
+    </p>
+    <div id="deck-success-notice" class="mb-4 p-3.5 rounded bg-amber-500/10 border border-amber-500/40 text-[11px] font-mono-hud text-amber-300 max-w-md mx-auto leading-relaxed">
+     ⚠ ACTION REQUIRED: Tap below to open your email app and send your pre-formatted request. Your inquiry is not delivered until sent.
+    </div>
+    <p class="text-sm text-[#8C8C92] font-light max-w-md mx-auto mb-6 leading-relaxed">
+     Your inquiry for <strong class="text-white font-medium" id="deck-success-project-name">The Project</strong> has been encrypted and formatted. Tap the button below to launch your email app (Mail, Gmail, Outlook) and hit <strong>"Send"</strong> to deliver your request directly to Peter Levi Bethel.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+     <a
+      id="btn-deck-mailto-fallback"
+      href="#"
+      onclick="handleMailtoClick()"
+      class="btn-hire w-full sm:w-auto text-xs flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(217,119,6,0.4)]"
+     >
+      <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      <span>Tap to Send via Email App (Required)</span>
+     </a>
+     <button
+      type="button"
+      onclick="closeDeckRequestModal()"
+      class="w-full sm:w-auto text-xs font-mono-hud text-[#888] hover:text-white px-5 py-3 rounded border border-[#28282E] hover:border-[#444] transition text-center"
+     >
+      Return to Gallery
+     </button>
+    </div>
+   </div>
+
+  </div>
+ </div>
+
+ <!-- SCROLLABLE DEPTH PARALLAX & REVEAL LOGIC -->
+ <script>
+ let scrollTicking = false;
+ function updateScrollDepth() {
+  const scrollTop = window.scrollY || window.pageYOffset || 0;
+  const docHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+  const progress = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+  document.documentElement.style.setProperty('--scroll-y', scrollTop.toFixed(1) + 'px');
+  document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(2) + '%');
+  scrollTicking = false;
+ }
+ window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+   window.requestAnimationFrame(updateScrollDepth);
+   scrollTicking = true;
+  }
+ }, { passive: true });
+ window.addEventListener('DOMContentLoaded', () => {
+  updateScrollDepth();
+  const revealEls = document.querySelectorAll('.depth-reveal');
+  if ('IntersectionObserver' in window) {
+   const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+     if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+     }
+    });
+   }, { threshold: 0.05 });
+   revealEls.forEach(el => observer.observe(el));
+  } else {
+   revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+ });
+ </script>
+
+ <!-- CONCEPTS & PACKAGING ARCHITECTURE -->
+ <script src="data/concepts.js"></script>
+ <script src="components/concepts/ConceptCard.js"></script>
+ <script src="components/concepts/DeckRequestModal.js"></script>
+ <script src="components/concepts/ConceptsGallery.js"></script>
+ <script src="js/concepts.js"></script>
 </body>
 </html>
