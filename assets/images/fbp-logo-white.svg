@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 290" fill="none" role="img" aria-label="Fermion Bec Productions Solid White Logo">
+  <g transform="translate(116, 18)">
+    <!-- Solid White F -->
+    <path d="M14 14 H116 V32 H34 V72 H98 V90 H34 V148 H14 Z" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linejoin="miter"/>
+    <path d="M24 24 H106 M24 24 V138 M24 81 H88" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="square" opacity="0.9"/>
+
+    <!-- Solid White B -->
+    <path d="M62 32 H128 C154 32 168 46 168 68 C168 84 158 95 144 100 C162 105 174 118 174 138 C174 162 158 176 128 176 H62 Z" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linejoin="miter"/>
+    <path d="M72 42 H126 C146 42 156 52 156 68 C156 83 146 92 126 92 H72 M72 108 H128 C150 108 162 119 162 137 C162 155 150 166 128 166 H72 M72 42 V166" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="square" opacity="0.9"/>
+  </g>
+
+  <text x="210" y="236" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="600" letter-spacing="5">FERMION BEC</text>
+  <text x="210" y="264" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="500" letter-spacing="7" opacity="0.92">PRODUCTIONS</text>
+</svg>

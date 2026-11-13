@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Fermion Bec Productions Standalone Monogram">
+  <defs>
+    <linearGradient id="monoPlatinum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F4F7"/>
+      <stop offset="45%" stop-color="#C5CAD2"/>
+      <stop offset="100%" stop-color="#7B828C"/>
+    </linearGradient>
+    <linearGradient id="monoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7E3B5"/>
+      <stop offset="50%" stop-color="#D4AF63"/>
+      <stop offset="100%" stop-color="#9A7432"/>
+    </linearGradient>
+    <filter id="monoShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#monoShadow)" transform="translate(6, 5)">
+    <path d="M14 14 H116 V32 H34 V72 H98 V90 H34 V148 H14 Z" fill="none" stroke="url(#monoPlatinum)" stroke-width="6" stroke-linejoin="miter"/>
+    <path d="M24 24 H106 M24 24 V138 M24 81 H88" fill="none" stroke="url(#monoGold)" stroke-width="4.5" stroke-linecap="square"/>
+    <path d="M62 32 H128 C154 32 168 46 168 68 C168 84 158 95 144 100 C162 105 174 118 174 138 C174 162 158 176 128 176 H62 Z" fill="none" stroke="url(#monoPlatinum)" stroke-width="6" stroke-linejoin="miter"/>
+    <path d="M72 42 H126 C146 42 156 52 156 68 C156 83 146 92 126 92 H72 M72 108 H128 C150 108 162 119 162 137 C162 155 150 166 128 166 H72 M72 42 V166" fill="none" stroke="url(#monoGold)" stroke-width="4.5" stroke-linecap="square"/>
+  </g>
+</svg>
