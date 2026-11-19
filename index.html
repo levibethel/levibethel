@@ -162,8 +162,10 @@
   filter: contrast(220%) hue-rotate(180deg) saturate(350%) !important;
  }
 
- /* Navigation Dock */
+ /* Navigation Dock & Sliding Amber Pill Indicator */
  .role-nav {
+  position: sticky;
+  top: 0;
   justify-content: flex-start;
   justify-content: safe center;
   scrollbar-width: none;
@@ -174,32 +176,99 @@
   display: none;
  }
 
+ .nav-pill-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 34px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(255, 152, 0, 0.18) 0%, rgba(255, 152, 0, 0.08) 100%);
+  border: 1px solid var(--accent-amber);
+  box-shadow: 0 0 18px rgba(255, 152, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), width 0.38s cubic-bezier(0.16, 1, 0.3, 1), height 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  will-change: transform, width;
+ }
+
  .nav-pill-btn {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 0.65rem;
   color: var(--text-muted);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   position: relative;
+  z-index: 1;
   padding: 0.65rem 0.85rem;
-  border-radius: 4px;
+  border-radius: 6px;
   white-space: nowrap;
   flex-shrink: 0;
   border: 1px solid transparent;
  }
  .nav-pill-btn:hover {
   color: #FFFFFF;
-  background: rgba(255, 152, 0, 0.08);
-  border-color: rgba(255, 152, 0, 0.25);
+  background: rgba(255, 152, 0, 0.06);
  }
  .nav-pill-btn.active {
   color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 152, 0, 0.45);
+ }
+ .nav-pill-btn.active.no-slider-fallback {
   background: rgba(255, 152, 0, 0.12);
   border-color: var(--accent-amber);
   box-shadow: 0 0 15px rgba(255, 152, 0, 0.2);
+ }
+
+ /* Hero Offering Card Active Tap-In State */
+ .offering-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+ }
+ .offering-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-amber), transparent);
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition: opacity 0.35s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+ }
+ .offering-card.active-offering {
+  border-color: rgba(255, 152, 0, 0.85) !important;
+  background: linear-gradient(180deg, rgba(20, 26, 23, 0.98) 0%, rgba(14, 18, 16, 0.98) 100%) !important;
+  box-shadow: 0 22px 48px -14px rgba(0, 0, 0, 0.95), 0 0 28px rgba(255, 152, 0, 0.18), inset 0 1px 0 rgba(255, 152, 0, 0.3) !important;
+ }
+ .offering-card.active-offering::after {
+  opacity: 1;
+  transform: scaleX(1);
+ }
+
+ /* Seamless Tap-In Section Cross-Fade Animation */
+ .tab-section-hidden {
+  display: none !important;
+ }
+ @keyframes tabTapIn {
+  0% {
+   opacity: 0;
+   transform: translate3d(0, 18px, 0) scale(0.988);
+   filter: blur(3px);
+  }
+  100% {
+   opacity: 1;
+   transform: translate3d(0, 0, 0) scale(1);
+   filter: blur(0);
+  }
+ }
+ .tab-tap-animate {
+  animation: tabTapIn 0.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
  }
 
  /* CTA Primary Button (Studio Amber) */
@@ -437,14 +506,14 @@
     We plan the budget, schedule and crew before the cameras roll. You know the cost and what you get up front.
    </p>
 
-   <!-- THREE CORE OFFERINGS -->
-   <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left mb-10">
+   <!-- THREE CORE OFFERINGS (Tap-In View Switcher Cards) -->
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left mb-10" role="tablist" aria-label="Core Production Offerings">
     <!-- 01: Commercial campaigns -->
-    <a href="#offers" class="depth-card group p-6 rounded-xl bg-[#0E1210]/95 border border-[#1C2420] hover:border-amber-500/60 transition flex flex-col justify-between">
+    <a href="#offers" data-offering-card="commercial" onclick="switchTabView('commercial', 'offers', event)" class="offering-card depth-card group p-6 rounded-xl bg-[#0E1210]/95 border border-[#1C2420] hover:border-amber-500/60 transition flex flex-col justify-between">
      <div>
       <div class="flex items-center justify-between mb-3">
        <span class="text-xs font-mono-hud font-bold text-amber-500">01</span>
-       <span class="text-[10px] font-mono-hud text-[#8E9B96] group-hover:text-amber-400 transition">VIEW PACKAGES →</span>
+       <span class="offering-status-label text-[10px] font-mono-hud text-[#8E9B96] group-hover:text-amber-400 transition">TAP TO FOCUS →</span>
       </div>
       <h3 class="text-lg sm:text-xl font-serif-title text-white mb-2 group-hover:text-amber-100 transition">
        Commercial campaigns
@@ -456,11 +525,11 @@
     </a>
 
     <!-- 02: White-label production -->
-    <a href="#agency" class="depth-card group p-6 rounded-xl bg-[#0E1210]/95 border border-[#1C2420] hover:border-amber-500/60 transition flex flex-col justify-between">
+    <a href="#agency" data-offering-card="agency" onclick="switchTabView('agency', 'agency', event)" class="offering-card depth-card group p-6 rounded-xl bg-[#0E1210]/95 border border-[#1C2420] hover:border-amber-500/60 transition flex flex-col justify-between">
      <div>
       <div class="flex items-center justify-between mb-3">
        <span class="text-xs font-mono-hud font-bold text-amber-500">02</span>
-       <span class="text-[10px] font-mono-hud text-[#8E9B96] group-hover:text-amber-400 transition">AGENCY PORTAL →</span>
+       <span class="offering-status-label text-[10px] font-mono-hud text-[#8E9B96] group-hover:text-amber-400 transition">TAP TO FOCUS →</span>
       </div>
       <h3 class="text-lg sm:text-xl font-serif-title text-white mb-2 group-hover:text-amber-100 transition">
        White-label production
@@ -472,11 +541,11 @@
     </a>
 
     <!-- 03: Feature films -->
-    <a href="#film-packages" class="depth-card group p-6 rounded-xl bg-[#0E1210]/95 border border-[#1C2420] hover:border-amber-500/60 transition flex flex-col justify-between">
+    <a href="#film-packages" data-offering-card="films" onclick="switchTabView('films', 'film-packages', event)" class="offering-card depth-card group p-6 rounded-xl bg-[#0E1210]/95 border border-[#1C2420] hover:border-amber-500/60 transition flex flex-col justify-between">
      <div>
       <div class="flex items-center justify-between mb-3">
        <span class="text-xs font-mono-hud font-bold text-amber-500">03</span>
-       <span class="text-[10px] font-mono-hud text-[#8E9B96] group-hover:text-amber-400 transition">PACKAGED SLATE →</span>
+       <span class="offering-status-label text-[10px] font-mono-hud text-[#8E9B96] group-hover:text-amber-400 transition">TAP TO FOCUS →</span>
       </div>
       <h3 class="text-lg sm:text-xl font-serif-title text-white mb-2 group-hover:text-amber-100 transition">
        Feature films
@@ -489,7 +558,7 @@
    </div>
 
    <div class="flex flex-wrap items-center justify-center gap-4">
-    <a href="#offers" class="btn-hire">
+    <a href="#offers" onclick="switchTabView('commercial', 'offers', event)" class="btn-hire">
      <span>See Pricing &amp; Packages</span>
      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
     </a>
@@ -530,20 +599,34 @@
   </div>
  </section>
 
- <!-- STICKY NAVIGATION DOCK -->
- <nav class="role-nav sticky top-0 bg-[#060807]/90 backdrop-blur-xl z-40 py-3.5 mb-20 border-y border-[#1C2420] flex items-center gap-2 sm:gap-3 overflow-x-auto px-2">
-  <a href="#hero" class="nav-pill-btn active">Overview</a>
-  <a href="#offers" class="nav-pill-btn">01 // Commercial Campaigns</a>
-  <a href="#agency" class="nav-pill-btn">02 // White-Label Production</a>
-  <a href="#film-packages" class="nav-pill-btn text-amber-400">03 // Feature Films</a>
-  <a href="#work" class="nav-pill-btn">Selected Work</a>
-  <a href="#visual-debt" class="nav-pill-btn">Why Fixed-Scope</a>
-  <a href="#engine" class="nav-pill-btn">Production Engine</a>
-  <a href="#founder" class="nav-pill-btn">Founder</a>
-  <a href="#audit" class="nav-pill-btn text-amber-400 font-bold border border-amber-500/30 bg-amber-500/5">Book a Call</a>
+ <!-- STICKY NAVIGATION DOCK WITH SLIDING AMBER PILL -->
+ <nav id="main-role-nav" class="role-nav sticky top-0 bg-[#060807]/90 backdrop-blur-xl z-40 py-3.5 mb-8 border-y border-[#1C2420] flex items-center gap-2 sm:gap-3 overflow-x-auto px-2 relative">
+  <div id="nav-pill-slider" class="nav-pill-slider" aria-hidden="true"></div>
+  <a href="#hero" data-tab-key="overview" onclick="switchTabView('overview', 'hero', event)" class="nav-pill-btn active">Overview (All)</a>
+  <a href="#offers" data-tab-key="commercial" onclick="switchTabView('commercial', 'offers', event)" class="nav-pill-btn">01 // Commercial Campaigns</a>
+  <a href="#agency" data-tab-key="agency" onclick="switchTabView('agency', 'agency', event)" class="nav-pill-btn">02 // White-Label Production</a>
+  <a href="#film-packages" data-tab-key="films" onclick="switchTabView('films', 'film-packages', event)" class="nav-pill-btn text-amber-400">03 // Feature Films</a>
+  <a href="#work" data-tab-key="work" onclick="switchTabView('commercial', 'work', event)" class="nav-pill-btn">Selected Work</a>
+  <a href="#visual-debt" data-tab-key="visual-debt" onclick="switchTabView('overview', 'visual-debt', event)" class="nav-pill-btn">Why Fixed-Scope</a>
+  <a href="#engine" data-tab-key="engine" onclick="switchTabView('overview', 'engine', event)" class="nav-pill-btn">Production Engine</a>
+  <a href="#founder" data-tab-key="founder" onclick="switchTabView('overview', 'founder', event)" class="nav-pill-btn">Founder</a>
+  <a href="#audit" data-tab-key="audit" onclick="switchTabView('overview', 'audit', event)" class="nav-pill-btn text-amber-400 font-bold border border-amber-500/30 bg-amber-500/5">Book a Call</a>
   <a href="concepts.html" class="nav-pill-btn text-[#8E9B96] hover:text-white border-l border-[#1C2420] ml-2 pl-3">Concepts Slate ↗</a>
   <a href="proposal.html" class="nav-pill-btn text-amber-400 hover:text-white border-l border-[#1C2420] pl-3 font-semibold">Client SOW ↗</a>
  </nav>
+
+ <!-- FOCUSED TAB STATUS BAR (Appears when viewing 01, 02, or 03 in focused tab mode) -->
+ <div id="tab-focus-bar" class="hidden mb-14 px-5 py-3 rounded-xl bg-[#0E1210]/95 border border-amber-500/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono-hud shadow-[0_12px_30px_rgba(0,0,0,0.65)]">
+  <div class="flex items-center gap-2.5">
+   <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+   <span class="text-[#8E9B96]">FOCUSED VIEW:</span>
+   <strong id="tab-focus-label" class="text-amber-400 uppercase tracking-wider">01 // COMMERCIAL CAMPAIGNS</strong>
+  </div>
+  <button type="button" onclick="switchTabView('overview', 'main-role-nav', event)" class="text-[11px] font-mono-hud text-white hover:text-amber-400 border border-[#2D3A34] hover:border-amber-500/50 bg-[#060807] px-3.5 py-1.5 rounded transition flex items-center gap-1.5">
+   <span>Show All Sections (Overview)</span>
+   <span>✕</span>
+  </button>
+ </div>
 
  <!-- SECTION 2: THE PROBLEM (Diagnosing "Visual Debt") -->
  <section id="visual-debt" class="mb-28 pt-8 depth-reveal">
@@ -2352,8 +2435,138 @@
   }
  }
 
- // Scrollable Depth Parallax & Active Navigation Highlight
+ // Seamless Tap-In Tab Switcher, Sliding Amber Nav Pill & Scrollable Depth Parallax
+ let currentTabMode = 'overview';
  let scrollTicking = false;
+
+ const TAB_SECTION_MAP = {
+  overview: ['visual-debt', 'offers', 'work', 'film-packages', 'engine', 'agency', 'founder', 'audit'],
+  commercial: ['offers', 'work', 'visual-debt', 'audit'],
+  agency: ['agency', 'engine', 'audit'],
+  films: ['film-packages', 'founder', 'audit']
+ };
+
+ const TAB_FOCUS_LABELS = {
+  commercial: '01 // COMMERCIAL CAMPAIGNS (PRICING, SPECS & FIXED-SCOPE)',
+  agency: '02 // WHITE-LABEL PRODUCTION (AGENCY SYNDICATE & PRODUCTION ENGINE)',
+  films: '03 // FEATURE FILMS (WGA PACKAGED SLATE & FOUNDER AUTHORITY)'
+ };
+
+ function moveNavPillSlider(activeBtn) {
+  const nav = document.getElementById('main-role-nav');
+  const slider = document.getElementById('nav-pill-slider');
+  if (!nav || !slider || !activeBtn) return;
+
+  const navRect = nav.getBoundingClientRect();
+  const btnRect = activeBtn.getBoundingClientRect();
+  const offsetLeft = (btnRect.left - navRect.left) + nav.scrollLeft;
+  const offsetTop = (btnRect.top - navRect.top) + nav.scrollTop;
+
+  slider.style.width = `${btnRect.width}px`;
+  slider.style.height = `${btnRect.height}px`;
+  slider.style.transform = `translate3d(${offsetLeft}px, ${offsetTop}px, 0)`;
+  slider.style.opacity = '1';
+ }
+
+ function setActiveNavButton(targetBtn) {
+  if (!targetBtn) return;
+  document.querySelectorAll('.nav-pill-btn').forEach(btn => btn.classList.remove('active'));
+  targetBtn.classList.add('active');
+  moveNavPillSlider(targetBtn);
+ }
+
+ function updateOfferingCardStates(mode) {
+  document.querySelectorAll('[data-offering-card]').forEach(card => {
+   const cardKey = card.getAttribute('data-offering-card');
+   const statusLabel = card.querySelector('.offering-status-label');
+   if (mode !== 'overview' && cardKey === mode) {
+    card.classList.add('active-offering');
+    if (statusLabel) {
+     statusLabel.innerText = 'ACTIVE TAB ● TAP FOR ALL';
+     statusLabel.classList.add('text-amber-400', 'font-bold');
+    }
+   } else {
+    card.classList.remove('active-offering');
+    if (statusLabel) {
+     statusLabel.innerText = 'TAP TO FOCUS →';
+     statusLabel.classList.remove('text-amber-400', 'font-bold');
+    }
+   }
+  });
+ }
+
+ function switchTabView(mode, targetSectionId, event) {
+  if (event) event.preventDefault();
+
+  // Tapping an already-active hero offering card toggles back to full Overview
+  const clickedOfferingCard = event && event.currentTarget && event.currentTarget.hasAttribute('data-offering-card');
+  if (clickedOfferingCard && currentTabMode === mode) {
+   mode = 'overview';
+   targetSectionId = 'main-role-nav';
+  }
+
+  currentTabMode = mode;
+  const allManagedSections = TAB_SECTION_MAP.overview;
+  const visibleSections = TAB_SECTION_MAP[mode] || allManagedSections;
+
+  allManagedSections.forEach(secId => {
+   const sec = document.getElementById(secId);
+   if (!sec) return;
+
+   if (visibleSections.includes(secId)) {
+    sec.classList.remove('tab-section-hidden', 'tab-tap-animate');
+    sec.classList.add('is-visible');
+    void sec.offsetWidth; // Reflow to trigger seamless tap-in animation
+    sec.classList.add('tab-tap-animate');
+   } else {
+    sec.classList.add('tab-section-hidden');
+    sec.classList.remove('tab-tap-animate');
+   }
+  });
+
+  // Update Focus Status Bar
+  const focusBar = document.getElementById('tab-focus-bar');
+  const focusLabel = document.getElementById('tab-focus-label');
+  const navEl = document.getElementById('main-role-nav');
+  if (focusBar && focusLabel) {
+   if (mode === 'overview') {
+    focusBar.classList.add('hidden');
+    if (navEl) navEl.classList.replace('mb-8', 'mb-20');
+   } else {
+    focusLabel.innerText = TAB_FOCUS_LABELS[mode] || mode.toUpperCase();
+    focusBar.classList.remove('hidden');
+    if (navEl) navEl.classList.replace('mb-20', 'mb-8');
+   }
+  }
+
+  updateOfferingCardStates(mode);
+
+  // Sync active nav pill & sliding amber indicator
+  let activeNavBtn = null;
+  if (event && event.currentTarget && event.currentTarget.classList.contains('nav-pill-btn')) {
+   activeNavBtn = event.currentTarget;
+  } else if (mode !== 'overview') {
+   activeNavBtn = document.querySelector(`.nav-pill-btn[data-tab-key="${mode}"]`);
+  } else if (targetSectionId && targetSectionId !== 'hero' && targetSectionId !== 'main-role-nav') {
+   activeNavBtn = document.querySelector(`.nav-pill-btn[href="#${targetSectionId}"]`);
+  }
+  if (!activeNavBtn) {
+   activeNavBtn = document.querySelector('.nav-pill-btn[data-tab-key="overview"]');
+  }
+  setActiveNavButton(activeNavBtn);
+
+  // Smooth scroll to the target section or sticky navigation dock
+  const scrollTarget = (mode !== 'overview' && targetSectionId === mode)
+   ? document.getElementById('main-role-nav')
+   : (document.getElementById(targetSectionId) || document.getElementById('main-role-nav'));
+
+  if (scrollTarget) {
+   const navOffset = (scrollTarget.id === 'hero') ? 0 : 76;
+   const targetY = scrollTarget.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - navOffset;
+   window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+  }
+ }
+
  function updateScrollDepth() {
   const scrollTop = window.scrollY || window.pageYOffset || 0;
   const docHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
@@ -2361,20 +2574,21 @@
   document.documentElement.style.setProperty('--scroll-y', scrollTop.toFixed(1) + 'px');
   document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(2) + '%');
 
-  const sections = ['hero', 'visual-debt', 'offers', 'work', 'film-packages', 'engine', 'agency', 'founder', 'audit'];
-  const scrollPos = scrollTop + 200;
-  sections.forEach(secId => {
-   const sec = document.getElementById(secId);
-   const link = document.querySelector(`.nav-pill-btn[href="#${secId}"]`);
-   if (sec && link) {
-    const top = sec.offsetTop;
-    const height = sec.offsetHeight;
-    if (scrollPos >= top && scrollPos < top + height) {
-     document.querySelectorAll('.nav-pill-btn').forEach(l => l.classList.remove('active'));
-     link.classList.add('active');
+  if (currentTabMode === 'overview') {
+   const sections = ['hero', 'visual-debt', 'offers', 'work', 'film-packages', 'engine', 'agency', 'founder', 'audit'];
+   const scrollPos = scrollTop + 220;
+   sections.forEach(secId => {
+    const sec = document.getElementById(secId);
+    const link = document.querySelector(`.nav-pill-btn[href="#${secId}"]`);
+    if (sec && link && !sec.classList.contains('tab-section-hidden')) {
+     const top = sec.offsetTop;
+     const height = sec.offsetHeight;
+     if (scrollPos >= top && scrollPos < top + height) {
+      setActiveNavButton(link);
+     }
     }
-   }
-  });
+   });
+  }
   scrollTicking = false;
  }
 
@@ -2385,8 +2599,19 @@
   }
  }, { passive: true });
 
- // IntersectionObserver for Smooth Scroll-Depth Reveals
+ window.addEventListener('resize', () => {
+  const activeBtn = document.querySelector('.nav-pill-btn.active');
+  if (activeBtn) moveNavPillSlider(activeBtn);
+ });
+
+ // IntersectionObserver for Smooth Scroll-Depth Reveals & Initial Pill Alignment
  window.addEventListener('DOMContentLoaded', () => {
+  const navEl = document.getElementById('main-role-nav');
+  if (navEl) navEl.classList.replace('mb-8', 'mb-20');
+  const initialActive = document.querySelector('.nav-pill-btn.active');
+  if (initialActive) {
+   setTimeout(() => moveNavPillSlider(initialActive), 60);
+  }
   updateScrollDepth();
   const revealEls = document.querySelectorAll('.depth-reveal');
   if ('IntersectionObserver' in window) {
