@@ -84,7 +84,7 @@ const CONCEPTS_DATA = [
     "formatCategory": "Narrative Feature",
     "client": "Fermion Bec Productions / SI Productions",
     "description": "A historical folk-horror production package set in Northern New Jersey, pairing period atmosphere with a partner-backed physical production model and zero-dilution co-production structure.",
-    "thumbnail": "assets/images/concepts/salt-and-skin.svg",
+    "thumbnail": "assets/images/concepts/salt-and-skin.jpg",
     "fallbackThumbnail": "assets/images/concepts/salt-and-skin.jpg",
     "aspectRatio": "2.39:1",
     "deckSlides": "Co-Production Packaging Suite",
