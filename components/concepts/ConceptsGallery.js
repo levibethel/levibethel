@@ -1,6 +1,6 @@
 /**
  * Fermion Bec Productions - ConceptsGallery Component
- * Renders the aligned 2x2 project grid and overarching 4-pillar results breakdown.
+ * Renders the aligned 2x2 project grid and concise 3-pillar conversion capabilities section.
  */
 function renderConceptsGallery(projects) {
   const cardsHtml = projects.map(p => createConceptCard(p)).join('\n');
@@ -77,155 +77,107 @@ function renderConceptsGallery(projects) {
         ${cardsHtml}
       </div>
 
-      <!-- Overarching Results-Oriented Production Pillars & Packaging Breakdown -->
-      <div class="mt-16 bg-[#0A0D0B] border border-[#1F2923] rounded-2xl p-8 md:p-11 relative overflow-hidden">
-        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 pb-8 mb-8 border-b border-[#1A221D]">
+      <!-- Concise Conversion-Driving Production & Packaging Capabilities -->
+      <div class="mt-16 pt-12 border-t border-[#1F1F26]">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-4 mb-8">
           <div>
-            <span class="text-[11px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-2">
-              // PRODUCTION PILLARS & PACKAGING ADVANTAGES
+            <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-2">
+              // PRODUCTION & PACKAGING CAPABILITIES
             </span>
-            <h3 class="text-3xl md:text-5xl text-white font-hero tracking-wide leading-none">
-              HOW OUR PRODUCTION PILLARS DELIVER MEASURABLE RESULTS
+            <h3 class="text-2xl sm:text-3xl md:text-4xl text-white font-serif-title">
+              Built for Political Campaigns, Commercial Brands & Feature Films
             </h3>
           </div>
-          <p class="text-xs md:text-sm text-[#A5A299] max-w-xl leading-relaxed">
-            Whether we are shooting a commercial campaign, operating as a white-label crew for an agency, or packaging an original feature film, every project runs on upfront planning, fixed costs, and repeatable delivery systems.
+          <p class="text-xs sm:text-sm text-[#8C8C92] max-w-xl leading-relaxed">
+            One disciplined production unit delivering fast field deployment, fixed-scope commercial packages, and investor-ready film packaging.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-9">
-          <!-- Pillar 1 -->
-          <div class="bg-[#0E1310] border border-[#1E2822] hover:border-amber-500/40 rounded-xl p-6 transition-all">
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">
-                01 // PRODUCTION PILLAR CONCEPTS
-              </span>
-              <span class="text-[10px] font-mono-hud text-emerald-400 uppercase tracking-wider">UPFRONT CERTAINTY</span>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mb-8">
+          <!-- 01: Political Campaign Media & Logistical Fortitude -->
+          <div class="depth-card bg-[#0A0A0E] border border-[#1F1F26] rounded-xl p-6 md:p-7 flex flex-col justify-between h-full hover:border-amber-500/50">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-mono-hud font-bold text-amber-400 uppercase tracking-wider">01 // POLITICAL CAMPAIGN MEDIA</span>
+                <span class="text-[10px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">RAPID DEPLOYMENT</span>
+              </div>
+              <h4 class="text-xl text-white font-serif-title mb-2.5">
+                Political Campaign Media & Logistical Fortitude
+              </h4>
+              <p class="text-xs sm:text-sm text-[#8C8C92] leading-relaxed mb-5">
+                Broadcast, OTT, and rapid-response campaign ads backed by disciplined field logistics—built to move fast and hit strict media-buy deadlines.
+              </p>
+              <ul class="text-xs font-mono-hud text-[#D1D5DB] space-y-2.5 pt-4 border-t border-[#18181F] mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 font-bold">✓</span>
+                  <span><strong>Self-Powered Field Mobility:</strong> 10.2 kW silent mobile studio power and multi-cam town hall rigs ready for any district location.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 font-bold">✓</span>
+                  <span><strong>Rapid Broadcast Turnaround:</strong> 30s/15s TV, OTT, and digital spots cut, graded, and compliant for immediate air.</span>
+                </li>
+              </ul>
             </div>
-            <h4 class="text-xl text-white font-hero tracking-wide mb-2">
-              LOCKED SCOPE, BUDGET & SCHEDULE BEFORE DAY ONE
-            </h4>
-            <p class="text-xs text-[#9C9990] leading-relaxed mb-4">
-              Every project begins by locking the script, shot list, crew roster, and line-item budget before cameras roll. Clients and investors know the exact cost and exact deliverables up front—eliminating surprise overages and wasted shoot days.
-            </p>
-            <div class="grid grid-cols-3 gap-2 pt-3 border-t border-[#1A221D] text-[10px] font-mono-hud">
-              <div>
-                <span class="text-white font-bold block">2-7-21</span>
-                <span class="text-[#78756E]">DELIVERY STANDARD</span>
-              </div>
-              <div>
-                <span class="text-amber-400 font-bold block">100%</span>
-                <span class="text-[#78756E]">UPFRONT COST CLARITY</span>
-              </div>
-              <div>
-                <span class="text-white font-bold block">ZERO</span>
-                <span class="text-[#78756E]">SURPRISE OVERAGES</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pillar 2 -->
-          <div class="bg-[#0E1310] border border-[#1E2822] hover:border-amber-500/40 rounded-xl p-6 transition-all">
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">
-                02 // COMMERCIAL PACKAGE VERSATILITY
-              </span>
-              <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-wider">1 SHOOT → 10X ADS</span>
-            </div>
-            <h4 class="text-xl text-white font-hero tracking-wide mb-2">
-              MULTI-FORMAT AD INVENTORY FROM A SINGLE SHOOT
-            </h4>
-            <p class="text-xs text-[#9C9990] leading-relaxed mb-4">
-              We design every commercial set to capture hero broadcast masters, 15s/30s cutdowns, 9:16 vertical social hooks, and clean product stills in the same lighting setup. Packages scale from $8,500 one-day sprints and monthly ad retainers to $50,000 13-person broadcast productions.
-            </p>
-            <div class="grid grid-cols-3 gap-2 pt-3 border-t border-[#1A221D] text-[10px] font-mono-hud">
-              <div>
-                <span class="text-amber-400 font-bold block">10X ADS</span>
-                <span class="text-[#78756E]">TV, STREAMING & SOCIAL</span>
-              </div>
-              <div>
-                <span class="text-white font-bold block">$8.5K–$50K</span>
-                <span class="text-[#78756E]">SCALABLE TIERS</span>
-              </div>
-              <div>
-                <span class="text-white font-bold block">48 HOURS</span>
-                <span class="text-[#78756E]">FIRST HOOK CUTS</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div class="bg-[#0E1310] border border-[#1E2822] hover:border-amber-500/40 rounded-xl p-6 transition-all">
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">
-                03 // WHITE-LABEL AGENCY SUPPORT
-              </span>
-              <span class="text-[10px] font-mono-hud text-[#C2BFB6] uppercase tracking-wider">UNDER YOUR BANNER</span>
-            </div>
-            <h4 class="text-xl text-white font-hero tracking-wide mb-2">
-              SEAMLESS CREW & GEAR EXTENSION FOR AGENCIES
-            </h4>
-            <p class="text-xs text-[#9C9990] leading-relaxed mb-4">
-              Creative agencies and production houses plug our Director/DP team, cinema camera package, and 10.2 kW silent mobile power directly into their client shoots. We operate strictly under your agency name with fixed day rates, full non-circumvention protection, and organized DaVinci Resolve project handoffs at wrap.
-            </p>
-            <div class="grid grid-cols-3 gap-2 pt-3 border-t border-[#1A221D] text-[10px] font-mono-hud">
-              <div>
-                <span class="text-white font-bold block">100% NDA</span>
-                <span class="text-[#78756E]">CLIENT PROTECTION</span>
-              </div>
-              <div>
-                <span class="text-amber-400 font-bold block">10.2 kW</span>
-                <span class="text-[#78756E]">SILENT SET POWER</span>
-              </div>
-              <div>
-                <span class="text-white font-bold block">SAME-DAY</span>
-                <span class="text-[#78756E]">PROXY & PROJECT HANDOFF</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pillar 4 -->
-          <div class="bg-[#0E1310] border border-[#1E2822] hover:border-amber-500/40 rounded-xl p-6 transition-all">
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">
-                04 // FILM PACKAGING & LOGISTICS
-              </span>
-              <span class="text-[10px] font-mono-hud text-emerald-400 uppercase tracking-wider">35%–39% NJ TAX CREDIT</span>
-            </div>
-            <h4 class="text-xl text-white font-hero tracking-wide mb-2">
-              INVESTOR-READY PACKAGING & ON-THE-GROUND LOGISTICS
-            </h4>
-            <p class="text-xs text-[#9C9990] leading-relaxed mb-4">
-              Our feature films are packaged as complete business plans: WGA-registered scripts paired with SAG-AFTRA budget top sheets, clustered shooting schedules, municipal permitting, and 35%–39% New Jersey Film Tax Credit structuring—reducing net investor exposure before principal photography begins.
-            </p>
-            <div class="grid grid-cols-3 gap-2 pt-3 border-t border-[#1A221D] text-[10px] font-mono-hud">
-              <div>
-                <span class="text-emerald-400 font-bold block">35%–39%</span>
-                <span class="text-[#78756E]">NJEDA TAX REBATE</span>
-              </div>
-              <div>
-                <span class="text-white font-bold block">CLUSTERED</span>
-                <span class="text-[#78756E]">MULTI-CAM LOGISTICS</span>
-              </div>
-              <div>
-                <span class="text-amber-400 font-bold block">TURNKEY</span>
-                <span class="text-[#78756E]">SCRIPT TO WATERFALL</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Action Bar -->
-        <div class="pt-6 border-t border-[#1A221D] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="text-xs text-[#A5A299]">
-            <span class="text-white font-semibold">Ready to scope a campaign, book a white-label crew, or review a feature dossier?</span> Get exact numbers and deliverables on a 15-minute call.
-          </div>
-          <div class="flex flex-wrap items-center gap-3">
-            <a href="proposal.html" class="px-4 py-2.5 rounded border border-amber-500/40 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black text-xs font-mono-hud uppercase tracking-wider transition">
-              View Commercial Packages
+            <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+              Scope Campaign Media →
             </a>
-            <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="btn-hire text-xs whitespace-nowrap">
-              Book Production Call
+          </div>
+
+          <!-- 02: Brand-Specific Commercial Packages -->
+          <div class="depth-card bg-[#0A0A0E] border border-[#1F1F26] rounded-xl p-6 md:p-7 flex flex-col justify-between h-full hover:border-amber-500/50">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-mono-hud font-bold text-amber-400 uppercase tracking-wider">02 // COMMERCIAL PACKAGES</span>
+                <span class="text-[10px] font-mono-hud text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded uppercase">1 SHOOT → 10X ADS</span>
+              </div>
+              <h4 class="text-xl text-white font-serif-title mb-2.5">
+                Brand-Specific Commercial Packages
+              </h4>
+              <p class="text-xs sm:text-sm text-[#8C8C92] leading-relaxed mb-5">
+                Fixed-scope commercial production tailored to your industry—capturing hero spots, vertical social hooks, and campaign stills in a single shoot.
+              </p>
+              <ul class="text-xs font-mono-hud text-[#D1D5DB] space-y-2.5 pt-4 border-t border-[#18181F] mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 font-bold">✓</span>
+                  <span><strong>Upfront Pricing & 2-7-21 Delivery:</strong> From $8,500 30-day Launchpad Sprints and monthly retainers to $50,000 broadcast campaigns.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 font-bold">✓</span>
+                  <span><strong>Direct or White-Label Execution:</strong> Full creative production for brands or turnkey crew and gear under your agency banner.</span>
+                </li>
+              </ul>
+            </div>
+            <a href="index.html#offers" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+              Compare Commercial Packages →
+            </a>
+          </div>
+
+          <!-- 03: Film Production & Packaging Services -->
+          <div class="depth-card bg-[#0A0A0E] border border-[#1F1F26] rounded-xl p-6 md:p-7 flex flex-col justify-between h-full hover:border-amber-500/50">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-mono-hud font-bold text-amber-400 uppercase tracking-wider">03 // FILM PACKAGING & PRODUCTION</span>
+                <span class="text-[10px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">35%–39% NJ TAX CREDIT</span>
+              </div>
+              <h4 class="text-xl text-white font-serif-title mb-2.5">
+                Film Production & Packaging Services
+              </h4>
+              <p class="text-xs sm:text-sm text-[#8C8C92] leading-relaxed mb-5">
+                Complete feature packaging and physical line production that turns screenplays into finance-ready business plans before Day 1 on set.
+              </p>
+              <ul class="text-xs font-mono-hud text-[#D1D5DB] space-y-2.5 pt-4 border-t border-[#18181F] mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 font-bold">✓</span>
+                  <span><strong>Investor-Ready Dossiers:</strong> WGA screenplays, visual lookbooks, SAG-AFTRA budget top sheets, and clustered multi-camera schedules.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-500 font-bold">✓</span>
+                  <span><strong>NJEDA Tax Credit Structuring:</strong> 35%–39% New Jersey Film Tax Credit recovery and permitting to reduce net investor risk.</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+              Discuss Film Packaging →
             </a>
           </div>
         </div>
