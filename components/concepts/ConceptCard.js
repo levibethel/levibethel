@@ -36,8 +36,14 @@ function createConceptCard(project) {
     let label = 'PKG:';
     if (project.id === 'the-binding-seam') label = 'PACKAGE:';
     else if (project.id === 'crossfire-cousins') label = 'LOOKBOOK:';
+    else if (project.id === 'salt-and-skin') label = 'CO-PROD:';
 
-    const pulseColor = project.id === 'the-binding-seam' ? 'bg-red-500' : 'bg-amber-400';
+    const pulseColor =
+      project.id === 'the-binding-seam'
+        ? 'bg-red-500'
+        : project.id === 'salt-and-skin'
+        ? 'bg-emerald-400'
+        : 'bg-amber-400';
 
     stackHtml = `
       <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="${project.id}" title="Click to rotate production package assets">
@@ -54,23 +60,16 @@ function createConceptCard(project) {
     `;
   }
 
-  // Base badge
-  let baseBadgeHtml = '';
-  if (project.id === 'the-weight-of-light') {
-    baseBadgeHtml = stackHtml;
-  } else if (project.id === 'the-binding-seam') {
-    baseBadgeHtml = stackHtml;
-  } else {
-    // Crossfire Cousins: change the LOOKBOOK text to stacked, rotating cards
-    baseBadgeHtml = stackHtml || `
+  const baseBadgeHtml =
+    stackHtml ||
+    `
       <span class="text-[9px] font-mono-hud uppercase tracking-wider text-[#AAA] bg-black/70 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
         LOOKBOOK
       </span>
     `;
-  }
 
   return `
-    <article class="concept-card bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 transition-all duration-500 hover:shadow-[0_0_35px_rgba(217,119,6,0.15)] relative" data-project-id="${project.id}">
+    <article class="concept-card h-full bg-[#0A0A0D] border border-[#1F1F24] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 transition-all duration-500 hover:shadow-[0_0_35px_rgba(217,119,6,0.15)] relative" data-project-id="${project.id}">
       
       <!-- Top Image Frame (Darkened / Blurred Mood Board Thumbnail) -->
       <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1A1A1F]">

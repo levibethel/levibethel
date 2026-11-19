@@ -4,47 +4,12 @@
  */
 const CONCEPTS_DATA = [
   {
-    "id": "the-weight-of-light",
-    "title": "The Weight of Light",
-    "format": "Commercial Concept Deck (Lucid Motors)",
-    "formatCategory": "Commercial Concept",
-    "client": "Lucid Motors Spec",
-    "description": "A six-slide visual proposal exploring the intersection of raw cinematic environments and automotive engineering.",
-    "thumbnail": "assets/images/concepts/the-weight-of-light.jpg",
-    "fallbackThumbnail": "essential2.jpg",
-    "aspectRatio": "2.39:1",
-    "deckSlides": "6 Slides",
-    "confidentialityLevel": "CONFIDENTIAL // PROPRIETARY COMMERCIAL SPEC",
-    "visualTone": "Anamorphic Optics \u2022 Desert Dawn \u2022 High-Contrast Motivated Light",
-    "tags": [
-      "Commercial Deck",
-      "Lucid Motors",
-      "Automotive",
-      "Anamorphic",
-      "6 Slides"
-    ],
-    "colorPalette": [
-      "#D4A373",
-      "#111318",
-      "#4E4856",
-      "#C4BFCA"
-    ],
-    "packageAssets": [
-      "6-Slide Visual Proposal",
-      "Anamorphic Optical Strategy",
-      "Desert Dawn Lighting Manifest",
-      "Motivated High-Key Lighting",
-      "Vehicle Dynamic Framing Grids",
-      "DaVinci Wide Gamut CST Color"
-    ]
-  },
-  {
     "id": "the-binding-seam",
     "title": "The Binding Seam",
     "format": "Completely Packaged Feature Length Horror",
     "formatCategory": "Narrative Feature",
     "client": "Fermion Bec Productions",
-    "description": "A proof-of-concept visual breakdown establishing the tonal landscape, color palette, and atmospheric tension for a grounded dramatic thriller.",
+    "description": "A proof-of-concept visual breakdown establishing the tonal landscape, color palette, and atmospheric tension for a grounded dramatic thriller set in the New Jersey Pine Barrens.",
     "thumbnail": "assets/images/concepts/the-binding-seam.jpg",
     "fallbackThumbnail": "essential1.jpg",
     "aspectRatio": "2.39:1",
@@ -54,9 +19,7 @@ const CONCEPTS_DATA = [
     "tags": [
       "Feature Film",
       "Completely Packaged",
-      "Psychological Horror",
-      "A24 Aesthetic",
-      "Full Dossier"
+      "A24 Aesthetic"
     ],
     "colorPalette": [
       "#8B2500",
@@ -85,7 +48,7 @@ const CONCEPTS_DATA = [
     "format": "Feature Film Production Deck",
     "formatCategory": "Narrative Feature",
     "client": "Fermion Bec Productions",
-    "description": "A conceptual lookbook highlighting character dynamics, atmospheric scene breakdowns, and the overarching cinematic visual strategy for a character-driven feature.",
+    "description": "A conceptual lookbook highlighting character dynamics, atmospheric scene breakdowns, and the overarching visual strategy for a fast-paced South Jersey action-comedy feature.",
     "thumbnail": "assets/images/concepts/crossfire-cousins.jpg",
     "fallbackThumbnail": "essential3.jpg",
     "aspectRatio": "2.39:1",
@@ -95,9 +58,7 @@ const CONCEPTS_DATA = [
     "tags": [
       "Feature Film",
       "Action Comedy",
-      "Lookbook & Assets",
-      "Packaging Suite",
-      "Character Dynamics"
+      "Production Deck"
     ],
     "colorPalette": [
       "#E65C00",
@@ -114,6 +75,72 @@ const CONCEPTS_DATA = [
       "$2.1M Financial & NJEDA Waterfall",
       "Pre-Lit Spatial Blocking Blueprint",
       "Matriarchal & Antagonist Packaging"
+    ]
+  },
+  {
+    "id": "salt-and-skin",
+    "title": "Salt & Skin",
+    "format": "Revolutionary Folk-Horror Feature Package",
+    "formatCategory": "Narrative Feature",
+    "client": "Fermion Bec Productions / SI Productions",
+    "description": "A historical folk-horror production package set in Northern New Jersey, pairing period atmosphere with a partner-backed physical production model and zero-dilution co-production structure.",
+    "thumbnail": "essential1.jpg",
+    "fallbackThumbnail": "essential1.jpg",
+    "aspectRatio": "2.39:1",
+    "deckSlides": "Co-Production Packaging Suite",
+    "confidentialityLevel": "CONFIDENTIAL // WGA REGISTERED IP \u2022 CO-PRODUCTION SLATE",
+    "visualTone": "Colonial Timber \u2022 Salt Marsh Mist \u2022 Chiaroscuro Candlelight & Iron",
+    "tags": [
+      "Feature Film",
+      "Folk Horror",
+      "Co-Production"
+    ],
+    "colorPalette": [
+      "#3B2F2F",
+      "#C28438",
+      "#141A17",
+      "#C9C5BA"
+    ],
+    "packageAssets": [
+      "200-Page Master Screenplay & Bible",
+      "Visual Lookbook & Period Design",
+      "$475k Partner-Backed Budget Model",
+      "SI Productions Co-Production Structure",
+      "35%\u201339% NJEDA Tax Credit Schedule",
+      "North NJ Practical Location Manifest"
+    ]
+  },
+  {
+    "id": "the-weight-of-light",
+    "title": "The Weight of Light",
+    "format": "Commercial Concept Deck (Lucid Motors)",
+    "formatCategory": "Commercial Concept",
+    "client": "Lucid Motors Spec",
+    "description": "A six-slide visual proposal exploring the intersection of raw cinematic environments and automotive engineering for luxury electric mobility.",
+    "thumbnail": "assets/images/concepts/the-weight-of-light.jpg",
+    "fallbackThumbnail": "essential2.jpg",
+    "aspectRatio": "2.39:1",
+    "deckSlides": "6 Slides",
+    "confidentialityLevel": "CONFIDENTIAL // PROPRIETARY COMMERCIAL SPEC",
+    "visualTone": "Anamorphic Optics \u2022 Desert Dawn \u2022 High-Contrast Motivated Light",
+    "tags": [
+      "Commercial Deck",
+      "Lucid Motors",
+      "Anamorphic"
+    ],
+    "colorPalette": [
+      "#D4A373",
+      "#111318",
+      "#4E4856",
+      "#C4BFCA"
+    ],
+    "packageAssets": [
+      "6-Slide Visual Proposal",
+      "Anamorphic Optical Strategy",
+      "Desert Dawn Lighting Manifest",
+      "Motivated High-Key Lighting",
+      "Vehicle Dynamic Framing Grids",
+      "DaVinci Wide Gamut CST Color"
     ]
   }
 ];
