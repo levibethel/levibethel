@@ -79,7 +79,7 @@ function createConceptCard(project) {
           src="${project.thumbnail}" 
           alt="${project.title} Mood Board" 
           onerror="this.onerror=null; this.src='${project.fallbackThumbnail}';" 
-          class="w-full h-full object-cover ${project.id === 'the-binding-seam' ? 'object-[center_42%]' : ''} filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
+          class="w-full h-full object-cover ${project.id === 'the-binding-seam' ? 'object-[center_45%]' : ''} filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
           loading="lazy"
         />
 

@@ -507,13 +507,13 @@
   <a href="#offers" data-tab-key="commercial" onclick="switchTabView('commercial', 'offers', event)" class="nav-pill-btn">01 // Commercial Campaigns</a>
   <a href="#agency" data-tab-key="agency" onclick="switchTabView('agency', 'agency', event)" class="nav-pill-btn">02 // White-Label Production</a>
   <a href="#film-packages" data-tab-key="films" onclick="switchTabView('films', 'film-packages', event)" class="nav-pill-btn text-amber-400">03 // Feature Films</a>
+  <a href="#concepts-packaging" data-tab-key="concepts" onclick="switchTabView('concepts', 'concepts-packaging', event)" class="nav-pill-btn">Concepts &amp; Packaging</a>
   <a href="#work" data-tab-key="work" onclick="switchTabView('work', 'work', event)" class="nav-pill-btn">Selected Work</a>
   <a href="#visual-debt" data-tab-key="visual-debt" onclick="switchTabView('visual-debt', 'visual-debt', event)" class="nav-pill-btn">Why Fixed-Scope</a>
   <a href="#engine" data-tab-key="engine" onclick="switchTabView('engine', 'engine', event)" class="nav-pill-btn">Production Engine</a>
   <a href="#founder" data-tab-key="founder" onclick="switchTabView('founder', 'founder', event)" class="nav-pill-btn">Founder</a>
   <a href="#audit" data-tab-key="audit" onclick="switchTabView('audit', 'audit', event)" class="nav-pill-btn text-amber-400 font-bold border border-amber-500/30 bg-amber-500/5">Book a Call</a>
-  <a href="concepts.html" class="nav-pill-btn text-[#8E9B96] hover:text-white border-l border-[#1C2420] ml-2 pl-3">Concepts &amp; Packaging ↗</a>
-  <a href="proposal.html" class="nav-pill-btn text-amber-400 hover:text-white border-l border-[#1C2420] pl-3 font-semibold">Client SOW ↗</a>
+  <a href="proposal.html" class="nav-pill-btn text-amber-400 hover:text-white border-l border-[#1C2420] ml-2 pl-3 font-semibold">Client SOW ↗</a>
  </nav>
 
  <!-- ACTIVE FULL-SCREEN TAB BREADCRUMB & QUICK RETURN BAR -->
@@ -1487,8 +1487,8 @@
      Fully Packaged Feature Screenplays • Official Pitch Decks • SAG-AFTRA Budgets • Production Plans
     </p>
    </div>
-   <a href="concepts.html" class="text-xs font-mono-hud text-amber-400 hover:text-white flex items-center gap-1.5 border border-amber-500/30 px-3.5 py-2 rounded bg-amber-500/5 hover:bg-amber-500/20 transition">
-    <span>Open Full Confidential Slate Portal ↗</span>
+   <a href="#concepts-packaging" onclick="switchTabView('concepts', 'concepts-packaging', event)" class="text-xs font-mono-hud text-amber-400 hover:text-white flex items-center gap-1.5 border border-amber-500/30 px-3.5 py-2 rounded bg-amber-500/5 hover:bg-amber-500/20 transition">
+    <span>Open Concepts &amp; Packaging Tab</span>
     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
    </a>
   </div>
@@ -1508,10 +1508,10 @@
    <article class="concept-card depth-card h-full bg-[#0E1210] border border-[#1C2420] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative">
     <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1C2420]">
      <img
-      src="assets/images/concepts/the-binding-seam.jpg"
+      src="assets/images/concepts/the-binding-seam-poster.jpg"
       alt="The Binding Seam Feature Film Lookbook"
       onerror="this.onerror=null; this.src='assets/images/concepts/the-binding-seam.jpg';"
-      class="w-full h-full object-cover object-[center_42%] filter brightness-[0.82] contrast-[1.12] saturate-[0.9] group-hover:scale-105 group-hover:brightness-[0.95] transition-all duration-700 ease-out"
+      class="w-full h-full object-cover object-[center_45%] filter brightness-[0.85] contrast-[1.12] saturate-[0.9] group-hover:scale-105 group-hover:brightness-[0.95] transition-all duration-700 ease-out"
       loading="lazy"
      />
      <div class="absolute inset-0 bg-gradient-to-t from-[#0E1210] via-transparent to-black/60 pointer-events-none"></div>
@@ -1818,6 +1818,584 @@
      <p class="text-xs text-[#8E9B96] leading-relaxed">
       Qualified New Jersey spend structuring, brand sponsorship integration, and recoupment waterfalls designed to protect equity and co-production partners.
      </p>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <!-- SECTION 5B: CONCEPTS & PACKAGING (Full-Screen Integrated Tab) -->
+ <section id="concepts-packaging" class="mb-20 pt-4 border-t border-[#1C2420] depth-reveal tab-section-hidden">
+  <!-- Section Header -->
+  <div class="mb-14 border-b border-[#1C2420] pb-8">
+   <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6">
+    <div>
+     <div class="flex items-center gap-3 mb-2">
+      <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest border border-amber-500/30 px-2.5 py-0.5 rounded bg-amber-500/10">
+       // PACKAGING &amp; PITCH SLATE
+      </span>
+      <span class="text-[11px] font-mono-hud text-emerald-400 flex items-center gap-1.5">
+       <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+       ACTIVE PACKAGING 2026
+      </span>
+     </div>
+     <h2 class="text-3xl sm:text-4xl md:text-5xl text-white font-serif-title">
+      Concepts &amp; Packaging
+     </h2>
+    </div>
+
+    <!-- IP Security Callout -->
+    <div class="text-left md:text-right max-w-md">
+     <div class="inline-flex items-center gap-2 bg-[#0E1210] border border-amber-500/30 px-3 py-1.5 rounded mb-1">
+      <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+      <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest font-semibold">IP PROTECTION PROTOCOL</span>
+     </div>
+     <p class="text-[11px] font-mono-hud text-[#8E9B96] leading-relaxed">
+      Full presentation decks, treatment one-pagers, and lookbooks are confidential. No full text or PDF files rendered. Use <span class="text-amber-400">"Request Full Deck"</span> for executive credentials.
+     </p>
+    </div>
+   </div>
+
+   <!-- Curatorial Statement -->
+   <p class="text-sm md:text-base text-[#8E9B96] font-light max-w-3xl leading-relaxed">
+    Packaged feature films and commercial concepts built with complete production schedules, visual lookbooks, and clear budget frameworks before cameras roll.
+   </p>
+
+   <!-- Filter Bar -->
+   <div class="flex flex-wrap items-center justify-between gap-4 mt-8 pt-6 border-t border-[#1C2420]">
+    <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="concepts-filter-bar">
+     <button
+      type="button"
+      onclick="filterConcepts('all', this)"
+      class="concept-filter-btn active text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 transition"
+     >
+      All Projects (4)
+     </button>
+     <button
+      type="button"
+      onclick="filterConcepts('feature', this)"
+      class="concept-filter-btn text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-[#1C2420] text-[#8E9B96] hover:text-white hover:border-[#2D3A34] transition"
+     >
+      Features (3)
+     </button>
+     <button
+      type="button"
+      onclick="filterConcepts('commercial', this)"
+      class="concept-filter-btn text-[11px] font-mono-hud uppercase tracking-wider px-3.5 py-1.5 rounded border border-[#1C2420] text-[#8E9B96] hover:text-white hover:border-[#2D3A34] transition"
+     >
+      Commercials (1)
+     </button>
+    </div>
+
+    <div class="text-[11px] font-mono-hud text-[#8E9B96] flex items-center gap-2">
+     <span class="w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse"></span>
+     <span>PROPRIETARY SLATE // READY TO PITCH</span>
+    </div>
+   </div>
+  </div>
+
+  <!-- Equal-Height Aligned 2x2 Project Grid (The Binding Seam + Crossfire Cousins on Top Row, Salt & Skin + The Weight of Light on Second Row) -->
+  <div id="concepts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+
+   <!-- CARD 1: The Binding Seam -->
+   <article class="concept-card depth-card h-full bg-[#0E1210] border border-[#1C2420] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative" data-project-id="the-binding-seam">
+    <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1C2420]">
+     <img
+      src="assets/images/concepts/the-binding-seam-poster.jpg"
+      alt="The Binding Seam Mood Board"
+      onerror="this.onerror=null; this.src='assets/images/concepts/the-binding-seam.jpg';"
+      class="w-full h-full object-cover object-[center_45%] filter brightness-[0.85] contrast-[1.12] saturate-[0.9] group-hover:scale-105 group-hover:brightness-[0.95] group-hover:saturate-100 transition-all duration-700 ease-out"
+      loading="lazy"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-[#0E1210] via-transparent to-black/60 pointer-events-none"></div>
+     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
+      <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
+       2.39:1 SCOPE
+      </span>
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-binding-seam" title="Click to cycle production package assets">
+       <div class="card-stack-layer-back2"></div>
+       <div class="card-stack-layer-back1"></div>
+       <div class="card-stack-front">
+        <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse flex-shrink-0"></span>
+        <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PACKAGE:</span>
+        <div class="rotating-card-track">
+         <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/12 110-Page Master Screenplay</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/12 12-Slide Visual Lookbook Deck</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/12 Official 10-Slide Pitch Deck</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/12 $850k Budget Top Sheet (SAG-AFTRA)</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/12 35% NJ Tax Credit ($228k Rebate)</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/12 18-Day Master Production Plan</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/12 Brand Sponsorship Stack Dossier</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/12 Camera &amp; Multicam Case Study</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="8">09/12 Cast &amp; Crew Sourcing Dossier</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="9">10/12 Equipment &amp; Office Manifest</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="10">11/12 Director's Thematic Project Bible</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="11">12/12 Executive One-Pager Submission</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+      <span>RESTRICTED IP</span>
+     </div>
+     <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
+      <span class="text-[9px] font-mono-hud text-[#8E9B96] uppercase tracking-wider mr-1">TONE:</span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #8B2500;" title="Tone: #8B2500"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #FF8C00;" title="Tone: #FF8C00"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #0A0F0D;" title="Tone: #0A0F0D"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D8D8D8;" title="Tone: #D8D8D8"></span>
+     </div>
+    </div>
+
+    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
+        // COMPLETELY PACKAGED FEATURE LENGTH HORROR
+       </span>
+      </div>
+      <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
+       The Binding Seam
+      </h3>
+
+      <!-- Streamlined Award-Winning Accolade Badge -->
+      <div class="mb-5 px-3.5 py-2.5 rounded-lg bg-amber-500/10 border border-amber-500/35 text-[11px] font-mono-hud">
+       <span class="text-amber-400 font-bold uppercase tracking-wider block">★ Top 3 Finalist — Option Contender</span>
+       <span class="text-white/90">Top 3 Finalist — The Scared Slate (Unlimited Studios 2026)</span>
+      </div>
+
+      <p class="text-xs md:text-sm text-[#8E9B96] font-light leading-relaxed mb-6">
+       A proof-of-concept visual breakdown establishing the tonal landscape, color palette, and atmospheric tension for a grounded dramatic thriller set in the New Jersey Pine Barrens.
+      </p>
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
+       <p><span class="text-white/80">ATMOSPHERE:</span> Barnegat Fog • Obsidian Pitch Pines • Bog Iron Rust &amp; Amber Flare</p>
+       <p><span class="text-white/80">PROTECTION:</span> CONFIDENTIAL // WGA REGISTERED IP • PROTECTED SLATE</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mb-8">
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Completely Packaged</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">A24 Aesthetic</span>
+      </div>
+     </div>
+
+     <div class="pt-5 border-t border-[#1C2420] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mt-auto">
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] flex items-center gap-1.5">
+       <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+       </svg>
+       <span>CONFIDENTIAL DECK</span>
+      </div>
+      <button
+       type="button"
+       onclick="openDeckRequestModal('the-binding-seam', 'The Binding Seam', 'Completely Packaged Feature Length Horror')"
+       class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+      >
+       <span>Request Full Deck</span>
+       <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+       </svg>
+      </button>
+     </div>
+    </div>
+   </article>
+
+   <!-- CARD 2: Crossfire Cousins -->
+   <article class="concept-card depth-card h-full bg-[#0E1210] border border-[#1C2420] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative" data-project-id="crossfire-cousins">
+    <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1C2420]">
+     <img
+      src="assets/images/concepts/crossfire-cousins.jpg"
+      alt="Crossfire Cousins Mood Board"
+      onerror="this.onerror=null; this.src='essential3.jpg';"
+      class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
+      loading="lazy"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-[#0E1210] via-transparent to-black/60 pointer-events-none"></div>
+     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
+      <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
+       2.39:1 SCOPE
+      </span>
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="crossfire-cousins" title="Click to cycle production package assets">
+       <div class="card-stack-layer-back2"></div>
+       <div class="card-stack-layer-back1"></div>
+       <div class="card-stack-front">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+        <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">LOOKBOOK:</span>
+        <div class="rotating-card-track">
+         <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/08 108-Page Action Comedy Script</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/08 13-Slide Production Pitch Deck</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/08 Anamorphic Visual Lookbook</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/08 6-Location 12-Day Clustered Plan</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/08 6-Camera Simultaneous Workflow</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/08 $2.1M Financial &amp; NJEDA Waterfall</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="6">07/08 Pre-Lit Spatial Blocking Blueprint</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="7">08/08 Matriarchal &amp; Antagonist Packaging</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+      <span>RESTRICTED IP</span>
+     </div>
+     <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
+      <span class="text-[9px] font-mono-hud text-[#8E9B96] uppercase tracking-wider mr-1">TONE:</span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #E65C00;" title="Tone: Anamorphic Streak #E65C00"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4AF37;" title="Tone: California Gold #D4AF37"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #1A1C23;" title="Tone: Deep Indigo Shadow #1A1C23"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #8B92A5;" title="Tone: Stucco Slate #8B92A5"></span>
+     </div>
+    </div>
+
+    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
+        // FEATURE FILM PRODUCTION DECK
+       </span>
+      </div>
+      <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
+       Crossfire Cousins
+      </h3>
+
+      <!-- Aligned Packaging Status Badge -->
+      <div class="mb-5 px-3.5 py-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/35 text-[11px] font-mono-hud">
+       <span class="text-emerald-400 font-bold uppercase tracking-wider block">● Fully Packaged Action-Comedy Slate</span>
+       <span class="text-white/90">108-Page Screenplay • 6-Cam Clustered Schedule &amp; NJEDA Model</span>
+      </div>
+
+      <p class="text-xs md:text-sm text-[#8E9B96] font-light leading-relaxed mb-6">
+       A conceptual lookbook highlighting character dynamics, atmospheric scene breakdowns, and the overarching visual strategy for a fast-paced South Jersey action-comedy feature.
+      </p>
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
+       <p><span class="text-white/80">ATMOSPHERE:</span> Character Dynamics • High-Friction Shadows • Urban Twilight &amp; Tungsten</p>
+       <p><span class="text-white/80">PROTECTION:</span> CONFIDENTIAL // FINANCING &amp; PACKAGING SUITE</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mb-8">
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Action Comedy</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Production Deck</span>
+      </div>
+     </div>
+
+     <div class="pt-5 border-t border-[#1C2420] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mt-auto">
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] flex items-center gap-1.5">
+       <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+       </svg>
+       <span>CONFIDENTIAL DECK</span>
+      </div>
+      <button
+       type="button"
+       onclick="openDeckRequestModal('crossfire-cousins', 'Crossfire Cousins', 'Feature Film Production Deck')"
+       class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+      >
+       <span>Request Full Deck</span>
+       <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+       </svg>
+      </button>
+     </div>
+    </div>
+   </article>
+
+   <!-- CARD 3: Salt & Skin (Revolutionary Folk-Horror Feature Package) -->
+   <article class="concept-card depth-card h-full bg-[#0E1210] border border-[#1C2420] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative" data-project-id="salt-and-skin">
+    <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1C2420]">
+     <img
+      src="assets/images/concepts/salt-and-skin.jpg"
+      alt="Salt &amp; Skin Feature Film Mood Board"
+      onerror="this.onerror=null; this.src='assets/images/concepts/salt-and-skin.jpg';"
+      class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
+      loading="lazy"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-[#0E1210] via-transparent to-black/60 pointer-events-none"></div>
+     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
+      <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
+       2.39:1 SCOPE
+      </span>
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="salt-and-skin" title="Click to cycle production package assets">
+       <div class="card-stack-layer-back2"></div>
+       <div class="card-stack-layer-back1"></div>
+       <div class="card-stack-front">
+        <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse flex-shrink-0"></span>
+        <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PACKAGE:</span>
+        <div class="rotating-card-track">
+         <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/06 200-Page Master Screenplay &amp; Bible</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/06 Visual Lookbook &amp; Period Design</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/06 $475k Partner-Backed Budget Model</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/06 SI Productions Co-Production Structure</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/06 35%–39% NJEDA Tax Credit Schedule</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/06 North NJ Practical Location Manifest</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+      <span>RESTRICTED IP</span>
+     </div>
+     <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
+      <span class="text-[9px] font-mono-hud text-[#8E9B96] uppercase tracking-wider mr-1">TONE:</span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #3B2F2F;" title="Tone: Colonial Timber #3B2F2F"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #C28438;" title="Tone: Candlelight Amber #C28438"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #141A17;" title="Tone: Marsh Pine #141A17"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #C9C5BA;" title="Tone: Salt Parchment #C9C5BA"></span>
+     </div>
+    </div>
+
+    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
+        // REVOLUTIONARY FOLK-HORROR FEATURE PACKAGE
+       </span>
+      </div>
+      <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
+       Salt &amp; Skin
+      </h3>
+
+      <!-- Aligned Packaging Status Badge -->
+      <div class="mb-5 px-3.5 py-2.5 rounded-lg bg-amber-500/10 border border-amber-500/35 text-[11px] font-mono-hud">
+       <span class="text-amber-400 font-bold uppercase tracking-wider block">● Partner-Backed Co-Production Slate</span>
+       <span class="text-white/90">Co-Produced with SI Productions • North NJ Period Folk-Horror</span>
+      </div>
+
+      <p class="text-xs md:text-sm text-[#8E9B96] font-light leading-relaxed mb-6">
+       A historical folk-horror production package set in Northern New Jersey, pairing period atmosphere with a partner-backed physical production model and zero-dilution co-production structure.
+      </p>
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
+       <p><span class="text-white/80">ATMOSPHERE:</span> Colonial Timber • Salt Marsh Mist • Chiaroscuro Candlelight &amp; Iron</p>
+       <p><span class="text-white/80">PROTECTION:</span> CONFIDENTIAL // WGA REGISTERED IP • CO-PRODUCTION SLATE</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mb-8">
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Feature Film</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Folk Horror</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Co-Production</span>
+      </div>
+     </div>
+
+     <div class="pt-5 border-t border-[#1C2420] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mt-auto">
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] flex items-center gap-1.5">
+       <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+       </svg>
+       <span>CONFIDENTIAL DECK</span>
+      </div>
+      <button
+       type="button"
+       onclick="openDeckRequestModal('salt-and-skin', 'Salt & Skin', 'Revolutionary Folk-Horror Feature Package')"
+       class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+      >
+       <span>Request Full Deck</span>
+       <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+       </svg>
+      </button>
+     </div>
+    </div>
+   </article>
+
+   <!-- CARD 4: The Weight of Light (Commercial Concept Deck) -->
+   <article class="concept-card depth-card h-full bg-[#0E1210] border border-[#1C2420] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-amber-500/60 relative" data-project-id="the-weight-of-light">
+    <div class="relative w-full aspect-[2.39/1] overflow-hidden bg-black border-b border-[#1C2420]">
+     <img
+      src="assets/images/concepts/the-weight-of-light.jpg"
+      alt="The Weight of Light Mood Board"
+      onerror="this.onerror=null; this.src='essential2.jpg';"
+      class="w-full h-full object-cover filter brightness-[0.75] contrast-[1.15] saturate-[0.85] group-hover:scale-105 group-hover:brightness-[0.9] group-hover:saturate-100 transition-all duration-700 ease-out"
+      loading="lazy"
+     />
+     <div class="absolute inset-0 bg-gradient-to-t from-[#0E1210] via-transparent to-black/60 pointer-events-none"></div>
+     <div class="absolute top-3 left-3 flex flex-wrap items-center gap-1.5 z-20">
+      <span class="text-[9px] font-mono-hud uppercase tracking-widest text-amber-400/90 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/30">
+       2.39:1 SCOPE
+      </span>
+      <div class="card-stack-wrap relative inline-flex items-center" data-stack-id="the-weight-of-light" title="Click to cycle production package materials">
+       <div class="card-stack-layer-back2"></div>
+       <div class="card-stack-layer-back1"></div>
+       <div class="card-stack-front">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+        <span class="text-amber-400/90 font-bold uppercase tracking-wider text-[8px] flex-shrink-0">PKG:</span>
+        <div class="rotating-card-track">
+         <span class="rotating-card-item active text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="0">01/06 6-Slide Visual Proposal</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="1">02/06 Anamorphic Optical Strategy</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="2">03/06 Desert Dawn Lighting Manifest</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="3">04/06 Motivated High-Key Lighting</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="4">05/06 Vehicle Dynamic Framing Grids</span>
+         <span class="rotating-card-item text-[9px] font-mono-hud text-[#E5E5E5] uppercase tracking-wider" data-index="5">06/06 DaVinci Wide Gamut CST Color</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded border border-red-500/30 text-red-400 text-[9px] font-mono-hud tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+      <span>RESTRICTED IP</span>
+     </div>
+     <div class="absolute bottom-2.5 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/5 z-20">
+      <span class="text-[9px] font-mono-hud text-[#8E9B96] uppercase tracking-wider mr-1">TONE:</span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #D4A373;" title="Tone: Desert Dawn Amber #D4A373"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #111318;" title="Tone: Metallic Obsidian #111318"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #4E4856;" title="Tone: Mountain Slate #4E4856"></span>
+      <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/20" style="background-color: #C4BFCA;" title="Tone: Specular Salt Chrome #C4BFCA"></span>
+     </div>
+    </div>
+
+    <div class="p-6 md:p-8 flex flex-col flex-grow justify-between">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud text-amber-500 tracking-[0.2em] uppercase">
+        // COMMERCIAL CONCEPT DECK (LUCID MOTORS)
+       </span>
+      </div>
+      <h3 class="font-serif-title text-2xl md:text-3xl text-white tracking-wide mb-3 group-hover:text-amber-100 transition-colors font-semibold">
+       The Weight of Light
+      </h3>
+
+      <!-- Aligned Packaging Status Badge -->
+      <div class="mb-5 px-3.5 py-2.5 rounded-lg bg-amber-500/10 border border-amber-500/35 text-[11px] font-mono-hud">
+       <span class="text-amber-400 font-bold uppercase tracking-wider block">● Turnkey Commercial Campaign Spec</span>
+       <span class="text-white/90">6-Slide Visual Proposal • Anamorphic Framing &amp; DaVinci Color Suite</span>
+      </div>
+
+      <p class="text-xs md:text-sm text-[#8E9B96] font-light leading-relaxed mb-6">
+       A six-slide visual proposal exploring the intersection of raw cinematic environments and automotive engineering for luxury electric mobility.
+      </p>
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] border-l-2 border-amber-500/30 pl-3 mb-6 space-y-1">
+       <p><span class="text-white/80">ATMOSPHERE:</span> Anamorphic Optics • Desert Dawn • High-Contrast Motivated Light</p>
+       <p><span class="text-white/80">PROTECTION:</span> CONFIDENTIAL // PROPRIETARY COMMERCIAL SPEC</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5 mb-8">
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Commercial Deck</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Lucid Motors</span>
+       <span class="text-[10px] font-mono-hud text-[#8E9B96] bg-[#060807] border border-[#1C2420] px-2 py-0.5 rounded tracking-wider uppercase">Anamorphic</span>
+      </div>
+     </div>
+
+     <div class="pt-5 border-t border-[#1C2420] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mt-auto">
+      <div class="text-[10px] font-mono-hud text-[#8E9B96] flex items-center gap-1.5">
+       <svg class="w-3.5 h-3.5 text-amber-500/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+       </svg>
+       <span>CONFIDENTIAL DECK</span>
+      </div>
+      <button
+       type="button"
+       onclick="openDeckRequestModal('the-weight-of-light', 'The Weight of Light', 'Commercial Concept Deck (Lucid Motors)')"
+       class="btn-deck-request text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-5 rounded border border-amber-500/60 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black hover:border-amber-400 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+      >
+       <span>Request Full Deck</span>
+       <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+       </svg>
+      </button>
+     </div>
+    </div>
+   </article>
+
+  </div>
+
+  <!-- CONCISE CONVERSION-DRIVING PRODUCTION & PACKAGING CAPABILITIES -->
+  <div class="mt-16 pt-12 border-t border-[#1C2420]">
+   <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-4 mb-8">
+    <div>
+     <span class="text-xs font-mono-hud text-amber-500 uppercase tracking-widest block mb-2">
+      // PRODUCTION &amp; PACKAGING CAPABILITIES
+     </span>
+     <h3 class="text-2xl sm:text-3xl md:text-4xl text-white font-serif-title">
+      Built for Political Campaigns, Commercial Brands &amp; Feature Films
+     </h3>
+    </div>
+    <p class="text-xs sm:text-sm text-[#8E9B96] max-w-xl leading-relaxed">
+     One disciplined production unit delivering fast field deployment, fixed-scope commercial packages, and investor-ready film packaging.
+    </p>
+   </div>
+
+   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mb-8">
+    <!-- 01: Political Campaign Media & Logistical Fortitude -->
+    <div class="depth-card bg-[#0E1210] border border-[#1C2420] rounded-xl p-6 md:p-7 flex flex-col justify-between h-full hover:border-amber-500/50">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud font-bold text-amber-400 uppercase tracking-wider">01 // POLITICAL CAMPAIGN MEDIA</span>
+       <span class="text-[10px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">RAPID DEPLOYMENT</span>
+      </div>
+      <h4 class="text-xl text-white font-serif-title mb-2.5">
+       Political Campaign Media &amp; Logistical Fortitude
+      </h4>
+      <p class="text-xs sm:text-sm text-[#8E9B96] leading-relaxed mb-5">
+       Broadcast, OTT, and rapid-response campaign ads backed by disciplined field logistics—built to move fast and hit strict media-buy deadlines.
+      </p>
+      <ul class="text-xs font-mono-hud text-[#F0F3F1] space-y-2.5 pt-4 border-t border-[#1C2420] mb-6">
+       <li class="flex items-start gap-2">
+        <span class="text-amber-500 font-bold">✓</span>
+        <span><strong>Self-Powered Field Mobility:</strong> 10.2 kW silent mobile studio power and multi-cam town hall rigs ready for any district location.</span>
+       </li>
+       <li class="flex items-start gap-2">
+        <span class="text-amber-500 font-bold">✓</span>
+        <span><strong>Rapid Broadcast Turnaround:</strong> 30s/15s TV, OTT, and digital spots cut, graded, and compliant for immediate air.</span>
+       </li>
+      </ul>
+     </div>
+     <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+      Scope Campaign Media →
+     </a>
+    </div>
+
+    <!-- 02: Brand-Specific Commercial Packages -->
+    <div class="depth-card bg-[#0E1210] border border-[#1C2420] rounded-xl p-6 md:p-7 flex flex-col justify-between h-full hover:border-amber-500/50">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud font-bold text-amber-400 uppercase tracking-wider">02 // COMMERCIAL PACKAGES</span>
+       <span class="text-[10px] font-mono-hud text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded uppercase">1 SHOOT → 10X ADS</span>
+      </div>
+      <h4 class="text-xl text-white font-serif-title mb-2.5">
+       Brand-Specific Commercial Packages
+      </h4>
+      <p class="text-xs sm:text-sm text-[#8E9B96] leading-relaxed mb-5">
+       Fixed-scope commercial production tailored to your industry—capturing hero spots, vertical social hooks, and campaign stills in a single shoot.
+      </p>
+      <ul class="text-xs font-mono-hud text-[#F0F3F1] space-y-2.5 pt-4 border-t border-[#1C2420] mb-6">
+       <li class="flex items-start gap-2">
+        <span class="text-amber-500 font-bold">✓</span>
+        <span><strong>Upfront Pricing &amp; 2-7-21 Delivery:</strong> From $8,500 30-day Launchpad Sprints and monthly retainers to $50,000 broadcast campaigns.</span>
+       </li>
+       <li class="flex items-start gap-2">
+        <span class="text-amber-500 font-bold">✓</span>
+        <span><strong>Direct or White-Label Execution:</strong> Full creative production for brands or turnkey crew and gear under your agency banner.</span>
+       </li>
+      </ul>
+     </div>
+     <a href="#offers" onclick="switchTabView('commercial', 'offers', event)" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+      Compare Commercial Packages →
+     </a>
+    </div>
+
+    <!-- 03: Film Production & Packaging Services -->
+    <div class="depth-card bg-[#0E1210] border border-[#1C2420] rounded-xl p-6 md:p-7 flex flex-col justify-between h-full hover:border-amber-500/50">
+     <div>
+      <div class="flex items-center justify-between gap-2 mb-3">
+       <span class="text-[11px] font-mono-hud font-bold text-amber-400 uppercase tracking-wider">03 // FILM PACKAGING &amp; PRODUCTION</span>
+       <span class="text-[10px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">35%–39% NJ TAX CREDIT</span>
+      </div>
+      <h4 class="text-xl text-white font-serif-title mb-2.5">
+       Film Production &amp; Packaging Services
+      </h4>
+      <p class="text-xs sm:text-sm text-[#8E9B96] leading-relaxed mb-5">
+       Complete feature packaging and physical line production that turns screenplays into finance-ready business plans before Day 1 on set.
+      </p>
+      <ul class="text-xs font-mono-hud text-[#F0F3F1] space-y-2.5 pt-4 border-t border-[#1C2420] mb-6">
+       <li class="flex items-start gap-2">
+        <span class="text-amber-500 font-bold">✓</span>
+        <span><strong>Investor-Ready Dossiers:</strong> WGA screenplays, visual lookbooks, SAG-AFTRA budget top sheets, and clustered multi-camera schedules.</span>
+       </li>
+       <li class="flex items-start gap-2">
+        <span class="text-amber-500 font-bold">✓</span>
+        <span><strong>NJEDA Tax Credit Structuring:</strong> 35%–39% New Jersey Film Tax Credit recovery and permitting to reduce net investor risk.</span>
+       </li>
+      </ul>
+     </div>
+     <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+      Discuss Film Packaging →
+     </a>
     </div>
    </div>
   </div>
@@ -2610,7 +3188,7 @@
  let currentTabMode = 'overview';
  let scrollTicking = false;
 
- const ALL_TAB_SECTIONS = ['hero', 'visual-debt', 'offers', 'work', 'film-packages', 'engine', 'agency', 'founder', 'audit'];
+ const ALL_TAB_SECTIONS = ['hero', 'visual-debt', 'offers', 'work', 'film-packages', 'concepts-packaging', 'engine', 'agency', 'founder', 'audit'];
 
  // Strict Full-Screen Separation: Each tab reveals ONLY its dedicated view(s) when clicked
  const TAB_SECTION_MAP = {
@@ -2618,6 +3196,7 @@
   'commercial': ['offers'],
   'agency': ['agency'],
   'films': ['film-packages'],
+  'concepts': ['concepts-packaging'],
   'work': ['work'],
   'visual-debt': ['visual-debt'],
   'engine': ['engine'],
@@ -2629,6 +3208,7 @@
   'commercial': '01 // COMMERCIAL CAMPAIGNS — PRICING & PACKAGES',
   'agency': '02 // WHITE-LABEL PRODUCTION — AGENCY SYNDICATE',
   'films': '03 // FEATURE FILMS — PACKAGED WGA SLATE',
+  'concepts': 'CONCEPTS & PACKAGING — PROPRIETARY FILM & COMMERCIAL SLATE',
   'work': 'SELECTED COMMERCIAL PRODUCTIONS',
   'visual-debt': 'WHY FIXED-SCOPE — VISUAL DEBT DIAGNOSTIC',
   'engine': 'THE PRODUCTION ENGINE & TECHNICAL RIGOR',
@@ -2644,9 +3224,11 @@
   '#agency': 'agency',
   '#film-packages': 'films',
   '#narrative-packages': 'films',
+  '#concepts': 'concepts',
+  '#concepts-packaging': 'concepts',
   '#work': 'work',
-  '#packaging': 'work',
-  '#view-packaging': 'work',
+  '#packaging': 'concepts',
+  '#view-packaging': 'concepts',
   '#visual-debt': 'visual-debt',
   '#engine': 'engine',
   '#director': 'engine',

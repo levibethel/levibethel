@@ -264,7 +264,8 @@ function filterConcepts(category, btnElement) {
     btnElement.classList.remove('border-[#26262E]', 'text-[#777]');
   }
 
-  const cards = document.querySelectorAll('.concept-card');
+  const grid = document.getElementById('concepts-grid');
+  const cards = grid ? grid.querySelectorAll('.concept-card') : document.querySelectorAll('.concept-card');
   const data = window.CONCEPTS_DATA || [];
 
   cards.forEach(card => {
