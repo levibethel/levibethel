@@ -535,7 +535,7 @@
     <span class="text-[#444] font-mono-hud">➔</span>
     <span class="px-3 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-xs font-mono-hud text-amber-400 font-semibold">2. Book Kickoff</span>
     <span class="text-[#444] font-mono-hud">➔</span>
-    <span class="px-3 py-1.5 rounded bg-emerald-500/10 border border-emerald-500/40 text-xs font-mono-hud text-emerald-400 font-semibold">3. Seal Agreement</span>
+    <span class="px-3 py-1.5 rounded bg-emerald-500/10 border border-emerald-500/40 text-xs font-mono-hud text-emerald-400 font-semibold">3. Seal &amp; Pay via Stripe / ACH</span>
    </div>
   </div>
 
@@ -1081,7 +1081,7 @@
 
    <div>
     <h4 class="text-amber-400 uppercase font-bold text-xs mb-1">2. Invoicing, Payment Terms &amp; Collections</h4>
-    <p id="csaPaymentTermsFull">Client agrees to pay Producer all Fees and approved Costs in accordance with <span id="csaPaymentTermsText" class="text-white font-semibold">Option A: 3-Part Milestone Billing (30% / 40% / 30%)</span>. Invoices are issued via QuickBooks Online and are Due Upon Receipt. Unpaid balances past thirty (30) days accrue interest at the rate of 1.5% per month (18% per annum) or the maximum permitted by law. In the event legal action is required to collect overdue payments, Client shall pay all reasonable attorney’s fees, court costs, and collection expenses incurred by Producer.</p>
+    <p id="csaPaymentTermsFull">Client agrees to pay Producer all Fees and approved Costs in accordance with <span id="csaPaymentTermsText" class="text-white font-semibold">Option A: 3-Part Milestone Billing (30% / 40% / 30%)</span>. Milestone deposits and recurring retainers are payable immediately upon contract execution via Stripe (US Bank Account / ACH Direct Debit or Corporate Card) or via QuickBooks Online and are Due Upon Receipt. Unpaid balances past thirty (30) days accrue interest at the rate of 1.5% per month (18% per annum) or the maximum permitted by law. In the event legal action is required to collect overdue payments, Client shall pay all reasonable attorney’s fees, court costs, and collection expenses incurred by Producer.</p>
    </div>
 
    <div>
@@ -1167,6 +1167,21 @@
 
    </div>
 
+   <!-- Live Synchronized Stripe Milestone Preview Strip (Updates Dynamically From Step 1) -->
+   <div id="stripeLivePreviewBar" class="mb-6 p-4 rounded-xl bg-[#070709] border border-amber-500/35 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 no-print">
+    <div class="flex items-start sm:items-center gap-3">
+     <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse mt-1 sm:mt-0 flex-shrink-0"></span>
+     <div class="text-xs font-mono-hud">
+      <span class="text-amber-400 font-bold uppercase tracking-wider block sm:inline">// STRIPE MILESTONE SETTLEMENT READY:</span>
+      <span id="stripePreviewMilestoneText" class="text-white font-semibold ml-0 sm:ml-1.5">$15,000 USD (30% Signing Milestone — 02. Flagship Campaign)</span>
+      <span id="stripePreviewDoohAddon" class="text-amber-300/90 hidden"></span>
+     </div>
+    </div>
+    <div class="flex items-center gap-2 text-[10px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 rounded uppercase tracking-wider flex-shrink-0">
+     <span>★ US BANK ACH DIRECT DEBIT ($5 FEE CAP) • CORPORATE CARD • APPLE PAY</span>
+    </div>
+   </div>
+
    <div class="pt-6 border-t border-[#1C1C22] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
     <label class="flex items-center gap-3 cursor-pointer">
      <input type="checkbox" id="authCheckbox" class="w-4 h-4 accent-amber-500 rounded">
@@ -1174,13 +1189,13 @@
     </label>
 
     <button id="btnExecuteAgreement" onclick="lockAndFinalizeAgreement()" class="btn-gold opacity-50 pointer-events-none transition flex items-center gap-2">
-     <span>Digitally Seal Agreement</span>
+     <span>Digitally Seal Agreement &amp; Unlock Payment</span>
      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
     </button>
    </div>
 
-   <!-- Audit & Success Banner -->
-   <div id="executionSuccessBanner" class="mt-6 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-xs font-mono-hud hidden">
+   <!-- Audit, Cryptographic Seal & Stripe Milestone Payment Terminal Banner -->
+   <div id="executionSuccessBanner" class="mt-6 p-5 rounded-xl bg-[#070709] border border-emerald-500/50 text-emerald-400 text-xs font-mono-hud hidden shadow-[0_0_35px_rgba(16,185,129,0.12)]">
     ✓ AGREEMENT DIGITALLY EXECUTED &amp; TIMESTAMPED. Click "Print / Save PDF" above to generate a sealed archival PDF copy for your corporate legal records.
    </div>
 
@@ -1188,6 +1203,86 @@
  </section>
 
  </main>
+
+ <!-- IN-PAGE DARK-MODE STRIPE MILESTONE SETTLEMENT MODAL (STUDIO VIEWFINDER HUD) -->
+ <div id="stripeCheckoutModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl no-print">
+  <div class="max-w-xl w-full bg-[#0A0A0E] border border-amber-500/50 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(217,119,6,0.22)] relative overflow-hidden">
+   <div class="flex justify-between items-start pb-4 mb-5 border-b border-[#1E1E24]">
+    <div>
+     <span class="text-[10px] font-mono-hud text-amber-500 uppercase tracking-widest block mb-1">
+      // STRIPE MILESTONE SETTLEMENT TERMINAL • PCI-DSS LEVEL 1
+     </span>
+     <h3 class="text-xl sm:text-2xl font-hero text-white tracking-wider" id="stripeModalTitle">
+      INITIALIZE MILESTONE PAYMENT
+     </h3>
+    </div>
+    <button type="button" onclick="closeStripeCheckoutModal()" class="text-xs font-mono-hud text-[#888] hover:text-white px-2 py-1 rounded hover:bg-white/5 transition">
+     [CLOSE ✕]
+    </button>
+   </div>
+
+   <!-- Contract Binding Summary -->
+   <div class="p-4 rounded-xl bg-[#070709] border border-[#222228] mb-5 space-y-2 text-xs font-mono-hud">
+    <div class="flex justify-between items-center">
+     <span class="text-[#888]">CONTRACT SEAL REF:</span>
+     <span id="stripeModalAuditRef" class="text-amber-400 font-bold">FBP-CSA-PENDING</span>
+    </div>
+    <div class="flex justify-between items-center">
+     <span class="text-[#888]">CLIENT ENTITY:</span>
+     <span id="stripeModalCompany" class="text-white font-semibold">Client Organization</span>
+    </div>
+    <div class="flex justify-between items-center">
+     <span class="text-[#888]">BILLING EMAIL:</span>
+     <span id="stripeModalEmail" class="text-[#CCC]">On File</span>
+    </div>
+    <div class="flex justify-between items-center pt-2 border-t border-[#1A1A20]">
+     <span class="text-amber-400 font-bold">MILESTONE DUE TODAY:</span>
+     <span id="stripeModalAmount" class="text-lg font-hero text-emerald-400">$15,000 USD</span>
+    </div>
+   </div>
+
+   <!-- Payment Method Preference Selector (ACH vs Corporate Card) -->
+   <div class="mb-6">
+    <label class="block text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest mb-2">
+     SELECT SETTLEMENT RAIL:
+    </label>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono-hud">
+     <div id="railCardAch" onclick="selectStripeRail('ACH Direct Debit (US Bank Account)')" class="option-card selected p-3.5">
+      <div class="flex items-center justify-between mb-1">
+       <span class="text-white font-bold">US BANK / ACH DEBIT</span>
+       <span class="text-[9px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-1.5 py-0.5 rounded">$5 FEE CAP</span>
+      </div>
+      <p class="text-[10px] text-[#888]">Instant bank verification via Stripe Financial Connections (0.8% capped at $5.00).</p>
+     </div>
+     <div id="railCardCredit" onclick="selectStripeRail('Corporate Credit Card / Apple Pay')" class="option-card p-3.5">
+      <div class="flex items-center justify-between mb-1">
+       <span class="text-white font-bold">CORPORATE CARD</span>
+       <span class="text-[9px] text-amber-400 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded">INSTANT</span>
+      </div>
+      <p class="text-[10px] text-[#888]">Visa, Mastercard, Amex, or Apple Pay via Stripe Checkout (2.9% + $0.30).</p>
+     </div>
+    </div>
+   </div>
+
+   <!-- Part 2 — Embedded Stripe Checkout Form Container (ui_mode: 'form') -->
+   <div id="checkout-form" class="mb-5"></div>
+
+   <div class="p-3.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-[11px] font-mono-hud text-[#CCC] leading-relaxed mb-6">
+    <strong class="text-amber-400 block mb-0.5">// AUTOMATED STRIPE LINK &amp; INVOICE DISPATCH:</strong>
+    Your signed contract seal is bound to this transaction via <code class="text-white">client_reference_id</code>. Complete the embedded checkout form above or click below to open your pre-filled Stripe checkout session.
+   </div>
+
+   <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+    <a id="stripeModalDirectLinkBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold w-full sm:flex-1 justify-center text-xs py-3">
+     <span id="stripeModalDirectBtnText">Proceed to Stripe Checkout</span>
+     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+    <button type="button" onclick="closeStripeCheckoutModal()" class="w-full sm:w-auto text-xs font-mono-hud text-[#888] hover:text-white px-4 py-3 rounded border border-[#26262E] hover:border-[#444] transition">
+     Return to Contract
+    </button>
+   </div>
+  </div>
+ </div>
 
  <script>
  // Cryptographic SHA-256 Authorization Hashes (No plaintext keys stored in source)
@@ -1609,6 +1704,7 @@
     </tr>
    `;
   }
+  if (typeof updateStripeLivePreview === 'function') updateStripeLivePreview();
  }
 
  function selectRetainerTier(tierLabel, monthlyPrice, cardElement) {
@@ -1630,6 +1726,7 @@
 
   selectedPayment = tierLabel + ' — Recurring Partnership Retainer (6- or 12-month commitment; billed on the 1st of each month)';
   document.getElementById('csaPaymentTermsText').innerText = selectedPayment;
+  if (typeof updateStripeLivePreview === 'function') updateStripeLivePreview();
  }
 
  function clearRetainerAttachment() {
@@ -1649,11 +1746,13 @@
   if (notesEl && !notesEl.value.includes('DOOH:')) {
    notesEl.value = (notesEl.value ? notesEl.value + ' | ' : '') + 'DOOH: ' + doohLabel;
   }
+  if (typeof updateStripeLivePreview === 'function') updateStripeLivePreview();
   showToast('Digital Billboard Package Attached: ' + doohLabel);
  }
  function clearDoohAttachment() {
   selectedDooh = 'None';
   document.querySelectorAll('#doohSelectionContainer .option-card').forEach(c => c.classList.remove('selected'));
+  if (typeof updateStripeLivePreview === 'function') updateStripeLivePreview();
   showToast('Digital Billboard Add-On Cleared');
  }
 
@@ -1678,6 +1777,7 @@
   document.getElementById('sigDisplayClientName').innerText = name;
   document.getElementById('sigDisplayClientTitle').innerText = title;
   document.getElementById('displayTimeline').innerText = timeline;
+  if (typeof updateStripeLivePreview === 'function') updateStripeLivePreview();
  }
 
  function selectPaymentOption(option) {
@@ -1708,6 +1808,7 @@
    }
   }
   csaText.innerText = selectedPayment;
+  if (typeof updateStripeLivePreview === 'function') updateStripeLivePreview();
  }
 
  function markBookingClicked() {
@@ -1928,26 +2029,66 @@
    console.warn('Direct mailto redirect:', err);
   }
 
+  const stripeCheckout = getStripeCheckoutData(auditRef, email, company);
+  window.__lastSealedStripeData = stripeCheckout;
+
   const successBanner = document.getElementById('executionSuccessBanner');
   if (successBanner) {
    const safeEmail = escapeHTMLSafe(email);
    const safeAuditRef = escapeHTMLSafe(auditRef);
+   const safeStripeLabel = escapeHTMLSafe(stripeCheckout.label);
+   const safeMilestoneDesc = escapeHTMLSafe(stripeCheckout.milestoneSummary);
+   const safeAmountDue = escapeHTMLSafe(stripeCheckout.amountFormatted);
+   const safeDoohNote = selectedDooh && selectedDooh !== 'None'
+    ? `<div class="mt-2 text-[11px] text-amber-300">+ Attached DOOH Flight: <strong>${escapeHTMLSafe(selectedDooh)}</strong></div>`
+    : '';
+
    successBanner.innerHTML = `
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-     <div>
-      <div class="font-bold text-sm mb-1 text-emerald-300">✓ AGREEMENT DIGITALLY EXECUTED, CRYPTOGRAPHICALLY SEALED &amp; DISPATCHED</div>
-      <p class="text-xs text-[#AAA] leading-relaxed">
-       Execution certificate <strong>${safeAuditRef}</strong> (SHA-256: <code class="text-amber-400">${shortDigest}...</code>) has been transmitted to <strong>info@fermionbecproductions.com</strong>, <strong>fermionbecproductions@gmail.com</strong>, <strong>levibethel@gmail.com</strong>, and <strong>${safeEmail}</strong>.
-      </p>
+    <div class="space-y-5">
+     <!-- Row 1: Cryptographic Execution Confirmation -->
+     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-[#1C2420]">
+      <div>
+       <div class="font-bold text-sm mb-1 text-emerald-300">✓ STEP 03 COMPLETE: AGREEMENT DIGITALLY EXECUTED &amp; CRYPTOGRAPHICALLY SEALED</div>
+       <p class="text-xs text-[#AAA] leading-relaxed">
+        Execution certificate <strong>${safeAuditRef}</strong> (SHA-256: <code class="text-amber-400">${shortDigest}...</code>) has been logged for <strong>info@fermionbecproductions.com</strong>, <strong>fermionbecproductions@gmail.com</strong>, <strong>levibethel@gmail.com</strong>, and <strong>${safeEmail}</strong>.
+       </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 flex-shrink-0 no-print">
+       <a href="${mailtoUrl}" class="px-3.5 py-2 rounded bg-[#14141A] hover:bg-amber-500 hover:text-black border border-amber-500/40 text-amber-300 font-bold font-mono-hud text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <span>Email Signed Record</span>
+       </a>
+       <button type="button" onclick="window.print()" class="px-3.5 py-2 rounded bg-[#14141A] hover:bg-white/10 border border-[#2A2A34] text-[#DDD] font-mono-hud text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 transition">
+        <span>Print / Save PDF</span>
+       </button>
+      </div>
      </div>
-     <div class="flex items-center gap-2 flex-shrink-0 no-print">
-      <a href="${mailtoUrl}" class="px-4 py-2.5 rounded bg-amber-500 hover:bg-white text-black font-bold font-mono-hud text-xs uppercase tracking-wider inline-flex items-center gap-2 transition shadow-[0_0_20px_rgba(255,152,0,0.35)]">
-       <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-       <span>Email Signed Record (Required)</span>
-      </a>
-      <button type="button" onclick="window.print()" class="px-3.5 py-2 rounded bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-mono-hud text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 transition">
-       <span>Print / Save PDF</span>
-      </button>
+
+     <!-- Row 2: Step 04 — Native Dark-HUD Stripe Milestone Settlement Card -->
+     <div class="p-5 rounded-xl bg-[#0C0C10] border border-amber-500/50 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 no-print shadow-[0_0_30px_rgba(245,158,11,0.12)]">
+      <div>
+       <div class="flex flex-wrap items-center gap-2 mb-1.5">
+        <span class="text-[10px] font-mono-hud font-bold uppercase tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 rounded">
+         STEP 04 // INSTANT STRIPE MILESTONE SETTLEMENT
+        </span>
+        <span class="text-[10px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">
+         ★ US BANK ACH DIRECT DEBIT ($5 FEE CAP) OR CORPORATE CARD
+        </span>
+       </div>
+       <div class="text-base sm:text-lg font-hero text-white tracking-wide">
+        DUE UPON EXECUTION: <span class="text-amber-400">${safeAmountDue}</span> — ${safeMilestoneDesc}
+       </div>
+       <p class="text-xs text-[#888] mt-1 leading-relaxed">
+        Bound to contract seal <code class="text-amber-300">${safeAuditRef}</code> (<code class="text-[#AAA]">client_reference_id</code>) and pre-filled for <strong class="text-white">${safeEmail}</strong>.
+       </p>
+       ${safeDoohNote}
+      </div>
+      <div class="w-full lg:w-auto flex-shrink-0">
+       <button type="button" onclick="launchStripeMilestoneCheckout()" class="btn-gold w-full lg:w-auto text-xs py-3.5 px-6 shadow-[0_0_25px_rgba(245,158,11,0.45)] cursor-pointer">
+        <span>${safeStripeLabel}</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+       </button>
+      </div>
      </div>
     </div>
    `;
@@ -1960,7 +2101,264 @@
    executeBtn.classList.add('bg-emerald-500', 'text-black', 'pointer-events-none');
   }
 
-  showToast('Agreement Sealed & Dispatched: ' + auditRef);
+  showToast('Agreement Sealed & Stripe Settlement Unlocked: ' + auditRef);
+ }
+
+ // ============================================================================
+ // STRIPE MILESTONE PAYMENT ROUTER & DARK-HUD APPEARANCE API CONFIGURATION
+ // ============================================================================
+ const STRIPE_MILESTONE_LINKS = {
+  launchpad_60: 'YOUR_LAUNCHPAD_5100_LINK',
+  launchpad_100: 'YOUR_LAUNCHPAD_8500_LINK',
+  flagship_30: 'YOUR_FLAGSHIP_15000_LINK',
+  flagship_50: 'YOUR_FLAGSHIP_25000_LINK',
+  retainer_4000: 'YOUR_TIER1_4000_LINK',
+  retainer_7000: 'YOUR_TIER2_7000_LINK',
+  retainer_12000: 'YOUR_TIER3_12000_LINK'
+ };
+
+ const FBP_STRIPE_APPEARANCE = {
+  theme: 'night',
+  labels: 'auto',
+  inputs: 'spaced',
+  variables: {
+   borderRadius: '4px',
+   colorBackground: '#0a0000',
+   colorDanger: '#df1b41',
+   colorPrimary: '#0570de',
+   colorSuccess: '#00c853',
+   colorText: '#e5e5e5',
+   fontFamily: 'default',
+   fontSizeBase: '16px',
+   spacingUnit: '4px'
+  }
+ };
+ window.FBP_STRIPE_APPEARANCE = FBP_STRIPE_APPEARANCE;
+
+ let activeMountedSignature = null;
+ async function initEmbeddedCheckoutForm(contractData) {
+  const container = document.getElementById('checkout-form');
+  if (!container || typeof Stripe !== 'function') return;
+  const payload = {
+   milestoneKey: contractData?.milestoneKey || 'flagship_30',
+   auditRef: contractData?.auditRef || 'FBP-CSA-PENDING',
+   clientEmail: contractData?.clientEmail || '',
+   clientCompany: contractData?.clientCompany || 'Client Organization',
+   signatoryName: (document.getElementById('clientName')?.value || '').trim(),
+   signatoryTitle: (document.getElementById('clientTitle')?.value || '').trim(),
+   selectedDooh: selectedDooh || 'None'
+  };
+  const sig = JSON.stringify({ k: payload.milestoneKey, d: payload.selectedDooh, r: payload.auditRef, e: payload.clientEmail });
+  if (activeMountedSignature === sig) return;
+  try {
+   let publishableKey = 'pk_test_...';
+   try {
+    const cfgRes = await fetch('/api/stripe-config');
+    if (cfgRes.ok) {
+     const cfg = await cfgRes.json();
+     if (cfg.publishableKey) publishableKey = cfg.publishableKey;
+    }
+   } catch (_) {}
+   const stripe = Stripe(publishableKey);
+   const fetchClientSecret = async () => {
+    const response = await fetch('/api/create-checkout-session', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+     body: JSON.stringify(payload)
+    });
+    const { client_secret } = await response.json();
+    return client_secret;
+   };
+   const clientSecret = await fetchClientSecret();
+   if (!clientSecret) return;
+   container.innerHTML = '';
+   const appearance = FBP_STRIPE_APPEARANCE;
+   const checkout = stripe.initCheckoutFormSdk({ clientSecret, appearance });
+   const form = checkout.createForm({
+    layout: 'expanded'
+   });
+   form.mount('#checkout-form');
+   activeMountedSignature = sig;
+   const loadActionsResult = await checkout.loadActions();
+   if (loadActionsResult.type === 'success') {
+    form.on('confirm', async (event) => {
+     await loadActionsResult.actions.confirm({
+      formConfirmEvent: event
+     });
+    });
+   }
+  } catch (err) {
+   console.warn('Embedded Checkout Form SDK initialization pending backend configuration:', err);
+  }
+ }
+
+ let selectedStripeRail = 'ACH Direct Debit (US Bank Account)';
+
+ function getStripeCheckoutData(auditRef, clientEmail, clientCompany) {
+  const cardOptionA = document.getElementById('cardOptionA');
+  const isOptionA = cardOptionA ? cardOptionA.classList.contains('selected') : true;
+
+  let milestoneKey = 'flagship_30';
+  let linkSlug = STRIPE_MILESTONE_LINKS.flagship_30;
+  let amountFormatted = '$15,000 USD';
+  let milestoneSummary = '30% Signing Milestone (02. Flagship Campaign)';
+  let buttonLabel = 'Pay 30% Signing Milestone ($15,000) via Stripe / ACH';
+
+  if (currentEngagement === 'launchpad') {
+   if (isOptionA) {
+    milestoneKey = 'launchpad_60';
+    linkSlug = STRIPE_MILESTONE_LINKS.launchpad_60;
+    amountFormatted = '$5,100 USD';
+    milestoneSummary = '60% Sprint Booking Deposit (01. Launchpad Sprint)';
+    buttonLabel = 'Pay 60% Sprint Deposit ($5,100) via Stripe / ACH';
+   } else {
+    milestoneKey = 'launchpad_100';
+    linkSlug = STRIPE_MILESTONE_LINKS.launchpad_100;
+    amountFormatted = '$8,500 USD';
+    milestoneSummary = '100% Advance Pre-Pay (01. Launchpad Sprint)';
+    buttonLabel = 'Pay 100% Sprint Advance ($8,500) via Stripe / ACH';
+   }
+  } else if (currentEngagement === 'flagship') {
+   if (isOptionA) {
+    milestoneKey = 'flagship_30';
+    linkSlug = STRIPE_MILESTONE_LINKS.flagship_30;
+    amountFormatted = '$15,000 USD';
+    milestoneSummary = '30% Signing Milestone (02. Flagship Campaign)';
+    buttonLabel = 'Pay 30% Signing Milestone ($15,000) via Stripe / ACH';
+   } else {
+    milestoneKey = 'flagship_50';
+    linkSlug = STRIPE_MILESTONE_LINKS.flagship_50;
+    amountFormatted = '$25,000 USD';
+    milestoneSummary = '50% Upfront Split (02. Flagship Campaign)';
+    buttonLabel = 'Pay 50% Upfront Split ($25,000) via Stripe / ACH';
+   }
+  } else if (currentEngagement === 'retainer') {
+   if (selectedPayment.includes('$4,000')) {
+    milestoneKey = 'retainer_4000';
+    linkSlug = STRIPE_MILESTONE_LINKS.retainer_4000;
+    amountFormatted = '$4,000 / mo';
+    milestoneSummary = 'Month 1 Retainer (Tier 01 // Content Infrastructure)';
+    buttonLabel = 'Activate Tier 01 Retainer ($4,000/mo) via Stripe';
+   } else if (selectedPayment.includes('$7,000')) {
+    milestoneKey = 'retainer_7000';
+    linkSlug = STRIPE_MILESTONE_LINKS.retainer_7000;
+    amountFormatted = '$7,000 / mo';
+    milestoneSummary = 'Month 1 Retainer (Tier 02 // Growth Media Partner)';
+    buttonLabel = 'Activate Tier 02 Retainer ($7,000/mo) via Stripe';
+   } else {
+    milestoneKey = 'retainer_12000';
+    linkSlug = STRIPE_MILESTONE_LINKS.retainer_12000;
+    amountFormatted = '$12,000 / mo';
+    milestoneSummary = 'Month 1 Retainer (Tier 03 // Studio Infrastructure)';
+    buttonLabel = 'Activate Tier 03 Retainer ($12,000/mo) via Stripe';
+   }
+  }
+
+  const isLivePaymentLink = linkSlug && !linkSlug.includes('YOUR_');
+  const params = new URLSearchParams();
+  if (auditRef) params.set('client_reference_id', auditRef);
+  if (clientEmail && clientEmail !== 'On File') params.set('prefilled_email', clientEmail);
+
+  const fullStripeUrl = isLivePaymentLink
+   ? `${linkSlug}${linkSlug.includes('?') ? '&' : '?'}${params.toString()}`
+   : '#stripeCheckoutModal';
+
+  return {
+   milestoneKey,
+   url: fullStripeUrl,
+   isLivePaymentLink,
+   amountFormatted,
+   milestoneSummary,
+   label: buttonLabel,
+   auditRef: auditRef || 'FBP-CSA-PENDING',
+   clientEmail: clientEmail || 'On File',
+   clientCompany: clientCompany || 'Client Organization'
+  };
+ }
+
+ function updateStripeLivePreview() {
+  const previewText = document.getElementById('stripePreviewMilestoneText');
+  const doohAddon = document.getElementById('stripePreviewDoohAddon');
+  if (!previewText) return;
+  const emailVal = (document.getElementById('clientEmail')?.value || '').trim() || 'On File';
+  const companyVal = (document.getElementById('clientCompany')?.value || '').trim() || 'Client Organization';
+  const data = getStripeCheckoutData('PENDING-SEAL', emailVal, companyVal);
+  previewText.innerText = `${data.amountFormatted} (${data.milestoneSummary})`;
+  if (doohAddon) {
+   if (selectedDooh && selectedDooh !== 'None') {
+    doohAddon.innerText = ` • + DOOH: ${selectedDooh}`;
+    doohAddon.classList.remove('hidden');
+   } else {
+    doohAddon.innerText = '';
+    doohAddon.classList.add('hidden');
+   }
+  }
+ }
+
+ function selectStripeRail(railLabel) {
+  selectedStripeRail = railLabel;
+  const achCard = document.getElementById('railCardAch');
+  const creditCard = document.getElementById('railCardCredit');
+  if (achCard && creditCard) {
+   if (railLabel.includes('ACH')) {
+    achCard.classList.add('selected');
+    creditCard.classList.remove('selected');
+   } else {
+    creditCard.classList.add('selected');
+    achCard.classList.remove('selected');
+   }
+  }
+  syncStripeModalCta();
+ }
+
+ function syncStripeModalCta() {
+  const data = window.__lastSealedStripeData || getStripeCheckoutData('FBP-CSA-SEALED', 'On File', 'Client Organization');
+  const directBtn = document.getElementById('stripeModalDirectLinkBtn');
+  const directBtnText = document.getElementById('stripeModalDirectBtnText');
+  if (!directBtn || !directBtnText) return;
+
+  if (data.isLivePaymentLink) {
+   directBtn.href = data.url;
+   directBtn.target = '_blank';
+   directBtnText.innerText = `${data.label} (${selectedStripeRail.includes('ACH') ? 'ACH $5 Cap' : 'Card'})`;
+  } else {
+   const subject = `[STRIPE MILESTONE SETTLEMENT] ${data.amountFormatted} — ${data.clientCompany} (${data.auditRef})`;
+   const body = `FERMION BEC PRODUCTIONS // STRIPE MILESTONE SETTLEMENT DISPATCH\n` +
+    `================================================================\n` +
+    `CONTRACT SEAL REF : ${data.auditRef}\n` +
+    `CLIENT ENTITY     : ${data.clientCompany}\n` +
+    `BILLING EMAIL     : ${data.clientEmail}\n` +
+    `MILESTONE DUE     : ${data.amountFormatted} (${data.milestoneSummary})\n` +
+    `SELECTED RAIL     : ${selectedStripeRail}\n` +
+    `DOOH ADD-ON       : ${selectedDooh}\n` +
+    `================================================================\n` +
+    `Please issue or confirm the direct Stripe Checkout / ACH Direct Debit link for immediate settlement.`;
+   directBtn.href = `mailto:info@fermionbecproductions.com?cc=fermionbecproductions@gmail.com,levibethel@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+   directBtn.target = '_self';
+   directBtnText.innerText = `Launch ${selectedStripeRail.includes('ACH') ? 'Stripe ACH Direct Debit' : 'Stripe Card'} Settlement (${data.amountFormatted})`;
+  }
+ }
+
+ function launchStripeMilestoneCheckout() {
+  const emailVal = (document.getElementById('clientEmail')?.value || '').trim() || 'On File';
+  const companyVal = (document.getElementById('clientCompany')?.value || '').trim() || 'Client Organization';
+  const data = window.__lastSealedStripeData || getStripeCheckoutData('FBP-CSA-SEALED', emailVal, companyVal);
+  window.__lastSealedStripeData = data;
+
+  const modal = document.getElementById('stripeCheckoutModal');
+  if (!modal) return;
+  document.getElementById('stripeModalAuditRef').innerText = data.auditRef;
+  document.getElementById('stripeModalCompany').innerText = data.clientCompany;
+  document.getElementById('stripeModalEmail').innerText = data.clientEmail;
+  document.getElementById('stripeModalAmount').innerText = `${data.amountFormatted} — ${data.milestoneSummary}`;
+  syncStripeModalCta();
+  modal.classList.remove('hidden');
+  initEmbeddedCheckoutForm(data);
+ }
+
+ function closeStripeCheckoutModal() {
+  const modal = document.getElementById('stripeCheckoutModal');
+  if (modal) modal.classList.add('hidden');
  }
 
  // Scrollable Depth Parallax & Reveal Logic
@@ -2001,6 +2399,7 @@
  window.addEventListener('DOMContentLoaded', () => {
   checkURLAccess();
   updateScrollDepth();
+  updateStripeLivePreview();
  });
  </script>
 
