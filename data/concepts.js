@@ -31,12 +31,12 @@ const CONCEPTS_DATA = [
       "110-Page Master Screenplay",
       "12-Slide Visual Lookbook Deck",
       "Official 10-Slide Pitch Deck",
-      "$850k Budget Top Sheet (SAG-AFTRA)",
-      "35% NJ Tax Credit ($228k Rebate)",
-      "18-Day Master Production Plan",
+      "$2.15M Budget Top Sheet ($2.0305M Net Cash SPV)",
+      "35%\u201339% NJEDA Tax Credit ($543.4K\u2013$605.5K Rebate)",
+      "23-Day Master Production Plan ($195K Contingency)",
       "Brand Sponsorship Stack Dossier",
       "Camera & Multicam Case Study",
-      "Cast & Crew Sourcing Dossier",
+      "Cast & Crew Sourcing Dossier ($260K ATL Cast Quotes)",
       "Equipment & Office Manifest",
       "Director's Thematic Project Bible",
       "Executive One-Pager Submission"
@@ -48,7 +48,7 @@ const CONCEPTS_DATA = [
     "format": "Feature Film Production Deck",
     "formatCategory": "Narrative Feature",
     "client": "Fermion Bec Productions",
-    "description": "A conceptual lookbook highlighting character dynamics, atmospheric scene breakdowns, and the overarching visual strategy for a fast-paced South Jersey action-comedy feature.",
+    "description": "A conceptual lookbook highlighting character dynamics, atmospheric scene breakdowns, and an elastic $250K\u2013$2.1M capital structure for a fast-paced South Jersey action-comedy and heist feature.",
     "thumbnail": "assets/images/concepts/crossfire-cousins.jpg",
     "fallbackThumbnail": "essential3.jpg",
     "aspectRatio": "2.39:1",
@@ -72,7 +72,7 @@ const CONCEPTS_DATA = [
       "Anamorphic Visual Lookbook",
       "6-Location 12-Day Clustered Plan",
       "6-Camera Simultaneous Workflow",
-      "$2.1M Financial & NJEDA Waterfall",
+      "$250K\u2013$2.1M Scalable Budget & NJEDA Waterfall",
       "Pre-Lit Spatial Blocking Blueprint",
       "Matriarchal & Antagonist Packaging"
     ]
@@ -83,7 +83,7 @@ const CONCEPTS_DATA = [
     "format": "Revolutionary Folk-Horror Feature Package",
     "formatCategory": "Narrative Feature",
     "client": "Fermion Bec Productions / SI Productions",
-    "description": "A historical folk-horror production package set in Northern New Jersey, pairing period atmosphere with a partner-backed physical production model and zero-dilution co-production structure.",
+    "description": "A historical folk-horror production package set in Northern New Jersey, pairing period atmosphere with a $475,000 100% partner-backed physical production model, 0% external equity dilution, and 34%\u201339% blended NJEDA tax credit recovery.",
     "thumbnail": "assets/images/concepts/salt-and-skin.jpg",
     "fallbackThumbnail": "assets/images/concepts/salt-and-skin.jpg",
     "aspectRatio": "2.39:1",
@@ -104,9 +104,9 @@ const CONCEPTS_DATA = [
     "packageAssets": [
       "200-Page Master Screenplay & Bible",
       "Visual Lookbook & Period Design",
-      "$475k Partner-Backed Budget Model",
-      "SI Productions Co-Production Structure",
-      "35%\u201339% NJEDA Tax Credit Schedule",
+      "$475,000 Gross Budget (100% Backed Model)",
+      "SI Productions Co-Production (0% Dilution)",
+      "34%\u201339% Blended NJEDA Tax Credit Schedule",
       "North NJ Practical Location Manifest"
     ]
   },
