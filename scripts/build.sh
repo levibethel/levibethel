@@ -108,15 +108,17 @@ else
  FAILED=1
 fi
 
-# 8. Check Unified Pricing Architecture ($8,500 Launchpad, $4k/$7k/$12k Retainers, Multipliers & Zero Legacy Pricing)
-echo -n " [8/9] Verifying unified pricing architecture & multipliers... "
-LEGACY_CHECK=$(grep -E '(\$6,500|\$3,500|\$4,500|\$5,500|\$6,000|3\.5K|8\.5K|50% upfront / 50% upon delivery)' index.html proposal.html)
+# 8. Check Unified Pricing Architecture ($8,500 Launchpad, $4k/$7k/$12k Retainers, DOOH/CTV Outreach Bucket, Resume Intake & Zero Legacy Pricing)
+echo -n " [8/9] Verifying unified pricing, DOOH/CTV outreach & resume intake... "
+LEGACY_CHECK=$(grep -E '(\$6,500|\$4,500|\$6,000|3\.5K|8\.5K|50% upfront / 50% upon delivery)' index.html proposal.html)
 NEW_LAUNCHPAD=$(grep -l "\$8,500" index.html proposal.html | wc -l | tr -d ' ')
 NEW_TIERS=$(grep -E '(\$4,000|\$7,000|\$12,000)' index.html | wc -l | tr -d ' ')
+DOOH_CHECK=$(grep -l "Local Spotlight" index.html proposal.html | wc -l | tr -d ' ')
+RESUME_CHECK=$(grep "candidate-intake-form" index.html)
 MULTIPLIERS=$(grep "10.2 kW Clean Power Package" index.html)
 
-if [ -z "$LEGACY_CHECK" ] && [ "$NEW_LAUNCHPAD" -eq 2 ] && [ "$NEW_TIERS" -ge 3 ] && [ -n "$MULTIPLIERS" ]; then
- echo "PASS (Unified \$8.5k Launchpad, \$4k/\$7k/\$12k Retainer Ladder & Multipliers verified)"
+if [ -z "$LEGACY_CHECK" ] && [ "$NEW_LAUNCHPAD" -eq 2 ] && [ "$NEW_TIERS" -ge 3 ] && [ "$DOOH_CHECK" -eq 2 ] && [ -n "$RESUME_CHECK" ] && [ -n "$MULTIPLIERS" ]; then
+ echo "PASS (Launchpad, Retainers, DOOH/CTV Outreach, Resume Intake & Multipliers verified)"
 else
  echo "FAIL: Legacy pricing found or new tiers missing"
  FAILED=1

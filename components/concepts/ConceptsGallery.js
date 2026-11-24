@@ -89,7 +89,7 @@ function renderConceptsGallery(projects) {
             </h3>
           </div>
           <p class="text-xs sm:text-sm text-[#8C8C92] max-w-xl leading-relaxed">
-            One disciplined production unit delivering fast field deployment, fixed-scope commercial packages, and investor-ready film packaging.
+            One disciplined production unit delivering fast field deployment, fixed-scope commercial packages, and direct placement across connected TVs and digital billboards.
           </p>
         </div>
 
@@ -105,7 +105,7 @@ function renderConceptsGallery(projects) {
                 Political Campaign Media & Logistical Fortitude
               </h4>
               <p class="text-xs sm:text-sm text-[#8C8C92] leading-relaxed mb-5">
-                Broadcast, OTT, and rapid-response campaign ads backed by disciplined field logistics—built to move fast and hit strict media-buy deadlines.
+                Broadcast, connected TV, digital billboard, and rapid-response campaign ads backed by disciplined field logistics—built to move fast and hit strict media-buy deadlines.
               </p>
               <ul class="text-xs font-mono-hud text-[#D1D5DB] space-y-2.5 pt-4 border-t border-[#18181F] mb-6">
                 <li class="flex items-start gap-2">
@@ -114,7 +114,7 @@ function renderConceptsGallery(projects) {
                 </li>
                 <li class="flex items-start gap-2">
                   <span class="text-amber-500 font-bold">✓</span>
-                  <span><strong>Rapid Broadcast Turnaround:</strong> 30s/15s TV, OTT, and digital spots cut, graded, and compliant for immediate air.</span>
+                  <span><strong>District CTV & Billboard Placement:</strong> 30s/15s TV spots and commuter-dayparted digital billboards deployed down to the exact ZIP code.</span>
                 </li>
               </ul>
             </div>
@@ -134,16 +134,16 @@ function renderConceptsGallery(projects) {
                 Brand-Specific Commercial Packages
               </h4>
               <p class="text-xs sm:text-sm text-[#8C8C92] leading-relaxed mb-5">
-                Fixed-scope commercial production tailored to your industry—capturing hero spots, vertical social hooks, and campaign stills in a single shoot.
+                Fixed-scope commercial production tailored to your industry—capturing hero spots, connected TV ads, digital billboard loops, and social hooks in a single shoot.
               </p>
               <ul class="text-xs font-mono-hud text-[#D1D5DB] space-y-2.5 pt-4 border-t border-[#18181F] mb-6">
                 <li class="flex items-start gap-2">
                   <span class="text-amber-500 font-bold">✓</span>
-                  <span><strong>Upfront Pricing & 2-7-21 Delivery:</strong> From $8,500 30-day Launchpad Sprints and monthly retainers to $50,000 broadcast campaigns.</span>
+                  <span><strong>Upfront Pricing & Outreach Bucket:</strong> From $8,500 30-day Launchpad Sprints and $2,500+ digital billboard flights to $50,000 broadcast campaigns.</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <span class="text-amber-500 font-bold">✓</span>
-                  <span><strong>Direct or White-Label Execution:</strong> Full creative production for brands or turnkey crew and gear under your agency banner.</span>
+                  <span><strong>Direct TV & White-Label Execution:</strong> $0-minimum CTV ad placement tools (5.3x ROAS) or turnkey crew and gear under your agency banner.</span>
                 </li>
               </ul>
             </div>

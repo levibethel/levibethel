@@ -507,12 +507,11 @@
  <!-- NAVIGATION DOCK -->
  <nav class="role-nav sticky top-0 bg-[#050505]/90 backdrop-blur-xl z-40 py-4 mb-16 border-b border-[#222225] flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 overflow-x-auto px-2 sm:px-4 no-print">
   <a href="index.html#hero" class="role-btn">Overview</a>
-  <a href="index.html#visual-debt" class="role-btn">01 // Visual Debt</a>
-  <a href="index.html#offers" class="role-btn">02 // Productized Offers</a>
-  <a href="index.html#director" class="role-btn">Commercial Direction</a>
-  <a href="index.html#dp" class="role-btn">Cinema Optics &amp; DP</a>
-  <a href="index.html#editor" class="role-btn">DaVinci Color Suite</a>
-  <a href="concepts.html" class="role-btn text-amber-400 font-medium">Concepts &amp; Packaging</a>
+  <a href="index.html#offers" class="role-btn">01 // Commercial Campaigns</a>
+  <a href="index.html#agency" class="role-btn">02 // White-Label Production</a>
+  <a href="index.html#film-packages" class="role-btn">03 // Feature Films</a>
+  <a href="index.html#concepts-packaging" class="role-btn text-amber-400 font-medium">Concepts &amp; Packaging</a>
+  <a href="index.html#careers" class="role-btn text-emerald-400">Crew &amp; Careers</a>
   <span class="role-btn active text-amber-500 font-bold border-l border-[#333] pl-3 md:pl-4 lg:pl-6 xl:pl-8">Client Proposal</span>
  </nav>
 
@@ -731,10 +730,58 @@
     </div>
    </div>
 
-   <!-- SECTION C: PRODUCTION MULTIPLIERS & TECHNICAL ADD-ONS (4-ITEM SPEC GRID) -->
+   <!-- SECTION C: PROGRAMMATIC DOOH & CONNECTED TV OUTREACH BUCKET ADD-ON -->
+   <div id="doohSelectionContainer" class="mb-12 pb-10 border-b border-[#18181D]">
+    <div class="mb-6">
+     <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest block mb-0.5">03 // PROGRAMMATIC DIGITAL BILLBOARDS &amp; CONNECTED TV OUTREACH BUCKET</span>
+     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <h3 class="text-xl md:text-2xl text-white font-hero tracking-wider">DIGITAL BILLBOARD &amp; STREAMING TV DEPLOYMENT (OPTIONAL ADD-ON)</h3>
+      <button type="button" onclick="clearDoohAttachment()" class="text-[10px] font-mono-hud text-[#888] hover:text-amber-400 border border-[#26262E] px-2.5 py-1 rounded self-start sm:self-auto">
+       Clear DOOH Add-On
+      </button>
+     </div>
+     <p class="text-xs text-[#888] font-mono-hud mt-1 leading-relaxed">
+      Zero-waste commuter dayparting, 3-second 65 mph highway legibility, zero-reprint live swaps, and direct connected TV / streaming placement tools ($0 minimum media spend, zero agency middleman fees, +51% site visit lift, and 5.3x ROAS).
+     </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+     <label class="option-card depth-card flex flex-col justify-between h-full cursor-pointer" onclick="selectDoohPackage('Local Spotlight ($2,500–$3,500 | 2–3 Boards, 1-Wk Flight)', this)">
+      <div>
+       <div class="flex items-center justify-between gap-2 mb-2">
+        <span class="text-xs font-mono-hud text-amber-500 font-bold">LOCAL SPOTLIGHT</span>
+        <span class="text-[9px] font-mono-hud text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded uppercase">1-WK FLIGHT</span>
+       </div>
+       <div class="text-2xl text-amber-500 font-hero mb-3">$2,500–$3,500</div>
+       <p class="text-[11px] font-mono-hud text-[#AAA]">1x 30s core + 2x 15s social + 1x 10s DOOH • 2–3 boards (~1,500–2,500 plays)</p>
+      </div>
+     </label>
+     <label class="option-card depth-card flex flex-col justify-between h-full cursor-pointer" onclick="selectDoohPackage('Regional Takeover ($5,500–$7,500 | 5–8 Boards, 2-Wk Dayparted)', this)">
+      <div>
+       <div class="flex items-center justify-between gap-2 mb-2">
+        <span class="text-xs font-mono-hud text-amber-400 font-bold">REGIONAL TAKEOVER</span>
+        <span class="text-[9px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">CORRIDOR</span>
+       </div>
+       <div class="text-2xl text-amber-500 font-hero mb-3">$5,500–$7,500</div>
+       <p class="text-[11px] font-mono-hud text-[#AAA]">Full shoot + 1x 60s hero + 3x social + 2x DOOH ratios • 5–8 boards (~4,000–6,000 plays)</p>
+      </div>
+     </label>
+     <label class="option-card depth-card flex flex-col justify-between h-full cursor-pointer" onclick="selectDoohPackage('Multi-Market Campaign ($12,000+ | 15+ Boards, 30-Day Flight)', this)">
+      <div>
+       <div class="flex items-center justify-between gap-2 mb-2">
+        <span class="text-xs font-mono-hud text-amber-500 font-bold">MULTI-MARKET CAMPAIGN</span>
+        <span class="text-[9px] font-mono-hud text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded uppercase">30-DAY FLIGHT</span>
+       </div>
+       <div class="text-2xl text-amber-500 font-hero mb-3">$12,000+</div>
+       <p class="text-[11px] font-mono-hud text-[#AAA]">Full production + localized variants + unlimited swaps • 15+ boards (~12,000–20,000+ plays)</p>
+      </div>
+     </label>
+    </div>
+   </div>
+
+   <!-- SECTION D: PRODUCTION MULTIPLIERS & TECHNICAL ADD-ONS (4-ITEM SPEC GRID) -->
    <div class="mb-12 pb-10 border-b border-[#18181D]">
     <div class="mb-5">
-     <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest font-bold block mb-0.5">03 // PRODUCTION MULTIPLIERS &amp; TECHNICAL ADD-ONS</span>
+     <span class="text-[10px] font-mono-hud text-amber-400 uppercase tracking-widest font-bold block mb-0.5">04 // PRODUCTION MULTIPLIERS &amp; TECHNICAL ADD-ONS</span>
      <p class="text-xs text-[#888] font-mono-hud leading-relaxed">
       Modular capabilities added per shoot day or per campaign—zero bloated agency markups.
      </p>
@@ -1584,6 +1631,23 @@
   if (noneRadio) noneRadio.checked = true;
   document.getElementById('displayRetainerAttached').innerText = 'Retainer: None';
   selectEngagementModel('flagship');
+ }
+
+ let selectedDooh = 'None';
+ function selectDoohPackage(doohLabel, cardEl) {
+  selectedDooh = doohLabel;
+  document.querySelectorAll('#doohSelectionContainer .option-card').forEach(c => c.classList.remove('selected'));
+  if (cardEl) cardEl.classList.add('selected');
+  const notesEl = document.getElementById('clientNotes');
+  if (notesEl && !notesEl.value.includes('DOOH:')) {
+   notesEl.value = (notesEl.value ? notesEl.value + ' | ' : '') + 'DOOH: ' + doohLabel;
+  }
+  showToast('Digital Billboard Package Attached: ' + doohLabel);
+ }
+ function clearDoohAttachment() {
+  selectedDooh = 'None';
+  document.querySelectorAll('#doohSelectionContainer .option-card').forEach(c => c.classList.remove('selected'));
+  showToast('Digital Billboard Add-On Cleared');
  }
 
  function updateLiveFields() {
