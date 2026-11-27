@@ -118,7 +118,7 @@ function renderConceptsGallery(projects) {
                 </li>
               </ul>
             </div>
-            <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+            <a href="https://calendar.app.google/3og6zHZ5Qp3iL6HT7" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
               Scope Campaign Media →
             </a>
           </div>
@@ -176,7 +176,7 @@ function renderConceptsGallery(projects) {
                 </li>
               </ul>
             </div>
-            <a href="https://calendar.app.google/PMCtX5rRvdCpoVPQ6" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
+            <a href="https://calendar.app.google/3og6zHZ5Qp3iL6HT7" target="_blank" class="block w-full text-center text-xs font-mono-hud font-semibold uppercase tracking-wider py-2.5 px-4 rounded border border-amber-500/50 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black transition">
               Discuss Film Packaging →
             </a>
           </div>

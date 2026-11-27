@@ -163,10 +163,10 @@ async function handleDeckRequestSubmit(event) {
     `This request was submitted via Peter Levi Bethel's Portfolio & Concepts Packaging Suite.\n` +
     `Direct Inquiries  : info@fermionbecproductions.com\n` +
     `Primary Recipient : fermionbecproductions@gmail.com\n` +
-    `Executive Archive : levibethel@gmail.com\n` +
+    `Executive Archive : info@fermionbecproductions.com\n` +
     `==================================================`;
 
-  const mailtoUrl = `mailto:fermionbecproductions@gmail.com?cc=levibethel@gmail.com,info@fermionbecproductions.com&reply-to=${encodeURIComponent(requesterEmail)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBodyText)}`;
+  const mailtoUrl = `mailto:info@fermionbecproductions.com?cc=fermionbecproductions@gmail.com&reply-to=${encodeURIComponent(requesterEmail)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBodyText)}`;
 
   // Attempt direct mail client trigger during user gesture
   try {
@@ -186,7 +186,7 @@ async function handleDeckRequestSubmit(event) {
       },
       body: JSON.stringify({
         _subject: emailSubject,
-        _cc: 'fermionbecproductions@gmail.com,levibethel@gmail.com,info@fermionbecproductions.com',
+        _cc: 'info@fermionbecproductions.com,fermionbecproductions@gmail.com',
         _replyto: requesterEmail,
         _template: 'table',
         _captcha: 'false',
@@ -238,7 +238,7 @@ async function handleDeckRequestSubmit(event) {
 function handleMailtoClick() {
   const noticeBox = document.getElementById('deck-success-notice');
   if (noticeBox) {
-    noticeBox.innerHTML = `✓ DISPATCH INITIATED: Hit <strong>"Send"</strong> in your mail app to transmit this request to <strong>info@fermionbecproductions.com</strong>, <strong>fermionbecproductions@gmail.com</strong> &amp; <strong>levibethel@gmail.com</strong>. Once received, credentials will be vetted and your view link dispatched.`;
+    noticeBox.innerHTML = `✓ DISPATCH INITIATED: Hit <strong>"Send"</strong> in your mail app to transmit this request to <strong>info@fermionbecproductions.com</strong> &amp; <strong>fermionbecproductions@gmail.com</strong>. Once received, credentials will be vetted and your view link dispatched.`;
     noticeBox.classList.remove('bg-amber-500/10', 'border-amber-500/40', 'text-amber-300');
     noticeBox.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-400');
   }

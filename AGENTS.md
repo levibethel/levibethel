@@ -60,7 +60,7 @@ The site enforces a **strict 3-font typography system** across `index.html`, `pr
 ## 5. Notification & Email Dispatch Standards
 All lead capture, diagnostic, and contract execution forms must maintain dual-dispatch redundancy:
 - **Primary Recipient**: `fermionbecproductions@gmail.com`
-- **Executive Archive / CC**: `levibethel@gmail.com`
+- **Executive Archive / CC**: `info@fermionbecproductions.com`
 - **Immediate Mailto Trigger**: Interactive forms must invoke `window.location.href = mailtoUrl` upon submission to launch the native mail client pre-populated, while simultaneously transmitting data via background `fetch` to FormSubmit (`_template: table`, `_captcha: false`).
 
 ---
