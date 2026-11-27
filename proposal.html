@@ -1598,7 +1598,7 @@
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
      _subject: accessSubject,
-     _cc: 'info@fermionbecproductions.com,fermionbecproductions@gmail.com',
+     _cc: 'info@fermionbecproductions.com',
      _replyto: email,
      _template: 'table',
      _captcha: 'false',
@@ -2092,7 +2092,6 @@
    `Corporate Office : 1206 Green View Way, Toms River, NJ 08753\n` +
    `Direct Phone : (646) 262-1379\n` +
    `Direct Inquiries : info@fermionbecproductions.com\n` +
-   `Production Inquiries : fermionbecproductions@gmail.com\n` +
    `Lead Producer Desk : info@fermionbecproductions.com\n` +
    `Company Website : https://www.fermionbecproductions.com\n` +
    `Director Portfolio : https://fermionbecproductions.com/\n\n` +
@@ -2102,7 +2101,7 @@
    `Agreement URL : ${window.location.href}\n` +
    `================================================================================`;
 
-  const mailtoUrl = `mailto:info@fermionbecproductions.com?cc=fermionbecproductions@gmail.com,${encodeURIComponent(email)}&subject=${encodeURIComponent(contractSubject)}&body=${encodeURIComponent(contractBody)}`;
+  const mailtoUrl = `mailto:info@fermionbecproductions.com?cc=${encodeURIComponent(email)}&subject=${encodeURIComponent(contractSubject)}&body=${encodeURIComponent(contractBody)}`;
 
   try {
    fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
@@ -2111,7 +2110,7 @@
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
      _subject: contractSubject,
-     _cc: 'info@fermionbecproductions.com,fermionbecproductions@gmail.com' + (email && email !== 'On File' ? (',' + email) : ''),
+     _cc: 'info@fermionbecproductions.com' + (email && email !== 'On File' ? (',' + email) : ''),
      _replyto: (email && email !== 'On File') ? email : 'info@fermionbecproductions.com',
      _template: 'table',
      _captcha: 'false',
@@ -2168,7 +2167,7 @@
       <div>
        <div class="font-bold text-sm mb-1 text-emerald-300">✓ STEP 03 COMPLETE: AGREEMENT DIGITALLY EXECUTED &amp; CRYPTOGRAPHICALLY SEALED</div>
        <p class="text-xs text-[#AAA] leading-relaxed">
-        Execution certificate <strong>${safeAuditRef}</strong> (SHA-256: <code class="text-amber-400">${shortDigest}...</code>) has been logged for <strong>info@fermionbecproductions.com</strong>, <strong>fermionbecproductions@gmail.com</strong>, and <strong>${safeEmail}</strong>.
+        Execution certificate <strong>${safeAuditRef}</strong> (SHA-256: <code class="text-amber-400">${shortDigest}...</code>) has been logged for <strong>info@fermionbecproductions.com</strong> and <strong>${safeEmail}</strong>.
        </p>
       </div>
       <div class="flex flex-wrap items-center gap-2 flex-shrink-0 no-print">
@@ -2553,7 +2552,7 @@
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
      _subject: `[STRIPE MILESTONE AUTHORIZED] ${totalDisplay} — ${data.clientCompany} (${payRef})`,
-     _cc: 'info@fermionbecproductions.com,fermionbecproductions@gmail.com',
+     _cc: 'info@fermionbecproductions.com',
      _template: 'table',
      _captcha: 'false',
      payment_settlement_ref: payRef,

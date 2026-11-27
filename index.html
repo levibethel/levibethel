@@ -3177,7 +3177,7 @@
 
    <div class="text-xs font-mono-hud text-[#5C6763] space-y-1.5 pt-6 border-t border-[#1C2420]">
     <p>Headquartered in Toms River, New Jersey • Available for Metro NY/Philadelphia &amp; Nationwide Commissions</p>
-    <p>Direct Inquiries: <a href="mailto:info@fermionbecproductions.com?cc=fermionbecproductions@gmail.com" class="text-amber-500 hover:underline">info@fermionbecproductions.com</a> &bull; <a href="mailto:fermionbecproductions@gmail.com" class="text-amber-500 hover:underline">fermionbecproductions@gmail.com</a> &bull; <a href="#careers" onclick="switchTabView('careers', 'careers', event)" class="text-emerald-400 hover:underline">Crew &amp; Candidate Resume Intake →</a></p>
+    <p>Direct Inquiries: <a href="mailto:info@fermionbecproductions.com" class="text-amber-500 hover:underline">info@fermionbecproductions.com</a> &bull; <a href="#careers" onclick="switchTabView('careers', 'careers', event)" class="text-emerald-400 hover:underline">Crew &amp; Candidate Resume Intake →</a></p>
     <p class="pt-2 text-[11px]">© 2026 FERMION BEC PRODUCTIONS. ALL RIGHTS RESERVED.</p>
    </div>
   </div>
@@ -3583,12 +3583,11 @@
    `Recommendation : ${desc}\n\n` +
    `DISPATCH AUDIT:\n` +
    `Direct Inquiries: info@fermionbecproductions.com\n` +
-   `Primary Desk : fermionbecproductions@gmail.com\n` +
    `Executive Desk : info@fermionbecproductions.com\n` +
    `Strategy Booking: https://calendar.app.google/3og6zHZ5Qp3iL6HT7\n` +
    `==================================================`;
 
-  const mailtoUrl = `mailto:info@fermionbecproductions.com?cc=fermionbecproductions@gmail.com&reply-to=${encodeURIComponent(email)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+  const mailtoUrl = `mailto:info@fermionbecproductions.com?reply-to=${encodeURIComponent(email)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
   try {
    fetch('https://formsubmit.co/ajax/ed97f021249b9307a739c7f93ebaf6b0', {
@@ -3597,7 +3596,7 @@
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
      _subject: emailSubject,
-     _cc: 'info@fermionbecproductions.com,fermionbecproductions@gmail.com',
+     _cc: 'info@fermionbecproductions.com',
      _replyto: email,
      _template: 'table',
      _captcha: 'false',
@@ -3793,12 +3792,12 @@
    `${credits}\n` +
    `==================================================`;
 
-  const mailtoUrl = `mailto:info@fermionbecproductions.com?cc=fermionbecproductions@gmail.com&reply-to=${encodeURIComponent(email)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+  const mailtoUrl = `mailto:info@fermionbecproductions.com?reply-to=${encodeURIComponent(email)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
 
   try {
    const formData = new FormData();
    formData.append('_subject', subject);
-   formData.append('_cc', 'info@fermionbecproductions.com,fermionbecproductions@gmail.com');
+   formData.append('_cc', 'info@fermionbecproductions.com');
    formData.append('_replyto', email);
    formData.append('_template', 'table');
    formData.append('_captcha', 'false');
